@@ -69,7 +69,7 @@ namespace DndApp.Repositories
                 try
                 {
                     string json = await client.GetStringAsync(url);
-                    Monster monster = (Monster)JsonConvert.DeserializeObject(json);
+                    Monster monster = JsonConvert.DeserializeObject<Monster>(json);
 
                     return monster;
                 }

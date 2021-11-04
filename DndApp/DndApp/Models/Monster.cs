@@ -23,7 +23,8 @@ namespace DndApp.Models
         [JsonProperty(PropertyName = "hit_points")]
         public int HitPoints { get; set; }
         public string HitDice { get; set; }
-        public class Speed
+        public SpeedProperties Speed { get; set; } 
+        public class SpeedProperties
         {
             // most creatures won't have all of these (most likely one or two, with walk being the most common)
             [JsonProperty(PropertyName = "walk")]
@@ -47,11 +48,15 @@ namespace DndApp.Models
         public int Charisma { get; set; }
 
         // PROFICIENCIES AND EXPERTISE PROPERTIES 
-        public class Proficiencies
+        public List<ProficiencyAndValue> Proficiencies { get; set; }
+        public class ProficiencyAndValue
         {
-            // a monster can have multiple proficiencies, wether it's a single proficiency or expertise (double proficiency) is decided by the value
-            public class Proficiency
+            // a monster can have multiple proficiencies for different skills, wether it's a single proficiency for a skill or expertise (double proficiency) is decided partially by the value
+            public ProficiencyObject Proficiency { get; set; }
+            public class ProficiencyObject
             {
+                [JsonProperty(PropertyName = "index")]
+                public string ProficiencyId { get; set; }
                 public string Name { get; set; }
             }
             public int Value { get; set; }
@@ -68,7 +73,8 @@ namespace DndApp.Models
         public List<string> ConditionImmunities { get; set; }
 
         // SENSE AND LANGUAGE PROPERTIES
-        public class Senses
+        public SensesObject Senses { get; set; }
+        public class SensesObject
         {
             public string Blindsight { get; set; }
             public string Darkvision { get; set; }
@@ -87,12 +93,15 @@ namespace DndApp.Models
         public int ExperiencePoints { get; set; }
 
         // ABILITY AND ACTION PROPERTIES (all share the same properties, so I could make a base class where they inherit from with a different action type, but copy paste is easier for now)
-        public class SpecialAbilities
+        [JsonProperty(propertyName: "special_abilities")]
+        public List<SpecialAbility> SpecialAbilities { get; set; }
+        public class SpecialAbility
         {
             public string Name { get; set; }
             [JsonProperty(PropertyName = "desc")]
             public string Description { get; set; }
-            public class Usage
+            public UsageObject Usage { get; set; }
+            public class UsageObject
             {
                 // from as far as I know you have two types:
                 // 1)limited amount within a time period (or till a long or short rest)
@@ -104,7 +113,8 @@ namespace DndApp.Models
                 public int MinimumValue { get; set; }
             } 
         }
-        public class Actions
+        public List<Action> Actions { get; set; }
+        public class Action
         {
             public string Name { get; set; }
             [JsonProperty(PropertyName = "desc")]
@@ -118,7 +128,9 @@ namespace DndApp.Models
                 public int MinimumValue { get; set; }
             }
         }
-        public class LegendaryActions
+        [JsonProperty(propertyName: "legendary_actions")]
+        public List<LegendaryAction> LegendaryActions { get; set; }
+        public class LegendaryAction
         {
             public string Name { get; set; }
             [JsonProperty(PropertyName = "desc")]
