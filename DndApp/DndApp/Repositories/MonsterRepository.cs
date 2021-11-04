@@ -75,7 +75,6 @@ namespace DndApp.Repositories
                 }
                 catch (Exception ex)
                 {
-
                     throw ex;
                 }
             }

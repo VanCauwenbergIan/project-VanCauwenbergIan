@@ -70,8 +70,13 @@ namespace DndApp.Models
         [JsonProperty(PropertyName = "damage_immunities")]
         public List<string> DamageImmunities { get; set; }
         [JsonProperty(PropertyName = "condition_immunities")]
-        public List<string> ConditionImmunities { get; set; }
-
+        public List<ConditionImmunity> ConditionImmunities { get; set; }
+        public class ConditionImmunity
+        {
+            [JsonProperty(PropertyName = "index")]
+            public string ConditionID { get; set; }
+            public string Name { get; set; }
+        }
         // SENSE AND LANGUAGE PROPERTIES
         public SensesObject Senses { get; set; }
         public class SensesObject
