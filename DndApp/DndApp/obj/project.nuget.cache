@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "TkAe10nGRxTArNdlWCJCgrmVc7PsX/Cic3QcZnubXUuZ+UzUf7O4z4P9n/NC5gUzZN/oubHgzD5+Hx7y6Hmz/g==",
+  "dgSpecHash": "N11S/jkyBMptj5bWMDMTe4vHxmD+BIq3UqNiQD1SIrenJwFd9uurMS0IlhzKU/RS6T9Mv6uj6Swjcy6I8hEM6Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ian Van Cauwenberg\\Desktop\\TinyProject\\project-VanCauwenbergIan\\DndApp\\DndApp\\DndApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
