@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4pizHnnU+fecsKDKjYTLivdbHYDEpxHVfUrS7gXMwV61sWAcNA/CszSr6nTRTLkVmp+McNL2v8XhKtbRn6XlNA==",
+  "dgSpecHash": "MyFXVbMoo+yV4IklxzfEInIyw+WVgiOq6DNTNDhXX+XJBXX7YdzLKAPozfDnimQ7G8WY+IkeplaBmEAyAlB7yg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ian Van Cauwenberg\\Desktop\\TinyProject\\project-VanCauwenbergIan\\DndApp\\DndApp.UWP\\DndApp.UWP.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.netcore.universalwindowsplatform\\6.2.12\\microsoft.netcore.universalwindowsplatform.6.2.12.nupkg.sha512",
     "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\microsoft.ui.xaml\\2.4.3\\microsoft.ui.xaml.2.4.3.nupkg.sha512",
     "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-arm-aot.microsoft.netcore.universalwindowsplatform\\6.2.12\\runtime.win10-arm-aot.microsoft.netcore.universalwindowsplatform.6.2.12.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-arm.microsoft.net.native.compiler\\2.2.10-rel-29722-00\\runtime.win10-arm.microsoft.net.native.compiler.2.2.10-rel-29722-00.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-arm.microsoft.net.native.sharedlibrary\\2.2.8-rel-29722-00\\runtime.win10-arm.microsoft.net.native.sharedlibrary.2.2.8-rel-29722-00.nupkg.sha512",

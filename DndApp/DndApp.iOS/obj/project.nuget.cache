@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tbrrN43Th97HsC9txriMRaKTQMYVBOE8X3SBIF11mcoRio754Yv99QYTeonny99uJyDOnU0aHFoYw2INVwqLOw==",
+  "dgSpecHash": "4GEkGgHzfv/bF1gJ14HyIYza08W5v6zEc6ZQsBejdHERWRiNzqaFZ8gAdAvy4E4w4K1sW2s0AqOP7RsRia4j2A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ian Van Cauwenberg\\Desktop\\TinyProject\\project-VanCauwenbergIan\\DndApp\\DndApp.iOS\\DndApp.iOS.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"

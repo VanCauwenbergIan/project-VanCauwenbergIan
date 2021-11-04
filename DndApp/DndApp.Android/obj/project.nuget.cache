@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Qidao6NYmd2o5Fc5HY1izYtG7N2OHgAtMQdLoAHjc8a3tbxTTH+qkbx5JmFYtlUXbeXyhjEy5j4kjAyff8UMRQ==",
+  "dgSpecHash": "DwU6HLXkvjAlzaUzvVhCICucFz6BqutdzpBG7YlEEFxkCTIqEQnCxQlnL9rYGjWK7VvKJeZ/ANLAtSDDvI+YDA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ian Van Cauwenberg\\Desktop\\TinyProject\\project-VanCauwenbergIan\\DndApp\\DndApp.Android\\DndApp.Android.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.androidx.activity\\1.1.0.5\\xamarin.androidx.activity.1.1.0.5.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.androidx.annotation\\1.1.0.8\\xamarin.androidx.annotation.1.1.0.8.nupkg.sha512",

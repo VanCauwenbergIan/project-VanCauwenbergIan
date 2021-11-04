@@ -1,6 +1,9 @@
-﻿using System;
+﻿using DndApp.Models;
+using DndApp.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +16,18 @@ namespace DndApp
         public MainPage()
         {
             InitializeComponent();
+            TestMonsterRepo();
+        }
+
+        private async Task TestMonsterRepo()
+        {
+            List<Monster> monsters = await MonsterRepository.GetMonstersAsync();
+            Debug.WriteLine("Testing GetMonstersAsync");
+            foreach (Monster monster in monsters)
+            {
+                Debug.WriteLine(monster);
+            }
+            Debug.WriteLine("Done!!!");
         }
     }
 }

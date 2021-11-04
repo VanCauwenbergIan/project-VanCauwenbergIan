@@ -7,6 +7,7 @@ namespace DndApp.Models
 {
     public class Monster
     {
+        // PROPERTIES --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         // DESCRIPTIVE PROPERTIES
         [JsonProperty(PropertyName = "index")]
         public string MonsterId { get; set; }
@@ -131,5 +132,13 @@ namespace DndApp.Models
                 public int MinimumValue { get; set; }
             }
         }
+        // END OF PROPERTIES
+
+        // METHODS -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        public override string ToString()
+        {
+            return $"{this.Name} - {this.Size} {this.Type}, {this.Alignment} ({this.Strength},{this.Dexterity},{this.Constitution},{this.Intelligence},{this.Wisdom},{this.Charisma}) => CR: {this.ChallengeRating}";
+        }
+        // END OF METHODS
     }
 }
