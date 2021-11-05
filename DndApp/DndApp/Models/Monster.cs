@@ -24,23 +24,8 @@ namespace DndApp.Models
         public int HitPoints { get; set; }
         [JsonProperty(PropertyName = "hit_dice")]
         public string HitDice { get; set; }
-        public SpeedProperties Speed { get; set; } 
-        public class SpeedProperties
-        {
-            // most creatures won't have all of these (most likely one or two, with walk being the most common)
-            [JsonProperty(PropertyName = "walk")]
-            public string WalkingSpeed { get; set; }
-            [JsonProperty(PropertyName = "swim")]
-            public string SwimmingSpeed { get; set; }
-            [JsonProperty(PropertyName = "fly")]
-            public string FlyingSpeed { get; set; }
-            [JsonProperty(PropertyName = "burrow")]
-            public string BurrowingSpeed { get; set; }
-            [JsonProperty(PropertyName = "climb")]
-            public string ClimbingSpeed { get; set; }
-            // a creature without walking speed, but with flying speed will often have hover
-            public bool Hover { get; set; }
-        }
+        public SpeedProperties Speed { get; set; }
+
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Constitution { get; set; }
@@ -50,18 +35,6 @@ namespace DndApp.Models
 
         // PROFICIENCIES AND EXPERTISE PROPERTIES 
         public List<ProficiencyAndValue> Proficiencies { get; set; }
-        public class ProficiencyAndValue
-        {
-            // a monster can have multiple proficiencies for different skills, wether it's a single proficiency for a skill or expertise (double proficiency) is decided partially by the value
-            public ProficiencyObject Proficiency { get; set; }
-            public class ProficiencyObject
-            {
-                [JsonProperty(PropertyName = "index")]
-                public string ProficiencyId { get; set; }
-                public string Name { get; set; }
-            }
-            public int Value { get; set; }
-        }
 
         // VULNERABLE AND RESISTANT DAMAGE TYPE PROPERTIES
         [JsonProperty(PropertyName = "damage_vulnerabilities")]
@@ -72,23 +45,8 @@ namespace DndApp.Models
         public List<string> DamageImmunities { get; set; }
         [JsonProperty(PropertyName = "condition_immunities")]
         public List<ConditionImmunity> ConditionImmunities { get; set; }
-        public class ConditionImmunity
-        {
-            [JsonProperty(PropertyName = "index")]
-            public string ConditionID { get; set; }
-            public string Name { get; set; }
-        }
         // SENSE AND LANGUAGE PROPERTIES
         public SensesObject Senses { get; set; }
-        public class SensesObject
-        {
-            public string Blindsight { get; set; }
-            public string Darkvision { get; set; }
-            public string Tremorsense { get; set; }
-            public string Truesight { get; set; }
-            [JsonProperty(PropertyName = "passive_perception")]
-            public int PassivePerception { get; set; }
-        }
         public string Languages { get; set; }
 
         // CHALLENGE PROPERTIES
@@ -98,44 +56,14 @@ namespace DndApp.Models
         [JsonProperty(PropertyName = "xp")]
         public int ExperiencePoints { get; set; }
 
-        // ABILITY AND ACTION PROPERTIES (all share the same properties, so I could make a base class where they inherit from with a different action type, but copy paste is easier for now)
+        // ABILITY AND ACTION PROPERTIES 
         [JsonProperty(propertyName: "special_abilities")]
-        public List<SpecialAbility> SpecialAbilities { get; set; }
-        public class SpecialAbility
-        {
-            public string Name { get; set; }
-            [JsonProperty(PropertyName = "desc")]
-            public string Description { get; set; }
-            public UsageObject Usage { get; set; }
-        }
+        public List<Action> SpecialAbilities { get; set; }
         public List<Action> Actions { get; set; }
-        public class Action
-        {
-            public string Name { get; set; }
-            [JsonProperty(PropertyName = "desc")]
-            public string Description { get; set; }
-            public UsageObject Usage { get; set; }
-        }
+
         [JsonProperty(propertyName: "legendary_actions")]
-        public List<LegendaryAction> LegendaryActions { get; set; }
-        public class LegendaryAction
-        {
-            public string Name { get; set; }
-            [JsonProperty(PropertyName = "desc")]
-            public string Description { get; set; }
-            public UsageObject Usage { get; set; }
-        }
-        public class UsageObject
-        {
-            // from as far as I know you have two types:
-            // 1)limited amount within a time period (or till a long or short rest)
-            // 2)single use or more with a recharge when a dice roll is above a certain value
-            public string Type { get; set; }
-            public int Times { get; set; }
-            public string Dice { get; set; }
-            [JsonProperty(PropertyName = "min_value")]
-            public int MinimumValue { get; set; }
-        }
+        public List<Action> LegendaryActions { get; set; }
+
         // END OF PROPERTIES
 
         // ** METHODS **
@@ -145,4 +73,71 @@ namespace DndApp.Models
         }
         // END OF METHODS
     }
+
+    public class SpeedProperties
+    {
+        // most creatures won't have all of these (most likely one or two, with walk being the most common)
+        [JsonProperty(PropertyName = "walk")]
+        public string WalkingSpeed { get; set; }
+        [JsonProperty(PropertyName = "swim")]
+        public string SwimmingSpeed { get; set; }
+        [JsonProperty(PropertyName = "fly")]
+        public string FlyingSpeed { get; set; }
+        [JsonProperty(PropertyName = "burrow")]
+        public string BurrowingSpeed { get; set; }
+        [JsonProperty(PropertyName = "climb")]
+        public string ClimbingSpeed { get; set; }
+        // a creature without walking speed, but with flying speed will often have hover
+        public bool Hover { get; set; }
+    }
+
+    public class UsageObject
+    {
+        // from as far as I know you have two types:
+        // 1)limited amount within a time period (or till a long or short rest)
+        // 2)single use or more with a recharge when a dice roll is above a certain value
+        public string Type { get; set; }
+        public int Times { get; set; }
+        public string Dice { get; set; }
+        [JsonProperty(PropertyName = "min_value")]
+        public int MinimumValue { get; set; }
+    }
+
+    public class ProficiencyAndValue
+    {
+        // a monster can have multiple proficiencies for different skills, wether it's a single proficiency for a skill or expertise (double proficiency) is decided partially by the value
+        public ProficiencyObject Proficiency { get; set; }
+        public class ProficiencyObject
+        {
+            [JsonProperty(PropertyName = "index")]
+            public string ProficiencyId { get; set; }
+            public string Name { get; set; }
+        }
+        public int Value { get; set; }
+    }
+    public class Action
+    {
+        public string Name { get; set; }
+        [JsonProperty(PropertyName = "desc")]
+        public string Description { get; set; }
+        public UsageObject Usage { get; set; }
+    }
+
+    public class ConditionImmunity
+    {
+        [JsonProperty(PropertyName = "index")]
+        public string ConditionID { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class SensesObject
+    {
+        public string Blindsight { get; set; }
+        public string Darkvision { get; set; }
+        public string Tremorsense { get; set; }
+        public string Truesight { get; set; }
+        [JsonProperty(PropertyName = "passive_perception")]
+        public int PassivePerception { get; set; }
+    }
 }
+
