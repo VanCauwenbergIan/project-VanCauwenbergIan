@@ -42,7 +42,14 @@ namespace DndApp
 
             // put breakpoint here to read list
             Debug.WriteLine(randomMonsters);
-            // from the 5 monsters I compared with the JSON, most bugs should be gone now
+
+            //test post
+            Monster testMonsterPost = randomMonsters[3];
+            testMonsterPost.MonsterId = null;
+            testMonsterPost.Name = "New Monster";
+            await MonsterRepository.PostMonsterAsync(testMonsterPost);
+
+            Debug.WriteLine("Hopefully completed");
         }
     }
 }

@@ -68,6 +68,7 @@ namespace DndApp.Repositories
             {
                 try
                 {
+                    // since our main json contains almost no informaion for each object we have to make individual calls for each of them.
                     string json = await client.GetStringAsync(url);
                     Monster monster = JsonConvert.DeserializeObject<Monster>(json);
 
@@ -75,6 +76,30 @@ namespace DndApp.Repositories
                 }
                 catch (Exception ex)
                 {
+                    throw ex;
+                }
+            }
+        }
+
+        public static async Task PostMonsterAsync(Monster monster)
+        {
+            // local for now, might put it online later (but I don't think that's strictly necessary)
+            string url = "http://192.168.68.115:7071/api/monsters";
+            // id gets handled in the api, we only need an url
+
+            using (HttpClient client = GetHttpClient())
+            {
+                try
+                {
+                    // serializing our monster object into a json for the API
+                    string json = JsonConvert.SerializeObject(monster);
+                    HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                    // the answer should the newly created json that has now been added to our storage table
+                    var response = await client.PostAsync(url, content);
+                }
+                catch (Exception ex)
+                {
+
                     throw ex;
                 }
             }

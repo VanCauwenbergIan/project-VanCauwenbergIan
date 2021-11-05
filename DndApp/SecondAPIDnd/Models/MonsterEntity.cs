@@ -37,7 +37,6 @@ namespace DndApp.Models
         [JsonProperty(PropertyName = "hit_dice")]
         public string HitDice { get; set; }
         public SpeedProperties Speed { get; set; }
-
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Constitution { get; set; }
