@@ -107,6 +107,17 @@ namespace DndApp.Models
             [JsonProperty(PropertyName = "desc")]
             public string Description { get; set; }
             public UsageObject Usage { get; set; }
+            public class UsageObject
+            {
+                // from as far as I know you have two types:
+                // 1)limited amount within a time period (or till a long or short rest)
+                // 2)single use or more with a recharge when a dice roll is above a certain value
+                public string Type { get; set; }
+                public int Times { get; set; }
+                public string Dice { get; set; }
+                [JsonProperty(PropertyName = "min_value")]
+                public int MinimumValue { get; set; }
+            } 
         }
         public List<Action> Actions { get; set; }
         public class Action
@@ -115,6 +126,14 @@ namespace DndApp.Models
             [JsonProperty(PropertyName = "desc")]
             public string Description { get; set; }
             public UsageObject Usage { get; set; }
+            public class Usage
+            {
+                public string Type { get; set; }
+                public int Times { get; set; }
+                public string Dice { get; set; }
+                [JsonProperty(PropertyName = "min_value")]
+                public int MinimumValue { get; set; }
+            }
         }
         [JsonProperty(propertyName: "legendary_actions")]
         public List<LegendaryAction> LegendaryActions { get; set; }
@@ -124,17 +143,14 @@ namespace DndApp.Models
             [JsonProperty(PropertyName = "desc")]
             public string Description { get; set; }
             public UsageObject Usage { get; set; }
-        }
-        public class UsageObject
-        {
-            // from as far as I know you have two types:
-            // 1)limited amount within a time period (or till a long or short rest)
-            // 2)single use or more with a recharge when a dice roll is above a certain value
-            public string Type { get; set; }
-            public int Times { get; set; }
-            public string Dice { get; set; }
-            [JsonProperty(PropertyName = "min_value")]
-            public int MinimumValue { get; set; }
+            public class Usage
+            {
+                public string Type { get; set; }
+                public int Times { get; set; }
+                public string Dice { get; set; }
+                [JsonProperty(PropertyName = "min_value")]
+                public int MinimumValue { get; set; }
+            }
         }
         // END OF PROPERTIES
 
