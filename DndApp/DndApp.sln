@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DndApp.iOS", "DndApp.iOS\Dn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DndApp", "DndApp\DndApp.csproj", "{B3A4C624-B6D9-4C42-AC06-E3E8E20975DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecondAPIDnd", "SecondAPIDnd\SecondAPIDnd.csproj", "{1F7CB629-2FC8-4257-B641-1316E9F24ADD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecondAPIDnd", "SecondAPIDnd\SecondAPIDnd.csproj", "{1F7CB629-2FC8-4257-B641-1316E9F24ADD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

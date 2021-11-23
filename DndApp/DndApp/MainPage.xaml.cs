@@ -43,12 +43,19 @@ namespace DndApp
             // put breakpoint here to read list
             Debug.WriteLine(randomMonsters);
 
-            //test post
+            //test post, put, get second API
             Monster testMonsterPost = randomMonsters[3];
             testMonsterPost.MonsterId = null;
             testMonsterPost.Name = "New Monster";
-            await MonsterRepository.PostMonsterAsync(testMonsterPost);
+            await MonsterRepository.PostHomebrewMonsterAsync(testMonsterPost);
 
+            testMonsterPost.ArmorClass = 0;
+            await MonsterRepository.PostHomebrewMonsterAsync(testMonsterPost);
+
+            List<Monster> homebrewMonsters = await MonsterRepository.GetHomebrewMonsterAsync();
+
+            // breakpoint to read list properties
+            Debug.WriteLine(homebrewMonsters);
             Debug.WriteLine("Hopefully completed");
         }
     }

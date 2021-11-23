@@ -83,9 +83,9 @@ namespace DndApp.Repositories
         }
 
         // NOTE: the actual second API doesn't run locally (although you could for an emulated android device). I only included the second solution for easy readability
-        public static async Task PostMonsterAsync(Monster monster)
+        public static async Task PostHomebrewMonsterAsync(Monster monster)
         {
-            string url = "http://192.168.68.115:7071/api/monsters";
+            string url = "https://secondapidnd.azurewebsites.net/api/monsters";
             // id gets handled in the api, we only need an url
 
             using (HttpClient client = GetHttpClient())
@@ -97,6 +97,49 @@ namespace DndApp.Repositories
                     HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
                     // the answer should the newly created json that has now been added to our storage table
                     var response = await client.PostAsync(url, content);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+        }
+
+        public static async Task PutHomebrewMonsterAsync(Monster monster)
+        {
+            string url = $"https://secondapidnd.azurewebsites.net/api/monsters/{monster.MonsterId}";
+            // id gets handled in the api, we only need an url
+
+            using (HttpClient client = GetHttpClient())
+            {
+                try
+                {
+                    string json = JsonConvert.SerializeObject(monster);
+                    HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PutAsync(url, content);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+        }
+
+        public static async Task<List<Monster>> GetHomebrewMonsterAsync()
+        {
+            string url = $"https://secondapidnd.azurewebsites.net/api/monsters";
+            // id gets handled in the api, we only need an url
+
+            using (HttpClient client = GetHttpClient())
+            {
+                try
+                {
+                    string json = await client.GetStringAsync(url);
+                    List<Monster> monsters = JsonConvert.DeserializeObject<List<Monster>>(json);
+
+                    return monsters;
                 }
                 catch (Exception ex)
                 {
