@@ -39,11 +39,12 @@ namespace DndApp.Repositories
                     List<JsonToMonster.Result> results = new List<JsonToMonster.Result>();
 
                     // first we deserialize the jsonstring into an object of the the class we created
-                    // that class has one property which is an array / list of results, within the class we have another class which saves the id and name property of each of the objects within that results array
+                    // that class has one property which is an array / list of results, within the class we have another class which saves the id and name property of each of the objects
                     var data = JsonConvert.DeserializeObject<JsonToMonster>(json);
                     results = data.results;
                     
                     // with the url of every result we can make another call to the API which gets the full information for each object instead of just the name
+                    // We can't do this when a monster is selected for the details page, because we also want the CR, HP and AC to be shown in the listview + we need to able to sort (unless you only use the built-in methods)
                     foreach (JsonToMonster.Result result in results)
                     {
                         Monster monster = await GetMonserAsync(result.Url);
@@ -81,9 +82,9 @@ namespace DndApp.Repositories
             }
         }
 
+        // NOTE: the actual second API doesn't run locally (although you could for an emulated android device). I only included the second solution for easy readability
         public static async Task PostMonsterAsync(Monster monster)
         {
-            // local for now, might put it online later (but I don't think that's strictly necessary)
             string url = "http://192.168.68.115:7071/api/monsters";
             // id gets handled in the api, we only need an url
 

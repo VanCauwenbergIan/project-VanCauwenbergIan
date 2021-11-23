@@ -36,7 +36,18 @@ namespace DndApp.Models
         public int HitPoints { get; set; }
         [JsonProperty(PropertyName = "hit_dice")]
         public string HitDice { get; set; }
-        public SpeedProperties Speed { get; set; }
+        [IgnoreProperty]
+        public SpeedProperties Speed
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<SpeedProperties>(SpeedString);
+            }
+            set
+            {
+                SpeedString = JsonConvert.SerializeObject(value);
+            }
+        }
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Constitution { get; set; }
@@ -45,19 +56,89 @@ namespace DndApp.Models
         public int Charisma { get; set; }
 
         // PROFICIENCIES AND EXPERTISE PROPERTIES 
-        public List<ProficiencyAndValue> Proficiencies { get; set; }
+        [IgnoreProperty]
+        public List<ProficiencyAndValue> Proficiencies
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<List<ProficiencyAndValue>>(ProficienciesString);
+            }
+            set
+            {
+                ProficienciesString = JsonConvert.SerializeObject(value);
+            }
+        }
 
         // VULNERABLE AND RESISTANT DAMAGE TYPE PROPERTIES
+        [IgnoreProperty]
         [JsonProperty(PropertyName = "damage_vulnerabilities")]
-        public List<string> DamageVulnerabilities { get; set; }
+        public List<string> DamageVulnerabilities
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<List<string>>(DamageVulnerabilitiesString);
+            }
+            set
+            {
+                DamageVulnerabilitiesString = JsonConvert.SerializeObject(value);
+            }
+        }
+
+        [IgnoreProperty]
         [JsonProperty(PropertyName = "damage_resistances")]
-        public List<string> DamageResistances { get; set; }
+        public List<string> DamageResistances
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<List<string>>(DamageResistancesString);
+            }
+            set
+            {
+                DamageResistancesString = JsonConvert.SerializeObject(value);
+            }
+        }
+
+        [IgnoreProperty]
         [JsonProperty(PropertyName = "damage_immunities")]
-        public List<string> DamageImmunities { get; set; }
+        public List<string> DamageImmunities
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<List<string>>(DamageImmunitiesString);
+            }
+            set
+            {
+                DamageImmunitiesString = JsonConvert.SerializeObject(value);
+            }
+        }
+
+        [IgnoreProperty]
         [JsonProperty(PropertyName = "condition_immunities")]
-        public List<ConditionImmunity> ConditionImmunities { get; set; }
+        public List<ConditionImmunity> ConditionImmunities
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<List<ConditionImmunity>>(ConditionImmunitiesString);
+            }
+            set
+            {
+                ConditionImmunitiesString = JsonConvert.SerializeObject(value);
+            }
+        }
+
         // SENSE AND LANGUAGE PROPERTIES
-        public SensesObject Senses { get; set; }
+        [IgnoreProperty]
+        public SensesObject Senses
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<SensesObject>(SensesObjectString);
+            }
+            set
+            {
+                SensesObjectString = JsonConvert.SerializeObject(value);
+            }
+        }
         public string Languages { get; set; }
 
         // CHALLENGE PROPERTIES
@@ -68,12 +149,86 @@ namespace DndApp.Models
         public int ExperiencePoints { get; set; }
 
         // ABILITY AND ACTION PROPERTIES 
+        [IgnoreProperty]
         [JsonProperty(propertyName: "special_abilities")]
-        public List<Action> SpecialAbilities { get; set; }
-        public List<Action> Actions { get; set; }
+        public List<Action> SpecialAbilities
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<List<Action>>(SpecialAbilitiesString);
+            }
+            set
+            {
+                SpecialAbilitiesString = JsonConvert.SerializeObject(value);
+            }
+        }
 
+        [IgnoreProperty]
+        public List<Action> Actions
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<List<Action>>(ActionsString);
+            }
+            set
+            {
+                ActionsString = JsonConvert.SerializeObject(value);
+            }
+        }
+
+        [IgnoreProperty]
         [JsonProperty(propertyName: "legendary_actions")]
-        public List<Action> LegendaryActions { get; set; }
+        public List<Action> LegendaryActions
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<List<Action>>(LegendaryActionsString);
+            }
+            set
+            {
+                LegendaryActionsString = JsonConvert.SerializeObject(value);
+            }
+        }
+
         // END OF PROPERTIES
+
+        // we all know you can't save an array in a column, this is a workaround
+
+        // SERIALIZED PROPERTIES
+        [JsonIgnore]
+        public string SpeedString { get; set; }
+
+        [JsonIgnore]
+        public string ProficienciesString { get; set; }
+
+        [JsonIgnore]
+        public string DamageVulnerabilitiesString { get; set; }
+
+        [JsonIgnore]
+        public string DamageResistancesString { get; set; }
+
+        [JsonIgnore]
+        public string DamageImmunitiesString { get; set; }
+
+        [JsonIgnore]
+        public string ConditionResistancesString { get; set; }
+
+        [JsonIgnore]
+        public string ConditionImmunitiesString { get; set; }
+
+        [JsonIgnore]
+        public string SpecialAbilitiesString { get; set; }
+
+        [JsonIgnore]
+        public string ActionsString { get; set; }
+
+        [JsonIgnore]
+        public string LegendaryActionsString { get; set; }
+
+        [JsonIgnore]
+        public string SensesObjectString { get; set; }
+
+        // END OF SERIALIZED PROPERTIES
     }
 }
+
