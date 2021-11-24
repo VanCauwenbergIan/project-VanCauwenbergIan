@@ -99,6 +99,7 @@ namespace SecondAPIDnd
 
                 // if the user changes the name, the id will remain the same, keep that in mind! 
                 // The only way to change this would be creating a new one if the name has been changed
+                // if the type changes a new monster will be created in another partition!
 
                 // change the received monster into something that's saveable in our table storage (practically the same as monster, but with a row and partitionkey).
                 MonsterEntity monsterEntity = new MonsterEntity(id, m.Type)
@@ -203,5 +204,51 @@ namespace SecondAPIDnd
                 return new StatusCodeResult(500);
             }
         }
+
+        [FunctionName("DeleteMonster")]
+        public static async Task<IActionResult> DeleteMonster(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "monsters/{type}/{id}")] HttpRequest req, string type, string id, ILogger log)
+        {
+            try
+            {
+                var connectionString = Environment.GetEnvironmentVariable("ConnectionStringStorage");
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
+                CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+                CloudTable table = tableClient.GetTableReference("monsters");
+
+                // check which row has the right Partition and Rowkey
+                var conditionPK = TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, type);
+                var conditionFK = TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, id);
+                var Filter = TableQuery.CombineFilters(conditionPK, TableOperators.And, conditionFK);
+
+                var query = new TableQuery<MonsterEntity>().Where(Filter);
+                string returnValue = "";
+
+                var results = await table.ExecuteQuerySegmentedAsync<MonsterEntity>(query, null);
+                // delete the item, foreach is only used as an easy way to get item out of our results, there should always only be one since the combination of PK and FK should be unique!
+                if (results.Results.Count > 0)
+                {
+                    foreach (var item in results)
+                    {
+                        var deleteOperation = TableOperation.Delete(item);
+                        await table.ExecuteAsync(deleteOperation);
+
+                        returnValue = $"Deleted monster {type}/{id}!";
+                    }
+                }
+                else
+                {
+                    returnValue = "No monster with those credentials found...";
+                }
+
+                return new OkObjectResult(returnValue);
+            }
+            catch (Exception ex)
+            {
+                log.LogError(ex.ToString());
+                return new StatusCodeResult(500);
+            }
+        }
     }
 }
+
