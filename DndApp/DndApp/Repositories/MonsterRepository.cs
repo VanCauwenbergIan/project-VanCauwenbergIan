@@ -148,5 +148,23 @@ namespace DndApp.Repositories
                 }
             }
         }
+
+        public static async Task DeleteHomebrewMonsterAsync(string type, string id)
+        {
+            string url = $"https://secondapidnd.azurewebsites.net/api/monsters/{type.ToLower()}/{id}";
+
+            using (HttpClient client = GetHttpClient())
+            {
+                try
+                {
+                    await client.DeleteAsync(url);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+        }
     }
 }

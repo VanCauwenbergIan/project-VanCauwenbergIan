@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -21,6 +22,7 @@ namespace DndApp
 
         private async Task TestMonsterRepo()
         {
+            // please be patient, there are over 300 requests being made
             List<Monster> monsters = await MonsterRepository.GetMonstersAsync();
             Debug.WriteLine("Testing GetMonstersAsync");
             Debug.WriteLine($"Amount of monsters read {monsters.Count()}");
@@ -45,7 +47,6 @@ namespace DndApp
 
             //test post, put, get second API
             Monster testMonsterPost = randomMonsters[3];
-            testMonsterPost.MonsterId = null;
             testMonsterPost.Name = "New Monster";
             await MonsterRepository.PostHomebrewMonsterAsync(testMonsterPost);
 
@@ -56,6 +57,11 @@ namespace DndApp
 
             // breakpoint to read list properties
             Debug.WriteLine(homebrewMonsters);
+
+            Thread.Sleep(10000);
+
+            await MonsterRepository.DeleteHomebrewMonsterAsync(testMonsterPost.Type, "new-monster");
+
             Debug.WriteLine("Hopefully completed");
         }
     }
