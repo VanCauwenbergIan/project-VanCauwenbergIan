@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DndApp.Views.OverviewPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#090809">
+    <!--(nice to have: systembar same color as page)-->
+    <ContentPage.Content>
+        <StackLayout>
+            <!--NAV BAR-->
+            <Grid ColumnSpacing="0">
+                <!--Personally I think it's easier to use extra columns as margins, if they're a fixed value anyway-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" HeightRequest="64"/>
+                <!--I use images instead of imagebuttons, because they have way less issues with positioning, you can add tapGestures instead of click events-->
+                <Image x:Name="btnBack" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="Monsters" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Image x:Name="btnAdd" Grid.Column="3" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Grid>
+            <!--SORT MENU-->
+            <Grid ColumnSpacing="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="108"/>
+                    <ColumnDefinition Width= "24"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblSortBy" Text="Sort by: Name" Grid.Column="1" TextColor="#E40712" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" HeightRequest="24"/>
+                <Image x:Name="btnDropDown" Grid.Column="2" Aspect="AspectFill" HeightRequest="24" VerticalOptions="Center"/>
+            </Grid>
+            <!--SEARCH BAR (nice to have: change selection color entry and remove line underneath)-->
+            <Grid ColumnSpacing="0" Margin="0, 8, 0, 24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="8"/>
+                    </Grid.ColumnDefinitions>
+                    <BoxView Grid.ColumnSpan="4" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Image x:Name="imgIconSearch" Grid.Column="1" HeightRequest="32" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Grid Grid.Column="2" VerticalOptions="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="38"/>
+                        </Grid.RowDefinitions>
+                        <Entry x:Name="entSearchBar" Grid.Row="0" FontSize="16" VerticalOptions="Center"/>
+                    </Grid>
+                </Grid>
+                <Image x:Name="btnFilter" Grid.Column="3" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Grid>
+            <!--LIST VIEW (nice to have: loading indication)-->
+            <ListView x:Name="lvwMonsters" SeparatorColor="#293742" RowHeight="52">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnSpacing="0" Margin="32, 0, 32, 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="lblChallengeRating" Grid.Column="0" FontSize="15" FontAttributes="Bold" TextColor="#F4F7FB" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="CR: "/>
+                                                <Span Text="{Binding ChallengeRating}"/>
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Grid Grid.Column="1" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="26"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label x:Name="lblName" Text="{Binding Name}" Grid.Row="0" FontSize="20" FontAttributes="Bold" TextColor="#F4F7FB" HorizontalOptions="StartAndExpand" HeightRequest="26"/>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="4"/>
+                                            <ColumnDefinition Width="60"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblArmorClass" Grid.Column="0" FontSize="14" FontAttributes="Bold" TextColor="#8999A6" HorizontalOptions="Start" HeightRequest="18">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="AC: "/>
+                                                        <Span Text="{Binding ArmorClass}"/>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <!--Since I can't reach Names within a listview I think it was the easiest to put it withing the android solution and put it straight in the source-->
+                                        <Image x:Name="imgIconDot" Source="dotIconRed.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="18" />
+                                        <Label x:Name="lblHitPoints" Grid.Column="2" FontSize="14" FontAttributes="Bold" TextColor="#8999A6" HorizontalOptions="Start" HeightRequest="18" Margin="8, 0, 0, 0">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="HP: "/>
+                                                        <Span Text="{Binding HitPoints}"/>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

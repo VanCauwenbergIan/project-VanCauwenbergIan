@@ -13,3 +13,8 @@ C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\DndApp.dll
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\ref\DndApp.dll
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\DndApp.pdb
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\AddMonsterPage.xaml.g.cs
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\DetailPage.xaml.g.cs
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\GraphPage.xaml.g.cs
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\ModifyActionsPage.xaml.g.cs
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\OverviewPage.xaml.g.cs

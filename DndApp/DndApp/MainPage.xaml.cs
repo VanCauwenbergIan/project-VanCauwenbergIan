@@ -17,7 +17,7 @@ namespace DndApp
         public MainPage()
         {
             InitializeComponent();
-            TestMonsterRepo();
+            // TestMonsterRepo();
         }
 
         private async Task TestMonsterRepo()

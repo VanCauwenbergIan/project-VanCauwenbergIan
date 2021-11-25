@@ -11,13 +11,44 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\buttonAdd.png" />
+    <None Remove="Assets\buttonBack.png" />
+    <None Remove="Assets\buttonDropRed.png" />
+    <None Remove="Assets\buttonFilterRed.png" />
+    <None Remove="Assets\dotIconRed.png" />
+    <None Remove="Assets\searchIconGrey.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\buttonAdd.png" />
+    <EmbeddedResource Include="Assets\buttonBack.png" />
+    <EmbeddedResource Include="Assets\buttonDropRed.png" />
+    <EmbeddedResource Include="Assets\buttonFilterRed.png" />
+    <EmbeddedResource Include="Assets\dotIconRed.png" />
+    <EmbeddedResource Include="Assets\searchIconGrey.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
-    <Folder Include="Views\" />
+    <EmbeddedResource Update="Views\AddMonsterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\GraphPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ModifyActionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OverviewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

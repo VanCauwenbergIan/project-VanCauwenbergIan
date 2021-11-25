@@ -47,7 +47,7 @@ namespace DndApp.Repositories
                     // We can't do this when a monster is selected for the details page, because we also want the CR, HP and AC to be shown in the listview + we need to able to sort (unless you only use the built-in methods)
                     foreach (JsonToMonster.Result result in results)
                     {
-                        Monster monster = await GetMonserAsync(result.Url);
+                        Monster monster = await GetMonsterAsync(result.Url);
                         monsters.Add(monster);
                     }
 
@@ -61,7 +61,7 @@ namespace DndApp.Repositories
             }
         }
 
-        public static async Task<Monster> GetMonserAsync(string urlEndpoint)
+        public static async Task<Monster> GetMonsterAsync(string urlEndpoint)
         {
             string url = _BASEURI + urlEndpoint;
 
