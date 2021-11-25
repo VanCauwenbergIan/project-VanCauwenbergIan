@@ -64,7 +64,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="36"/>
                         </Grid.RowDefinitions>
-                        <Entry x:Name="entSearchBar" Grid.Row="0" TextColor="#F4F7FB" FontSize="14" Background="" VerticalOptions="StartAndExpand"/>
+                        <Entry x:Name="entSearchBar" Grid.Row="0" TextColor="#F4F7FB" FontSize="14" BackgroundColor="#293742" VerticalOptions="StartAndExpand"/>
                     </Grid>
                 </Grid>
                 <Image x:Name="btnFilter" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>
@@ -84,7 +84,7 @@
                                         <FormattedString>
                                             <FormattedString.Spans>
                                                 <Span Text="CR: "/>
-                                                <Span Text="{Binding ChallengeRating}"/>
+                                                <Span Text="{Binding Fraction}"/>
                                             </FormattedString.Spans>
                                         </FormattedString>
                                     </Label.FormattedText>

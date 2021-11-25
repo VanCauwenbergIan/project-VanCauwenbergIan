@@ -1,4 +1,5 @@
-﻿using DndApp.Repositories;
+﻿using DndApp.Models;
+using DndApp.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace DndApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OverviewPage : ContentPage
     {
+        public List<Monster> Monsters { get; set; }
+
         public OverviewPage()
         {
             InitializeComponent();
@@ -27,12 +30,12 @@ namespace DndApp.Views
             btnDropDown.Source = ImageSource.FromResource("DndApp.Assets.buttonDropRed.png");
             imgIconSearch.Source = ImageSource.FromResource("DndApp.Assets.searchIconGrey.png");
             btnFilter.Source = ImageSource.FromResource("DndApp.Assets.buttonFilterRed.png");
-            //imgIconDot.Source = ImageSource.FromResource("DndApp.Assets.dotIconRed.png");
         }
 
         private async void LoadListView()
         {
-            lvwMonsters.ItemsSource = await MonsterRepository.GetMonstersAsync();
+            Monsters = await MonsterRepository.GetMonstersAsync();
+            lvwMonsters.ItemsSource = Monsters;
         }
     }
 }

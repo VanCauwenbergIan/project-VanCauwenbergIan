@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DndApp.Models
@@ -65,6 +66,89 @@ namespace DndApp.Models
         public List<Action> LegendaryActions { get; set; }
 
         // END OF PROPERTIES
+
+        // ** CALCULATED PROPERTIES **
+        public string Fraction
+        {
+            get
+            {
+                return ToFraction(ChallengeRating);
+            }
+        }
+
+        private static string ToFraction(double number)
+        {
+            int w, n, d;
+
+            RoundToFraction(number, out w, out n , out d);
+
+            string returnValue = $"{w}";
+
+            if (w > 0)
+            {
+                if (n > 0)
+                {
+                    returnValue = $"{w} {n}/{d}";
+                }
+            }
+            else
+            {
+                if (n > 0)
+                {
+                    returnValue = $"{n}/{d}";
+                }
+            }
+            return returnValue;
+        }
+
+        static void RoundToFraction(double number, out int whole, out int numerator, out int denominator)
+        {
+            //smallest fraction is 1/8
+            int accuracy = 8; 
+            double dblAccuracy = (double)accuracy;
+            whole = (int)(Math.Truncate(number));
+            var fraction = Math.Abs(number - whole);
+
+            if (fraction == 0)
+            {
+                numerator = 0;
+                denominator = 1;
+                return;
+            }
+
+            var n = Enumerable.Range(0, accuracy + 1).SkipWhile(e => (e / dblAccuracy) < fraction).First();
+            var hi = n / dblAccuracy;
+            var lo = (n - 1) / dblAccuracy;
+
+            if ((fraction - lo) < (hi - fraction))
+            {
+                n--;
+            }
+            if (n == accuracy)
+            {
+                whole++;
+                numerator = 0;
+                denominator = 0;
+                return;
+            }
+
+            var gcd = GCD(n, accuracy);
+            numerator = n / gcd;
+            denominator = accuracy / gcd;
+        }
+
+        static int GCD(int n1, int n2)
+        {
+            if (n2 == 0)
+            {
+                return n1;
+            }
+            else
+            {
+                return GCD(n2, n1 % n2);
+            }
+        }
+        // END OF CALCULATED PROPERTIES
 
         // ** METHODS **
         public override string ToString()
