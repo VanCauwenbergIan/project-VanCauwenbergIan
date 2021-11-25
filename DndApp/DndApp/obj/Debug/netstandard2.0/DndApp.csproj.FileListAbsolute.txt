@@ -18,3 +18,11 @@ C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\GraphPage.xaml.g.cs
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\ModifyActionsPage.xaml.g.cs
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\OverviewPage.xaml.g.cs
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\Mono.Android.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\Xamarin.Forms.Platform.Android.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\FormsViewGroup.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\Mono.Android.pdb
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\Mono.Android.xml
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\Xamarin.Forms.Platform.Android.pdb
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\FormsViewGroup.pdb
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\DndApp.csproj.CopyComplete
