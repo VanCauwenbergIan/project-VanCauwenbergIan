@@ -70,7 +70,7 @@
                 <Image x:Name="btnFilter" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>
             </Grid>
             <!--LIST VIEW (nice to have: loading indication)-->
-            <ListView Grid.Row="5" x:Name="lvwMonsters" SeparatorColor="#293742" RowHeight="52">
+            <ListView x:Name="lvwMonsters" Grid.Row="5" SeparatorColor="#293742" RowHeight="52" ItemSelected="MonsterSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

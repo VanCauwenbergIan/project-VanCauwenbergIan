@@ -1,4 +1,5 @@
-﻿using DndApp.Views;
+﻿using Android.Views;
+using DndApp.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +12,7 @@ namespace DndApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new OverviewPage());
+            MainPage = new NavigationPage(new OverviewPage()) { BackgroundColor = Color.Black };
         }
 
         protected override void OnStart()

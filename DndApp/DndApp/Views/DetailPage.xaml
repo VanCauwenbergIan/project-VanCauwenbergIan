@@ -1,12 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DndApp.Views.DetailPage">
+             x:Class="DndApp.Views.DetailPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#090809">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="48"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--NAV BAR-->
+            <Grid Grid.Row="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
+                <Image x:Name="btnBack" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label x:Name="lblPageTitle" Text="Monster" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Image x:Name="btnEdit" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Grid>
+            <Grid Grid.Row="1" ColumnSpacing="0" VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" RowSpacing="0" HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="2"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnStats" Grid.Row="0" Text="Stats" FontAttributes="Bold" TextColor="#F4F7FB" BackgroundColor="Transparent" Clicked="btnStatsClicked"/>
+                    <BoxView x:Name="bxvStats" Grid.Row="1" BackgroundColor="#E40712"/>
+                </Grid>
+                <Grid Grid.Column="1" RowSpacing="0" HorizontalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="2"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnActions" Grid.Row="0" Text="Actions" FontAttributes="Bold" TextColor="#F4F7FB" BackgroundColor="Transparent" Clicked="btnActionsClicked"/>
+                    <BoxView x:Name="bxvActions" Grid.Row="1"/>
+                </Grid>
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

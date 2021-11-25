@@ -1,0 +1,1 @@
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\DndApp.UWP.csproj;x86

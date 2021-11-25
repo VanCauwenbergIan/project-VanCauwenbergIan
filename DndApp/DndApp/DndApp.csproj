@@ -14,7 +14,9 @@
     <None Remove="Assets\buttonAdd.png" />
     <None Remove="Assets\buttonBack.png" />
     <None Remove="Assets\buttonDropRed.png" />
+    <None Remove="Assets\buttonEdit.png" />
     <None Remove="Assets\buttonFilterRed.png" />
+    <None Remove="Assets\buttonRadarRed.png" />
     <None Remove="Assets\dotIconRed.png" />
     <None Remove="Assets\searchIconGrey.png" />
   </ItemGroup>
@@ -23,7 +25,9 @@
     <EmbeddedResource Include="Assets\buttonAdd.png" />
     <EmbeddedResource Include="Assets\buttonBack.png" />
     <EmbeddedResource Include="Assets\buttonDropRed.png" />
+    <EmbeddedResource Include="Assets\buttonEdit.png" />
     <EmbeddedResource Include="Assets\buttonFilterRed.png" />
+    <EmbeddedResource Include="Assets\buttonRadarRed.png" />
     <EmbeddedResource Include="Assets\dotIconRed.png" />
     <EmbeddedResource Include="Assets\searchIconGrey.png" />
   </ItemGroup>
