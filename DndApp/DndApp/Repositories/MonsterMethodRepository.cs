@@ -77,31 +77,49 @@ namespace DndApp.Repositories
         public static string getSavingThrows(Monster m)
         {
             List<string> proficiencies = new List<string>();
+            int count = 0;
 
             foreach (ProficiencyAndValue proficiency in m.Proficiencies)
             {
                 if (proficiency.Proficiency.Name.StartsWith("Saving Throw: ") == true)
                 {
+                    count++;
                     proficiencies.Add($"{proficiency.Proficiency.Name.Replace("Saving Throw: ", "")} +{proficiency.Value}");
                 }
             }
 
-            return string.Join(", ", proficiencies);
+            if (count != 0)
+            {
+                return string.Join(", ", proficiencies);
+            }
+            else
+            {
+                return "none";
+            }
         }
 
         public static string getSkills(Monster m)
         {
             List<string> skills = new List<string>();
+            int count = 0;
 
             foreach (ProficiencyAndValue proficiency in m.Proficiencies)
             {
                 if (proficiency.Proficiency.Name.StartsWith("Skill: ") == true)
                 {
+                    count++;
                     skills.Add($"{proficiency.Proficiency.Name.Replace("Skill: ", "")} +{proficiency.Value}");
                 }
             }
 
-            return string.Join(", ", skills);
+            if (count != 0)
+            {
+                return string.Join(", ", skills);
+            }
+            else
+            {
+                return "none";
+            }
         }
 
         public static string getSenses(Monster m)
@@ -154,6 +172,18 @@ namespace DndApp.Repositories
             string[] num = dice.Split('d');
 
             return (Convert.ToInt32(num[0]) * Convert.ToInt32(num[1]));
+        }
+
+        public static string checkLanguages(string languages)
+        {
+            if (languages != "" && languages != null)
+            {
+                return languages;
+            }
+            else
+            {
+                return "none";
+            }
         }
     }
 }

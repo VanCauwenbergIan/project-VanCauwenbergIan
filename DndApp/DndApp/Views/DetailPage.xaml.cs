@@ -58,7 +58,7 @@ namespace DndApp.Views
             spnSavingThrowsString.Text = MonsterMethodRepository.getSavingThrows(Monster);
             spnSkillsString.Text = MonsterMethodRepository.getSkills(Monster);
             spnSensesString.Text = MonsterMethodRepository.getSenses(Monster);
-            spnLanguages.Text = Monster.Languages;
+            spnLanguages.Text = MonsterMethodRepository.checkLanguages(Monster.Languages);
             spnChallengeRatingString.Text = $"{Monster.ChallengeRating} ({Monster.ExperiencePoints} XP)";
 
             LoadMonsterAbilities();
