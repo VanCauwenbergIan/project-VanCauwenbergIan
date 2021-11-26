@@ -74,52 +74,58 @@ namespace DndApp.Repositories
             return string.Join(", ", arrayStrings);
         }
 
+        public static string stringifyListStrings(List<string> list)
+        {
+            if (list.Count() > 0)
+            {
+                return string.Join(", ", list);
+            }
+            else
+            {
+                return "";
+            }
+        }
+
         public static string getSavingThrows(Monster m)
         {
             List<string> proficiencies = new List<string>();
-            int count = 0;
 
             foreach (ProficiencyAndValue proficiency in m.Proficiencies)
             {
                 if (proficiency.Proficiency.Name.StartsWith("Saving Throw: ") == true)
                 {
-                    count++;
                     proficiencies.Add($"{proficiency.Proficiency.Name.Replace("Saving Throw: ", "")} +{proficiency.Value}");
                 }
             }
 
-            if (count != 0)
-            {
-                return string.Join(", ", proficiencies);
-            }
-            else
-            {
-                return "none";
-            }
+            return stringifyListStrings(proficiencies);
         }
 
         public static string getSkills(Monster m)
         {
             List<string> skills = new List<string>();
-            int count = 0;
 
             foreach (ProficiencyAndValue proficiency in m.Proficiencies)
             {
                 if (proficiency.Proficiency.Name.StartsWith("Skill: ") == true)
                 {
-                    count++;
                     skills.Add($"{proficiency.Proficiency.Name.Replace("Skill: ", "")} +{proficiency.Value}");
                 }
             }
 
-            if (count != 0)
+            return stringifyListStrings(skills);
+        }
+
+        public static string getConditionImmunities(Monster m)
+        {
+            List<string> conditionImmunities = new List<string>();
+
+            foreach (ConditionImmunity conditionImmunity in m.ConditionImmunities)
             {
-                return string.Join(", ", skills);
+                conditionImmunities.Add(conditionImmunity.Name);
             }
-            else
-            {
-                return "none";
-            }
+
+            return stringifyListStrings(conditionImmunities);
         }
 
         public static string getSenses(Monster m)
@@ -145,7 +151,7 @@ namespace DndApp.Repositories
 
             senses.Add($"Passive Perception {m.Senses.PassivePerception}");
 
-            return string.Join(" , ", senses);
+            return stringifyListStrings(senses);
         }
 
         public static string getUsage(Action action)
@@ -182,7 +188,7 @@ namespace DndApp.Repositories
             }
             else
             {
-                return "none";
+                return "-";
             }
         }
     }

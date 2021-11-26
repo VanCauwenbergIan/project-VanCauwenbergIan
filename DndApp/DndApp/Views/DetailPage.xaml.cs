@@ -60,9 +60,88 @@ namespace DndApp.Views
             spnSensesString.Text = MonsterMethodRepository.getSenses(Monster);
             spnLanguages.Text = MonsterMethodRepository.checkLanguages(Monster.Languages);
             spnChallengeRatingString.Text = $"{Monster.ChallengeRating} ({Monster.ExperiencePoints} XP)";
-
+            spnDamageVulnerabilities.Text = MonsterMethodRepository.stringifyListStrings(Monster.DamageVulnerabilities);
+            spnDamageResistances.Text = MonsterMethodRepository.stringifyListStrings(Monster.DamageResistances);
+            spnDamageImmunities.Text = MonsterMethodRepository.stringifyListStrings(Monster.DamageImmunities);
+            spnConditionImmunities.Text = MonsterMethodRepository.getConditionImmunities(Monster);
+            ShowFilledProperties();
             LoadMonsterAbilities();
             LoadActions();
+        }
+
+        private void ShowFilledProperties()
+        {
+            if (MonsterMethodRepository.getSavingThrows(Monster) != "")
+            {
+                lblSavingThrowsString.IsVisible = true;
+                lblSavingThrowsString.Margin = new Thickness(0, 16, 0, 16);
+                lblSensesString.Margin = new Thickness(0, 0, 0, 16);
+            }
+            if (MonsterMethodRepository.getSkills(Monster) != "")
+            {
+                lblSkillsString.IsVisible = true;
+
+                if (lblSavingThrowsString.IsVisible == true)
+                {
+                    lblSkillsString.Margin = new Thickness(0, 0, 0, 16);
+                }
+                else
+                {
+                    lblSkillsString.Margin = new Thickness(0, 16, 0, 16);
+                }
+            }
+            if (Monster.DamageVulnerabilities.Count() != 0)
+            {
+                lblDamageVulnerabilities.IsVisible = true;
+
+                if (lblSavingThrowsString.IsVisible == true || lblSkillsString.IsVisible == true)
+                {
+                    lblDamageVulnerabilities.Margin = new Thickness(0, 0, 0, 16);
+                }
+                else
+                {
+                    lblDamageVulnerabilities.Margin = new Thickness(0, 16, 0, 16);
+                }
+            }
+            if (Monster.DamageResistances.Count() != 0)
+            {
+                lblDamageResistances.IsVisible = true;
+
+                if (lblSavingThrowsString.IsVisible == true || lblSkillsString.IsVisible == true || lblDamageVulnerabilities.IsVisible == true)
+                {
+                    lblDamageResistances.Margin = new Thickness(0, 0, 0, 16);
+                }
+                else
+                {
+                    lblDamageResistances.Margin = new Thickness(0, 16, 0, 16);
+                }
+            }
+            if (Monster.DamageImmunities.Count() != 0)
+            {
+                lblDamageImmunities.IsVisible = true;
+
+                if (lblSavingThrowsString.IsVisible == true || lblSkillsString.IsVisible == true || lblDamageVulnerabilities.IsVisible == true || lblDamageResistances.IsVisible == true)
+                {
+                    lblDamageImmunities.Margin = new Thickness(0, 0, 0, 16);
+                }
+                else
+                {
+                    lblDamageImmunities.Margin = new Thickness(0, 16, 0, 16);
+                }
+            }
+            if (MonsterMethodRepository.getConditionImmunities(Monster) != "")
+            {
+                lblConditionImmunities.IsVisible = true;
+
+                if (lblSavingThrowsString.IsVisible == true || lblSkillsString.IsVisible == true || lblDamageVulnerabilities.IsVisible == true || lblDamageResistances.IsVisible == true || lblDamageImmunities.IsVisible == true)
+                {
+                    lblConditionImmunities.Margin = new Thickness(0, 0, 0, 16);
+                }
+                else
+                {
+                    lblConditionImmunities.Margin = new Thickness(0, 16, 0, 16);
+                }
+            }
         }
 
         private void LoadMonsterAbilities()
@@ -113,7 +192,7 @@ namespace DndApp.Views
             if (Monster.LegendaryActions != null)
             {
                 Label instruction = new Label();
-                instruction.Text = $"After each other creatures turn the {Monster.Name} may make a \nlegendary action. The {Monster.Name} has 3 legendary action points, \nwhich it regains at the start of its own turn. Each legendary \naction costs 1 of these points unless otherwise specified.";
+                instruction.Text = $"After each other creature's turn the {Monster.Name} may make a legendary action. The {Monster.Name} has 3 legendary action points, which it regains at the start of its own turn. Each legendary action costs 1 of these points unless otherwise specified.";
                 instruction.FontSize = 14;
                 instruction.TextColor = Color.FromHex("#E4E4E4");
                 instruction.Margin = new Thickness(0, 0, 0, 8);
