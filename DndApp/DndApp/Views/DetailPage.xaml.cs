@@ -62,6 +62,7 @@ namespace DndApp.Views
             spnChallengeRatingString.Text = $"{Monster.ChallengeRating} ({Monster.ExperiencePoints} XP)";
 
             LoadMonsterAbilities();
+            LoadActions();
         }
 
         private void LoadMonsterAbilities()
@@ -87,10 +88,61 @@ namespace DndApp.Views
             }
         }
 
+        private void LoadActions()
+        {
+            if (Monster.Actions != null)
+            {
+                foreach (Action action in Monster.Actions)
+                {
+                    Label title = new Label();
+                    Label body = new Label();
+                    title.Text = $"{action.Name} {MonsterMethodRepository.getUsage(action)}";
+                    title.FontSize = 16;
+                    title.FontAttributes = FontAttributes.Bold;
+                    title.TextColor = Color.FromHex("#F4F7FB");
+                    body.Text = action.Description;
+                    body.FontSize = 14;
+                    body.TextColor = Color.FromHex("#E4E4E4");
+                    body.Margin = new Thickness(8, 0, 0, 8);
+
+                    stlActions.Children.Add(title);
+                    stlActions.Children.Add(body);
+                }
+            }
+
+            if (Monster.LegendaryActions != null)
+            {
+                Label instruction = new Label();
+                instruction.Text = $"After each other creatures turn the {Monster.Name} may make a \nlegendary action. The {Monster.Name} has 3 legendary action points, \nwhich it regains at the start of its own turn. Each legendary \naction costs 1 of these points unless otherwise specified.";
+                instruction.FontSize = 14;
+                instruction.TextColor = Color.FromHex("#E4E4E4");
+                instruction.Margin = new Thickness(0, 0, 0, 8);
+
+                stlLegendaryActions.Children.Add(instruction);
+
+                foreach (Action action in Monster.LegendaryActions)
+                {
+                    Label title = new Label();
+                    Label body = new Label();
+                    title.Text = $"{action.Name} {MonsterMethodRepository.getUsage(action)}";
+                    title.FontSize = 16;
+                    title.FontAttributes = FontAttributes.Bold;
+                    title.TextColor = Color.FromHex("#E40712");
+                    body.Text = action.Description;
+                    body.FontSize = 14;
+                    body.TextColor = Color.FromHex("#E4E4E4");
+                    body.Margin = new Thickness(8, 0, 0, 8);
+
+                    stlLegendaryActions.Children.Add(title);
+                    stlLegendaryActions.Children.Add(body);
+                }
+            }
+        }
+
         private void btnActionsClicked(object sender, EventArgs e)
         {
-            grdActions.IsVisible = true;
-            grdStats.IsVisible = false;
+            srvActions.IsVisible = true;
+            srvStats.IsVisible = false;
             btnActions.TextColor = Color.FromHex("#F4F7FB");
             btnStats.TextColor = Color.FromHex("#8999A6");
             bxvActions.BackgroundColor = Color.FromHex("E40712");
@@ -99,8 +151,8 @@ namespace DndApp.Views
 
         private void btnStatsClicked(object sender, EventArgs e)
         {
-            grdActions.IsVisible = false;
-            grdStats.IsVisible = true;
+            srvActions.IsVisible = false;
+            srvStats.IsVisible = true;
             btnActions.TextColor = Color.FromHex("#8999A6");
             btnStats.TextColor = Color.FromHex("#F4F7FB");
             bxvActions.BackgroundColor = Color.Transparent;

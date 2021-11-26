@@ -49,7 +49,7 @@
                 </Grid>
             </Grid>
             <!--STATS PAGE-->
-            <ScrollView Grid.Row="2" Orientation="Vertical" BackgroundColor="Transparent">
+            <ScrollView x:Name="srvStats" Grid.Row="2" Orientation="Vertical" BackgroundColor="Transparent">
                 <Grid x:Name="grdStats" RowSpacing="16" Margin="24, 16, 24, 24">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"/>
@@ -220,19 +220,36 @@
                 </Grid>
             </ScrollView>
             <!--ACTION PAGE-->
-            <Grid x:Name="grdActions" Grid.Row="2" RowSpacing="16" Margin="24, 16, 24, 24" IsVisible="False">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="1" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Actions" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
-                    <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+            <ScrollView x:Name="srvActions" Grid.Row="2" Orientation="Vertical" BackgroundColor="Transparent" IsVisible="False">
+                <Grid x:Name="grdActions" RowSpacing="16" Margin="24, 16, 24, 24">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <!--ACTIONS SECTION - (NEED TO BE DYNAMICALLY ADDED)-->
+                    <Grid Grid.Row="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Actions" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                    </Grid>
+                    <StackLayout x:Name="stlActions" Grid.Row="1"/>
+                    <!--LEGENDARY ACTIONS SECTION - (NEED TO BE DYNAMICALLY ADDED)-->
+                    <Grid Grid.Row="2" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="163"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Legendary Actions" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                    </Grid>
+                    <StackLayout x:Name="stlLegendaryActions" Grid.Row="3" Margin="0, 0, 0, 16"/>
                 </Grid>
-            </Grid>
+            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
