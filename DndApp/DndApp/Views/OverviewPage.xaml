@@ -94,14 +94,14 @@
                                         <RowDefinition Height="26"/>
                                         <RowDefinition Height="18"/>
                                     </Grid.RowDefinitions>
-                                    <Label x:Name="lblName" Text="{Binding Name}" Grid.Row="0" FontSize="20" FontAttributes="Bold" TextColor="#F4F7FB" HorizontalOptions="StartAndExpand"/>
-                                    <Grid Grid.Row="1">
+                                    <Label x:Name="lblName" Text="{Binding Name}" Grid.Row="0" FontSize="20" FontAttributes="Bold" TextColor="#F4F7FB"/>
+                                    <Grid Grid.Row="1" VerticalOptions="Center">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="50"/>
                                             <ColumnDefinition Width="4"/>
                                             <ColumnDefinition Width="60"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label x:Name="lblArmorClass" Grid.Column="0" FontSize="14" FontAttributes="Bold" TextColor="#8999A6" HorizontalOptions="Start">
+                                        <Label x:Name="lblArmorClass" Grid.Column="0" FontSize="14" FontAttributes="Bold" TextColor="#8999A6">
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <FormattedString.Spans>
@@ -113,7 +113,7 @@
                                         </Label>
                                         <!--Since I can't reach Names within a listview I think it was the easiest to put it withing the android solution and put it straight in the source-->
                                         <Image x:Name="imgIconDot" Source="dotIconRed.png" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                        <Label x:Name="lblHitPoints" Grid.Column="2" FontSize="14" FontAttributes="Bold" TextColor="#8999A6" HorizontalOptions="Start" Margin="8, 0, 0, 0">
+                                        <Label x:Name="lblHitPoints" Grid.Column="2" FontSize="14" FontAttributes="Bold" TextColor="#8999A6" Margin="8, 0, 0, 0">
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <FormattedString.Spans>

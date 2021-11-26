@@ -21,10 +21,11 @@
                     <ColumnDefinition Width="24"/>
                 </Grid.ColumnDefinitions>
                 <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
-                <Image x:Name="btnBack" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Image x:Name="btnBack" Grid.Column="1"/>
                 <Label x:Name="lblPageTitle" Text="Monster" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
-                <Image x:Name="btnEdit" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Image x:Name="btnEdit" Grid.Column="3"/>
             </Grid>
+            <!--TAB MENU-->
             <Grid Grid.Row="1" ColumnSpacing="0" VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -35,16 +36,201 @@
                         <RowDefinition/>
                         <RowDefinition Height="2"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="btnStats" Grid.Row="0" Text="Stats" FontAttributes="Bold" TextColor="#F4F7FB" BackgroundColor="Transparent" Clicked="btnStatsClicked"/>
+                    <Button x:Name="btnStats" Grid.Row="0" Text="Stats" FontSize="16" FontAttributes="Bold" TextColor="#F4F7FB" BackgroundColor="Transparent" Clicked="btnStatsClicked"/>
                     <BoxView x:Name="bxvStats" Grid.Row="1" BackgroundColor="#E40712"/>
                 </Grid>
-                <Grid Grid.Column="1" RowSpacing="0" HorizontalOptions="Center">
+                <Grid Grid.Column="1" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="2"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="btnActions" Grid.Row="0" Text="Actions" FontAttributes="Bold" TextColor="#F4F7FB" BackgroundColor="Transparent" Clicked="btnActionsClicked"/>
+                    <Button x:Name="btnActions" Grid.Row="0" Text="Actions" FontSize="16" FontAttributes="Bold" TextColor="#8999A6" BackgroundColor="Transparent" Clicked="btnActionsClicked"/>
                     <BoxView x:Name="bxvActions" Grid.Row="1"/>
+                </Grid>
+            </Grid>
+            <!--STATS PAGE-->
+            <ScrollView Grid.Row="2" Orientation="Vertical" BackgroundColor="Transparent">
+                <Grid x:Name="grdStats" RowSpacing="16" Margin="24, 16, 24, 24">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <!--STATS PAGE - DESCRIPTION-->
+                    <Label x:Name="lblDescriptionString" Grid.Row="0" FontSize="16" TextColor="#F4F7FB"/>
+                    <BoxView Grid.Row="1" BackgroundColor="#E40712"/>
+                    <!--STATS PAGE - BASE STATS-->
+                    <Label x:Name="lblArmorClass" Grid.Row="2" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Armor Class:    " FontAttributes="Bold" TextColor="#F4F7FB"/>
+                                    <Span x:Name="spnArmorClass" TextColor="#E4E4E4"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label x:Name="lblHitPoints" Grid.Row="3" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString >
+                                <FormattedString.Spans>
+                                    <Span Text="Hit Points:    " FontAttributes="Bold" TextColor="#F4F7FB"/>
+                                    <Span x:Name="spnHitPoints" TextColor="#E4E4E4"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label x:Name="lblSpeedString" Grid.Row="4" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Speed:    " FontAttributes="Bold" TextColor="#F4F7FB"/>
+                                    <Span x:Name="spnSpeedString" TextColor="#E4E4E4"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <BoxView Grid.Row="5" BackgroundColor="#E40712"/>
+                    <!--STATS PAGE - ABILITY SCORES-->
+                    <Grid x:Name="grdAbilities" Grid.Row="6" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="8"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="24"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="8"/>
+                            <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" ColumnSpacing="0" Margin="64, 0, 0, 0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="64"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="64"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="24"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Str" FontSize="16" TextTransform="Uppercase" FontAttributes="Bold" TextColor="#F4F7FB"/>
+                            <Label Grid.Column="2" Text="Dex" FontSize="16" TextTransform="Uppercase" FontAttributes="Bold" TextColor="#F4F7FB"/>
+                            <Label Grid.Column="4" Text="Con" FontSize="16" TextTransform="Uppercase" FontAttributes="Bold" TextColor="#F4F7FB"/>
+                            <Image x:Name="btnRadarChart" Grid.Column="6" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        </Grid>
+                        <Grid Grid.Row="2" ColumnSpacing="0" Margin="64, 0, 0 , 0" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="lblStr" Grid.Column="0" FontSize="16" FontAttributes="Bold" TextColor="#8999A6"/>
+                            <Label x:Name="lblDex" Grid.Column="1" FontSize="16" FontAttributes="Bold" TextColor="#8999A6"/>
+                            <Label x:Name="lblCon" Grid.Column="2" FontSize="16" FontAttributes="Bold" TextColor="#8999A6"/>
+                        </Grid>
+                        <Grid Grid.Row="4" ColumnSpacing="0" Margin="64, 0, 64 , 0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="64"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="64"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Int" FontSize="16" TextTransform="Uppercase" FontAttributes="Bold" TextColor="#F4F7FB"/>
+                            <Label Grid.Column="2" Text="Wis" FontSize="16" TextTransform="Uppercase" FontAttributes="Bold" TextColor="#F4F7FB"/>
+                            <Label Grid.Column="4" Text="Cha" FontSize="16" TextTransform="Uppercase" FontAttributes="Bold" TextColor="#F4F7FB"/>
+                        </Grid>
+                        <Grid Grid.Row="6" ColumnSpacing="0" Margin="64, 0, 0 , 0" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="lblInt" Grid.Column="0" FontSize="16" FontAttributes="Bold" TextColor="#8999A6"/>
+                            <Label x:Name="lblWis" Grid.Column="1" FontSize="16" FontAttributes="Bold" TextColor="#8999A6"/>
+                            <Label x:Name="lblCha" Grid.Column="2" FontSize="16" FontAttributes="Bold" TextColor="#8999A6"/>
+                        </Grid>
+                    </Grid>
+                    <BoxView Grid.Row="7" BackgroundColor="#E40712"/>
+                    <!--STATS PAGE - SKILLS-->
+                    <Label x:Name="lblSavingThrowsString" Grid.Row="8" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Saving Throws:    " FontAttributes="Bold" TextColor="#F4F7FB"/>
+                                    <Span x:Name="spnSavingThrowsString" TextColor="#E4E4E4"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label x:Name="lblSkillsString" Grid.Row="9" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Skills:    " FontAttributes="Bold" TextColor="#F4F7FB"/>
+                                    <Span x:Name="spnSkillsString" TextColor="#E4E4E4"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label x:Name="lblSensesString" Grid.Row="10" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Senses:    " FontAttributes="Bold" TextColor="#F4F7FB"/>
+                                    <Span x:Name="spnSensesString" TextColor="#E4E4E4"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label x:Name="lblLanguages" Grid.Row="11" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Languages:    " FontAttributes="Bold" TextColor="#F4F7FB"/>
+                                    <Span x:Name="spnLanguages" TextColor="#E4E4E4"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label x:Name="lblChallengeRatingString" Grid.Row="12" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Challenge:    " FontAttributes="Bold" TextColor="#F4F7FB"/>
+                                    <Span x:Name="spnChallengeRatingString" TextColor="#E4E4E4"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <BoxView Grid.Row="13" BackgroundColor="#E40712"/>
+                    <!--STATS PAGE - ABILITIES (NEED TO BE DYNAMICALLY ADDED)-->
+                    <StackLayout x:Name="stlAbilities" Grid.Row="14" Margin="0, 0, 0, 16"/>
+                </Grid>
+            </ScrollView>
+            <!--ACTION PAGE-->
+            <Grid x:Name="grdActions" Grid.Row="2" RowSpacing="16" Margin="24, 16, 24, 24" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Actions" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                    <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
                 </Grid>
             </Grid>
         </Grid>
