@@ -18,6 +18,7 @@ namespace DndApp.Views
         public Monster Monster { get; set; }
         public DetailPage(Monster selectedMonster)
         {
+            // save monster received from overviewpage
             Monster = selectedMonster;
 
             InitializeComponent();
@@ -27,10 +28,12 @@ namespace DndApp.Views
 
         private void LoadIcons()
         {
+            // load in the right images for icons/buttons
             btnBack.Source = ImageSource.FromResource("DndApp.Assets.buttonBack.png");
             btnEdit.Source = ImageSource.FromResource("DndApp.Assets.buttonEdit.png");
             btnRadarChart.Source = ImageSource.FromResource("DndApp.Assets.buttonRadarRed.png");
 
+            // make the right ones clickable
             TapGestureRecognizer recognizer_return = new TapGestureRecognizer();
 
             recognizer_return.Tapped += Recognizer_Tapped_return;
@@ -39,11 +42,13 @@ namespace DndApp.Views
 
         private void Recognizer_Tapped_return(object sender, EventArgs e)
         {
+            // return to overviewpage
             Navigation.PopAsync();
         }
 
         private void LoadMonster()
         {
+            // fill in all the labels and spans with the right values of the monster
             lblPageTitle.Text = Monster.Name;
             lblDescriptionString.Text = $"{Monster.Size} {Monster.Type}, {Monster.Alignment}";
             spnArmorClass.Text = $"{Monster.ArmorClass} {MonsterMethodRepository.CheckForNaturalArmor(Monster)}";
@@ -64,6 +69,7 @@ namespace DndApp.Views
             spnDamageResistances.Text = MonsterMethodRepository.stringifyListStrings(Monster.DamageResistances);
             spnDamageImmunities.Text = MonsterMethodRepository.stringifyListStrings(Monster.DamageImmunities);
             spnConditionImmunities.Text = MonsterMethodRepository.getConditionImmunities(Monster);
+
             ShowFilledProperties();
             LoadMonsterAbilities();
             LoadActions();
@@ -71,6 +77,8 @@ namespace DndApp.Views
 
         private void ShowFilledProperties()
         {
+            // only reveal the following properties if they are properly filled in
+            // margin reacts to which certain properties are visible as to avoid empty spaces while hidden or no whitespace while revealed
             if (MonsterMethodRepository.getSavingThrows(Monster) != "")
             {
                 lblSavingThrowsString.IsVisible = true;
@@ -80,6 +88,7 @@ namespace DndApp.Views
             if (MonsterMethodRepository.getSkills(Monster) != "")
             {
                 lblSkillsString.IsVisible = true;
+                lblSensesString.Margin = new Thickness(0, 0, 0, 16);
 
                 if (lblSavingThrowsString.IsVisible == true)
                 {
@@ -93,6 +102,7 @@ namespace DndApp.Views
             if (Monster.DamageVulnerabilities.Count() != 0)
             {
                 lblDamageVulnerabilities.IsVisible = true;
+                lblSensesString.Margin = new Thickness(0, 0, 0, 16);
 
                 if (lblSavingThrowsString.IsVisible == true || lblSkillsString.IsVisible == true)
                 {
@@ -106,6 +116,7 @@ namespace DndApp.Views
             if (Monster.DamageResistances.Count() != 0)
             {
                 lblDamageResistances.IsVisible = true;
+                lblSensesString.Margin = new Thickness(0, 0, 0, 16);
 
                 if (lblSavingThrowsString.IsVisible == true || lblSkillsString.IsVisible == true || lblDamageVulnerabilities.IsVisible == true)
                 {
@@ -119,6 +130,7 @@ namespace DndApp.Views
             if (Monster.DamageImmunities.Count() != 0)
             {
                 lblDamageImmunities.IsVisible = true;
+                lblSensesString.Margin = new Thickness(0, 0, 0, 16);
 
                 if (lblSavingThrowsString.IsVisible == true || lblSkillsString.IsVisible == true || lblDamageVulnerabilities.IsVisible == true || lblDamageResistances.IsVisible == true)
                 {
@@ -132,6 +144,7 @@ namespace DndApp.Views
             if (MonsterMethodRepository.getConditionImmunities(Monster) != "")
             {
                 lblConditionImmunities.IsVisible = true;
+                lblSensesString.Margin = new Thickness(0, 0, 0, 16);
 
                 if (lblSavingThrowsString.IsVisible == true || lblSkillsString.IsVisible == true || lblDamageVulnerabilities.IsVisible == true || lblDamageResistances.IsVisible == true || lblDamageImmunities.IsVisible == true)
                 {
@@ -146,6 +159,7 @@ namespace DndApp.Views
 
         private void LoadMonsterAbilities()
         {
+            // dynamically add a monster's abilities to the bottom of the page with the corresponding layout
             if (Monster.SpecialAbilities != null)
             {
                 foreach (Action ability in Monster.SpecialAbilities)
@@ -169,6 +183,7 @@ namespace DndApp.Views
 
         private void LoadActions()
         {
+            // same, but for actions in the actions tab
             if (Monster.Actions != null)
             {
                 foreach (Action action in Monster.Actions)
@@ -189,6 +204,7 @@ namespace DndApp.Views
                 }
             }
 
+            // same, but for legendaryactions in the actions tab
             if (Monster.LegendaryActions != null)
             {
                 Label instruction = new Label();
@@ -220,6 +236,7 @@ namespace DndApp.Views
 
         private void btnActionsClicked(object sender, EventArgs e)
         {
+            // reveals the actions section and hides the stats section when the right tab is clicked (while also changing which tab looks selected)
             srvActions.IsVisible = true;
             srvStats.IsVisible = false;
             btnActions.TextColor = Color.FromHex("#F4F7FB");
@@ -230,6 +247,7 @@ namespace DndApp.Views
 
         private void btnStatsClicked(object sender, EventArgs e)
         {
+            // return to the stats section
             srvActions.IsVisible = false;
             srvStats.IsVisible = true;
             btnActions.TextColor = Color.FromHex("#8999A6");

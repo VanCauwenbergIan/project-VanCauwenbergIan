@@ -4,7 +4,6 @@
              x:Class="DndApp.Views.OverviewPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#090809">
-    <!--(nice to have: systembar same color as page)-->
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -35,14 +34,14 @@
             <Grid Grid.Row="1" ColumnSpacing="0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition Width="108"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width= "24"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="lblSortBy" Text="Sort by: Name" Grid.Column="1" TextColor="#E40712" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                 <Image x:Name="btnDropDown" Grid.Column="2" Aspect="AspectFill" VerticalOptions="Center"/>
             </Grid>
-            <!--SEARCH BAR (nice to have: change selection color entry and remove line underneath)-->
+            <!--SEARCH BAR (nice to have: change selection color entry and remove line underneath, might just use a rendered default <searchbar> if I find out how that works)-->
             <Grid Grid.Row="3" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
@@ -130,6 +129,55 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <!--SORT MENU (POP UP)-->
+            <ContentView Grid.RowSpan="6" x:Name="popSortBy" IsVisible="false" >
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
+                        <Grid RowSpacing="16" BackgroundColor="#26282A" Padding="0, 0, 0, 16">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="8"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="1" Text="Sort Monsters By:" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
+                            <!--need to find a way to change the color of these radio buttons, sicne rn they're just the default black with pink-->
+                            <RadioButton x:Name="rbtName" Grid.Row="2" Content=" Name" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <RadioButton x:Name="rbtType" Grid.Row="3" Content=" Type" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <RadioButton x:Name="rbtChallenge" Grid.Row="4" Content=" Challenge" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <RadioButton x:Name="rbtSize" Grid.Row="5" Content=" Size" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <RadioButton x:Name="rbtAlignment" Grid.Row="6" Content=" Alignment" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <RadioButton x:Name="rbtArmorClass" Grid.Row="7" Content=" Armor Class" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <RadioButton x:Name="rbtAverageHitPoints" Grid.Row="8" Content=" Average HP" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <RadioButton x:Name="rbtLegendary" Grid.Row="9" Content=" Legendary" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <Grid Grid.Row="10" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="btnLowToHigh" Grid.Column="0" Text="A - Z" FontSize="16" FontAttributes="Bold" TextColor="#F4F7FB" BorderWidth="1" BorderColor="#E40712" BackgroundColor="#E40712" HorizontalOptions="FillAndExpand" Margin="16, 0, -1, 0" Clicked="btnLowToHighClicked"/>
+                                <Button x:Name="btnHighToLow" Grid.Column="1" Text="Z - A" FontSize="16" FontAttributes="Bold" TextColor="#F4F7FB" BorderWidth="1" BorderColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Margin="-1, 0, 16, 0" Clicked="btnHighToLowClicked"/>
+                            </Grid>
+                            <Grid Grid.Row="11" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="btnCancel" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnCancelClicked"/>
+                                <Button x:Name="btnConfirm" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnConfirmClicked"/>
+                            </Grid>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

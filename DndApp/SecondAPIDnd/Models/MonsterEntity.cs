@@ -8,6 +8,8 @@ namespace DndApp.Models
 {
     public class MonsterEntity : TableEntity
     {
+        // rehapes the monster class in such a way that it can be handled by the database
+
         // ** CONSTRUCTORS **
         public MonsterEntity()
         {

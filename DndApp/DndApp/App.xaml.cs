@@ -12,6 +12,7 @@ namespace DndApp
         {
             InitializeComponent();
 
+            // if you leave the backgroundColor out it will be white by default... which we don't want since we'll get white flashes when navigating between pages
             MainPage = new NavigationPage(new OverviewPage()) { BackgroundColor = Color.Black };
         }
 
