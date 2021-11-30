@@ -21,6 +21,7 @@
                     <ColumnDefinition Width="24"/>
                 </Grid.ColumnDefinitions>
                 <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
+                <!--btnBack not in use on this page-->
                 <Image x:Name="btnBack" Grid.Column="1"/>
                 <Label x:Name="lblPageTitle" Text="Monster" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
                 <Image x:Name="btnEdit" Grid.Column="3"/>

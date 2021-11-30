@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static Android.Content.ClipData;
 
 namespace DndApp.Views
 {
@@ -17,7 +18,7 @@ namespace DndApp.Views
         // original lists (so basically ascending by name)
         public List<Monster> Monsters { get; set; }
 
-        // sorted lists (only ascending), if I'm not wrong we can just reverse the lists
+        // sorted lists (only ascending), we can just reverse the lists to sort from high to low. (saved, because some sorts take longer to process and this way we can just grab a list if the sort has already been used)
         public List<Monster> MonstersByType { get; set; }
         public List<Monster> MonstersByCR { get; set; }
         public List<Monster> MonstersBySize { get; set; }
@@ -25,6 +26,22 @@ namespace DndApp.Views
         public List<Monster> MonstersByAC { get; set; }
         public List<Monster> MonstersByHP { get; set; }
         public List<Monster> MonstersByLA { get; set; }
+
+        // current sorted list which will be filtered on
+        public List<Monster> CurrentMonsters { get; set; }
+        // we still want to be able to clear the filters however, without getting rid of any sorts
+        public List<Monster> FilteredMonsters { get; set; }
+
+        // save checkboxes and entries for each filter option
+        public List<SubOptionCheckbox> CheckboxesType { get; set; }
+        public List<SubOptionCheckbox> CheckboxesSize { get; set; }
+        public List<SubOptionCheckbox> CheckboxesAlignment { get; set; }
+        public List<SubOptionCheckbox> CheckboxesLegendary { get; set; }
+        public List<SubOptionEntry> entriesChallenge { get; set; }
+        public List<SubOptionEntry> entriesAC { get; set; }
+        public List<SubOptionEntry> entriesHP { get; set; }
+
+        // strictly speaking we wouldn't need these since we can just change the list and that's all that matters... but then you would lose UI changes (either that or hardcoding every checkbox)
 
         public OverviewPage()
         {
@@ -40,6 +57,8 @@ namespace DndApp.Views
             btnDropDown.Source = ImageSource.FromResource("DndApp.Assets.buttonDropRed.png");
             imgIconSearch.Source = ImageSource.FromResource("DndApp.Assets.searchIconGrey.png");
             btnFilter.Source = ImageSource.FromResource("DndApp.Assets.buttonFilterRed.png");
+            btnCloseFilter.Source = ImageSource.FromResource("DndApp.Assets.buttonCancel.png");
+            btnCloseFilterOptions.Source = ImageSource.FromResource("DndApp.Assets.buttonBack.png");
         }
 
         private void Recognizer_Tapped_sort(object sender, EventArgs e)
@@ -49,19 +68,206 @@ namespace DndApp.Views
             popSortBy.IsVisible = true;
         }
 
+        private void Recognizer_Tapped_openfilters(object sender, EventArgs e)
+        {
+            popFilterBy.IsVisible = true;
+        }
+
+        private void Recognize_Tapped_closedfilters(object sender, EventArgs e)
+        {
+            popFilterBy.IsVisible = false;
+        }
+
+        private void Recognize_Tapped_closesuboptions(object sender, EventArgs e)
+        {
+            string stringId = lblSelectedFilterOption.Text;
+            List<SubOptionCheckbox> Checkboxes = new List<SubOptionCheckbox>();
+            List<SubOptionEntry> Entries = new List<SubOptionEntry>();
+            popFilterOptions.IsVisible = false;
+
+            if (stringId == "Type")
+            {
+                Checkboxes = CheckboxesType;
+            }
+            else if (stringId == "Size")
+            {
+                Checkboxes = CheckboxesSize;
+            }
+            else if (stringId == "Alignment")
+            {
+                Checkboxes = CheckboxesAlignment;
+            }
+            else if (stringId == "Legendary")
+            {
+                Checkboxes = CheckboxesLegendary;
+            }
+            else if (stringId == "Challenge")
+            {
+                Entries = entriesChallenge;
+            }
+            else if (stringId == "Armor Class")
+            {
+                Entries = entriesAC;
+            }
+            else if (stringId == "Average Hitpoints")
+            {
+                Entries = entriesHP;
+            }
+
+            if ((stringId == "Challenge" || stringId == "Armor Class" || stringId == "Average Hitpoints") && (Entries.Where(o => o.Limit > 0).ToList().Count() > 0))
+            {
+                if (FilteredMonsters == null)
+                {
+                    FilteredMonsters = MonsterMethodRepository.filterByEntries(CurrentMonsters, Entries, stringId);
+                }
+                else
+                {
+                    FilteredMonsters = MonsterMethodRepository.filterByEntries(FilteredMonsters, Entries, stringId);
+                }
+
+                lvwMonsters.ItemsSource = FilteredMonsters;
+            }
+            else if (Checkboxes.Where(o => o.Status == true).ToList().Count() > 0)
+            {
+                if (FilteredMonsters == null)
+                {
+                    FilteredMonsters = MonsterMethodRepository.filterByCheckboxes(CurrentMonsters, Checkboxes, stringId);
+                }
+                else
+                {
+                    FilteredMonsters = MonsterMethodRepository.filterByCheckboxes(FilteredMonsters, Checkboxes, stringId);
+                }
+
+                lvwMonsters.ItemsSource = FilteredMonsters;
+            }
+
+            // we don't want an empty list when we don't apply any filters!
+        }
+
+        private void Recognize_Tapped_filterchosen(object sender, EventArgs e)
+        {
+            // assigning our ClassId / string as the title of the filter options pop-up
+            string stringId = ((Frame)sender).ClassId;
+            List<SubOptionCheckbox> subOptionCheckboxes = new List<SubOptionCheckbox>();
+            List<SubOptionEntry> subOptionEntries = new List<SubOptionEntry>();
+
+            lblSelectedFilterOption.Text = stringId;
+
+            if (stringId == "Type")
+            {
+                if (CheckboxesType == null)
+                {
+                    CheckboxesType = MonsterMethodRepository.getFilterCheckboxes(Monsters, stringId);
+                }
+                subOptionCheckboxes = CheckboxesType;
+            }
+            else if (stringId == "Size")
+            {
+                if (CheckboxesSize == null)
+                {
+                    CheckboxesSize = MonsterMethodRepository.getFilterCheckboxes(Monsters, stringId);
+                }
+                subOptionCheckboxes = CheckboxesSize;
+            }
+            else if (stringId == "Alignment")
+            {
+                if (CheckboxesAlignment == null)
+                {
+                    CheckboxesAlignment = MonsterMethodRepository.getFilterCheckboxes(Monsters, stringId);
+                }
+                subOptionCheckboxes = CheckboxesAlignment;
+            }
+            else if (stringId == "Legendary")
+            {
+                if (CheckboxesLegendary == null)
+                {
+                    CheckboxesLegendary = MonsterMethodRepository.getFilterCheckboxes(Monsters, stringId);
+                }
+                subOptionCheckboxes = CheckboxesLegendary;
+            }
+            else if (stringId == "Challenge")
+            {
+                if (entriesChallenge == null)
+                {
+                    entriesChallenge = MonsterMethodRepository.getFilterEntries();
+                }
+                subOptionEntries = entriesChallenge;
+            }
+            else if (stringId == "Armor Class")
+            {
+                if (entriesAC == null)
+                {
+                    entriesAC = MonsterMethodRepository.getFilterEntries();
+                }
+                subOptionEntries = entriesAC;
+            }
+            else if (stringId == "Average Hitpoints")
+            {
+                if (entriesHP == null)
+                {
+                   entriesHP = MonsterMethodRepository.getFilterEntries();
+                }
+                subOptionEntries = entriesHP;
+            }
+
+            if (stringId == "Challenge" || stringId == "Armor Class" || stringId == "Average Hitpoints")
+            {
+                lvwFilterEntries.ItemsSource = subOptionEntries;
+                lvwFilterEntries.IsVisible = true;
+                lvwFilterCheckboxes.IsVisible = false;
+            }
+            else
+            {
+                lvwFilterCheckboxes.ItemsSource = subOptionCheckboxes;
+                lvwFilterEntries.IsVisible = false;
+                lvwFilterCheckboxes.IsVisible = true;
+            }
+
+            popFilterOptions.IsVisible = true;
+        }
+
         private async void Init()
         {
             Monsters = await MonsterRepository.GetMonstersAsync();
 
             rbtName.IsChecked = true;
-            lvwMonsters.ItemsSource = Monsters;
+            CurrentMonsters = Monsters;
+            lvwMonsters.ItemsSource = CurrentMonsters;
 
-            // making icons clickable so they act as buttons (put it here so you can't open the sort menu while all the data isn't there yet)
+            // making icons clickable so they act as buttons (put it here so you can't open the sort menu while all the data isn't there yet, which would cause a crash if a sort or filter was applied)
             TapGestureRecognizer recognizer_sort = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_openfilters = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_closefilters = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_filterchosen = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_closesuboptions = new TapGestureRecognizer();
 
             recognizer_sort.Tapped += Recognizer_Tapped_sort;
+            recognizer_openfilters.Tapped += Recognizer_Tapped_openfilters;
+            recognizer_closefilters.Tapped += Recognize_Tapped_closedfilters;
+            recognizer_filterchosen.Tapped += Recognize_Tapped_filterchosen;
+            recognizer_closesuboptions.Tapped += Recognize_Tapped_closesuboptions;
+
+            // a simple way to pass a string along with the frames that can be accessed by the event handler
+            frmFilterType.ClassId = "Type";
+            frmFilterChallenge.ClassId = "Challenge";
+            frmFilterSize.ClassId = "Size";
+            frmFilterAlignment.ClassId = "Alignment";
+            frmFilterArmorClass.ClassId = "Armor Class";
+            frmFilterAverageHP.ClassId = "Average Hitpoints";
+            frmFilterLegendary.ClassId = "Legendary";
+
             btnDropDown.GestureRecognizers.Add(recognizer_sort);
             lblSortBy.GestureRecognizers.Add(recognizer_sort);
+            btnFilter.GestureRecognizers.Add(recognizer_openfilters);
+            btnCloseFilterOptions.GestureRecognizers.Add(recognizer_closesuboptions);
+            btnCloseFilter.GestureRecognizers.Add(recognizer_closefilters);
+            frmFilterType.GestureRecognizers.Add(recognizer_filterchosen);
+            frmFilterChallenge.GestureRecognizers.Add(recognizer_filterchosen);
+            frmFilterSize.GestureRecognizers.Add(recognizer_filterchosen);
+            frmFilterAlignment.GestureRecognizers.Add(recognizer_filterchosen);
+            frmFilterArmorClass.GestureRecognizers.Add(recognizer_filterchosen);
+            frmFilterAverageHP.GestureRecognizers.Add(recognizer_filterchosen);
+            frmFilterLegendary.GestureRecognizers.Add(recognizer_filterchosen);
         }
 
         private void MonsterSelected(object sender, SelectedItemChangedEventArgs e)
@@ -86,8 +292,14 @@ namespace DndApp.Views
         {
             if (rbtName.IsChecked == true)
             {
+                // original list is laready sorted alphabetically
                 lblSortBy.Text = "Sort by: Name";
-                lvwMonsters.ItemsSource = checkForReverse(Monsters);
+                CurrentMonsters = checkForReverse(Monsters);
+
+                if (FilteredMonsters != null)
+                {
+                    FilteredMonsters = checkForReverse(FilteredMonsters.OrderBy(o => o.Name).ToList());
+                }
             }
             else if (rbtType.IsChecked == true)
             {
@@ -95,8 +307,12 @@ namespace DndApp.Views
                 {
                     MonstersByType = MonsterMethodRepository.sortListBy(Monsters, "type");
                 }
+                if (FilteredMonsters != null)
+                {
+                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "type"));
+                }
                 lblSortBy.Text = "Sort by: Type";
-                lvwMonsters.ItemsSource = checkForReverse(MonstersByType);
+                CurrentMonsters = checkForReverse(MonstersByType);
             }
             else if (rbtChallenge.IsChecked == true)
             {
@@ -104,8 +320,12 @@ namespace DndApp.Views
                 {
                     MonstersByCR = MonsterMethodRepository.sortListBy(Monsters, "cr");
                 }
+                if (FilteredMonsters != null)
+                {
+                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "cr"));
+                }
                 lblSortBy.Text = "Sort by: Challenge Rating";
-                lvwMonsters.ItemsSource = checkForReverse(MonstersByCR);
+                CurrentMonsters = checkForReverse(MonstersByCR);
             }
             else if (rbtSize.IsChecked == true)
             {
@@ -113,8 +333,12 @@ namespace DndApp.Views
                 {
                     MonstersBySize = MonsterMethodRepository.sortListBy(Monsters, "size");
                 }
+                if (FilteredMonsters != null)
+                {
+                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "size"));
+                }
                 lblSortBy.Text = "Sort by: Size";
-                lvwMonsters.ItemsSource = checkForReverse(MonstersBySize);
+                CurrentMonsters = checkForReverse(MonstersBySize);
             }
             else if (rbtAlignment.IsChecked == true)
             {
@@ -122,8 +346,12 @@ namespace DndApp.Views
                 {
                     MonstersByAlignment = MonsterMethodRepository.sortListBy(Monsters, "alignment");
                 }
+                if (FilteredMonsters != null)
+                {
+                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "alignment"));
+                }
                 lblSortBy.Text = "Sort by: Alignment";
-                lvwMonsters.ItemsSource = checkForReverse(MonstersByAlignment);
+                CurrentMonsters = checkForReverse(MonstersByAlignment);
             }
             else if (rbtArmorClass.IsChecked == true)
             {
@@ -131,8 +359,12 @@ namespace DndApp.Views
                 {
                     MonstersByAC = MonsterMethodRepository.sortListBy(Monsters, "ac");
                 }
+                if (FilteredMonsters != null)
+                {
+                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "ac"));
+                }
                 lblSortBy.Text = "Sort by: Armor Class";
-                lvwMonsters.ItemsSource = checkForReverse(MonstersByAC);
+                CurrentMonsters = checkForReverse(MonstersByAC);
             }
             else if (rbtAverageHitPoints.IsChecked == true)
             {
@@ -140,8 +372,12 @@ namespace DndApp.Views
                 {
                     MonstersByHP = MonsterMethodRepository.sortListBy(Monsters, "hp");
                 }
+                if (FilteredMonsters != null)
+                {
+                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "hp"));
+                }
                 lblSortBy.Text = "Sort by: Hitpoints";
-                lvwMonsters.ItemsSource = checkForReverse(MonstersByHP);
+                CurrentMonsters = checkForReverse(MonstersByHP);
             }
             else if (rbtLegendary.IsChecked == true)
             {
@@ -149,17 +385,29 @@ namespace DndApp.Views
                 {
                     MonstersByLA = MonsterMethodRepository.sortListBy(Monsters, "la");
                 }
+                if (FilteredMonsters != null)
+                {
+                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "la"));
+                }
                 lblSortBy.Text = "Sort by: Legendary Actions";
-                lvwMonsters.ItemsSource = checkForReverse(MonstersByLA);
+                CurrentMonsters = checkForReverse(MonstersByLA);
             }
 
+            if (FilteredMonsters == null)
+            {
+                lvwMonsters.ItemsSource = CurrentMonsters;
+            }
+            else
+            {
+                lvwMonsters.ItemsSource = FilteredMonsters;
+            }
             popSortBy.IsVisible = false;
 
         }
 
         private List<Monster> checkForReverse(List<Monster> m)
         {
-            // reverses list if high to low has been checked
+            // reverses list if high to low has been checkedcurrentMonsters
             if (btnHighToLow.BackgroundColor != Color.Transparent)
             {
                 return m.ToArray().Reverse().ToList();
@@ -181,6 +429,20 @@ namespace DndApp.Views
         {
             btnLowToHigh.BackgroundColor = Color.Transparent;
             btnHighToLow.BackgroundColor = Color.FromHex("#E40712");
+        }
+
+        private void btnClearAllFiltersClicked(object sender, EventArgs e)
+        {
+            lvwMonsters.ItemsSource = CurrentMonsters;
+            FilteredMonsters = null;
+
+            CheckboxesType = null;
+            CheckboxesSize = null;
+            CheckboxesAlignment = null;
+            CheckboxesLegendary = null;
+            entriesAC = null;
+            entriesChallenge = null;
+            entriesHP = null;
         }
     }
 }

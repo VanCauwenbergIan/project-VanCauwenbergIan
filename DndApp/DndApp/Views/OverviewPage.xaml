@@ -178,6 +178,219 @@
                     </StackLayout>
                 </StackLayout>
             </ContentView>
+            <!--FILTER MENU (POP UP) (nice to have: see how much filters you have applied and where and more filter options)-->
+            <Grid Grid.RowSpan="6" RowSpacing="0" x:Name="popFilterBy" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="64"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--NAV BAR-->
+                <Grid Grid.Row="0" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="24"/>
+                    </Grid.ColumnDefinitions>
+                    <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
+                    <Image x:Name="btnCloseFilter" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Label Text="Filter Monsters" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Margin="24, 0, 0, 0"/>
+                    <Button x:Name="btnClearAllFilters" Text="Clear all" TextTransform="Lowercase" TextColor="#E40712" BackgroundColor="Transparent" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="btnClearAllFiltersClicked"/>
+                </Grid>
+                <!--FRAMES (HARDCODED)-->
+                <ScrollView x:Name="srvFilterOptions" Grid.Row ="1" Orientation="Vertical">
+                    <Grid RowSpacing="0" BackgroundColor="#090809">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Frame x:Name="frmFilterType" Grid.Row="0" BackgroundColor="#090809">
+                            <Grid RowSpacing="0" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid ColumnSpacing="0" Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="Type" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" TextColor="#F4F7FB"/>
+                                    <Label Grid.Column="1" Text=">" TextTransform="Uppercase" FontAttributes="Bold" VerticalOptions="Center"  HorizontalOptions="EndAndExpand" TextColor="#8999A6"/>
+                                </Grid>
+                                <BoxView Grid.Row="1" BackgroundColor="#293742" HeightRequest="1" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Frame x:Name="frmFilterChallenge" Grid.Row="1" BackgroundColor="#090809">
+                            <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="Challenge" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" TextColor="#F4F7FB"/>
+                                    <Label Grid.Column="1" Text=">" TextTransform="Uppercase" FontAttributes="Bold" VerticalOptions="Center"  HorizontalOptions="EndAndExpand" TextColor="#8999A6"/>
+                                </Grid>
+                                <BoxView Grid.Row="1" BackgroundColor="#293742" HeightRequest="1" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Frame x:Name="frmFilterSize" Grid.Row="2" BackgroundColor="#090809">
+                            <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="24"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="Size" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" TextColor="#F4F7FB"/>
+                                    <Label Grid.Column="1" Text=">" TextTransform="Uppercase" FontAttributes="Bold" VerticalOptions="Center"  HorizontalOptions="EndAndExpand" TextColor="#8999A6"/>
+                                </Grid>
+                                <BoxView Grid.Row="1" BackgroundColor="#293742" HeightRequest="1" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Frame x:Name="frmFilterAlignment" Grid.Row="3" BackgroundColor="#090809">
+                            <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="Alignment" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" TextColor="#F4F7FB"/>
+                                    <Label Grid.Column="1" Text=">" TextTransform="Uppercase" FontAttributes="Bold" VerticalOptions="Center"  HorizontalOptions="EndAndExpand" TextColor="#8999A6"/>
+                                </Grid>
+                                <BoxView Grid.Row="1" BackgroundColor="#293742" HeightRequest="1" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Frame x:Name="frmFilterArmorClass" Grid.Row="4" BackgroundColor="#090809">
+                            <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="Armor Class" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" TextColor="#F4F7FB"/>
+                                    <Label Grid.Column="1" Text=">" TextTransform="Uppercase" FontAttributes="Bold" VerticalOptions="Center"  HorizontalOptions="EndAndExpand" TextColor="#8999A6"/>
+                                </Grid>
+                                <BoxView Grid.Row="1" BackgroundColor="#293742" HeightRequest="1" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Frame x:Name="frmFilterAverageHP" Grid.Row="5" BackgroundColor="#090809">
+                            <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="Average Hitpoints" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" TextColor="#F4F7FB"/>
+                                    <Label Grid.Column="1" Text=">" TextTransform="Uppercase" FontAttributes="Bold" VerticalOptions="Center"  HorizontalOptions="EndAndExpand" TextColor="#8999A6"/>
+                                </Grid>
+                                <BoxView Grid.Row="1" BackgroundColor="#293742" HeightRequest="1" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Frame x:Name="frmFilterLegendary" Grid.Row="6" BackgroundColor="#090809">
+                            <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="Legendary" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" TextColor="#F4F7FB"/>
+                                    <Label Grid.Column="1" Text=">" TextTransform="Uppercase" FontAttributes="Bold" VerticalOptions="Center"  HorizontalOptions="EndAndExpand" TextColor="#8999A6"/>
+                                </Grid>
+                                <!--<BoxView Grid.Row="1" BackgroundColor="#293742" HeightRequest="1" VerticalOptions="Center"/>-->
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+            <!--FILTER SUBOPTIONS PAGE (POP UP)-->
+            <Grid Grid.RowSpan="6" RowSpacing="16" x:Name="popFilterOptions" BackgroundColor="#090809" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="64"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--NAV BAR-->
+                <Grid Grid.Row="0" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="24"/>
+                    </Grid.ColumnDefinitions>
+                    <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
+                    <Image x:Name="btnCloseFilterOptions" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Label x:Name="lblSelectedFilterOption" Text="Selected Option" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Margin="24, 0, 0, 0"/>
+                    <!--<Button x:Name="btnClearAll" Text="Clear all" TextTransform="Lowercase" TextColor="#E40712" BackgroundColor="Transparent" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+                </Grid>
+                <!--FILTER SUBOPTIONS (DYNAMICALLY GENERATED)-->
+                <ListView x:Name="lvwFilterCheckboxes" Grid.Row="1" IsVisible="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="24"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="lblSubOptionName" Grid.Column="1" Text="{Binding Name}" TextColor="#F4F7FB" FontSize="16" VerticalOptions="Center"  HorizontalOptions="StartAndExpand" />
+                                    <CheckBox x:Name="cbxSubOption" Grid.Column="2" Color="#E40712" IsChecked="{Binding Status, Mode=TwoWay}" VerticalOptions="Center" ScaleX="1.25" ScaleY="1.25"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView x:Name="lvwFilterEntries" RowHeight="64" Grid.Row="1" IsVisible="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="75"/>
+                                        <ColumnDefinition Width="24"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="lblSubOptionName" Grid.Column="1" Text="{Binding Name}" TextColor="#F4F7FB" FontSize="16" VerticalOptions="Center"  HorizontalOptions="StartAndExpand"/>
+                                    <BoxView Grid.Column="2" BackgroundColor="#293742" CornerRadius="5" HeightRequest="40" VerticalOptions="Center"/>
+                                    <Entry x:Name="entSubOption" Grid.Column="2" Text="{Binding Limit, Mode=TwoWay}" TextColor="#F4F7FB" HorizontalTextAlignment="Center" FontSize="16" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

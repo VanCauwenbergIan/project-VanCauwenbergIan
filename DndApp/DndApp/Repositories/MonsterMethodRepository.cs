@@ -9,42 +9,6 @@ namespace DndApp.Repositories
 {
     public class MonsterMethodRepository
     {
-        public static string CheckForNaturalArmor(Monster m)
-        {
-            // compares their AC to the dnd5e formula (which would be their AC if they didn't have extra armor)
-            if (10 + getAbilityScoreModifier(m.Dexterity) < m.ArmorClass)
-            {
-                return "(natural armor)";
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public static int getAbilityScoreModifier(int a)
-        {
-            // this is also just a standard dnd5e formula to calculate the ability score modifier for a certain stat / ability score
-            int asm = (int)Math.Floor((a - 10) / 2.0);
-
-            return asm;
-        }
-
-        public static string getAbilityScoreModifierString(int a)
-        {
-            // all this method does is adding a '+' in front of positive ability score modifiers
-            int asm = getAbilityScoreModifier(a);
-
-            if (asm >= 0)
-            {
-                return $" (+{asm})";
-            }
-            else
-            {
-                return $"({asm})";
-            }
-        }
-
         public static string StringifySpeed(Monster m)
         {
             // what the name says, it adds substrings to a string if the properties of the Speed class have the right value
@@ -88,6 +52,29 @@ namespace DndApp.Repositories
             else
             {
                 return "";
+            }
+        }
+
+        public static int getAbilityScoreModifier(int a)
+        {
+            // this is also just a standard dnd5e formula to calculate the ability score modifier for a certain stat / ability score
+            int asm = (int)Math.Floor((a - 10) / 2.0);
+
+            return asm;
+        }
+
+        public static string getAbilityScoreModifierString(int a)
+        {
+            // all this method does is adding a '+' in front of positive ability score modifiers
+            int asm = getAbilityScoreModifier(a);
+
+            if (asm >= 0)
+            {
+                return $" (+{asm})";
+            }
+            else
+            {
+                return $"({asm})";
             }
         }
 
@@ -189,6 +176,124 @@ namespace DndApp.Repositories
             string[] num = dice.Split('d');
 
             return (Convert.ToInt32(num[0]) * Convert.ToInt32(num[1]));
+        }
+
+        // these are pretty self-explanatory
+
+        public static List<string> getAllTypes(List<Monster> monsters)
+        {
+            List<string> types = new List<string>();
+
+            foreach (Monster monster in monsters)
+            {
+                if (types.Contains(monster.Type) == false)
+                {
+                    types.Add(monster.Type);
+                }
+            }
+
+            return types;
+        }
+
+        public static List<string> getAllSizes(List<Monster> monsters)
+        {
+            List<string> sizes = new List<string>();
+
+            foreach (Monster monster in monsters)
+            {
+                if (sizes.Contains(monster.Size) == false)
+                {
+                    sizes.Add(monster.Size);
+                }
+            }
+
+            return sizes;
+        }
+
+        public static List<string> getAllAlignments(List<Monster> monsters)
+        {
+            List<string> alignements = new List<string>();
+
+            foreach (Monster monster in monsters)
+            {
+                if (alignements.Contains(monster.Alignment) == false)
+                {
+                    alignements.Add(monster.Alignment);
+                }
+            }
+
+            return alignements;
+        }
+
+        public static List<SubOptionCheckbox> getFilterCheckboxes(List<Monster> monsters,string chosenOption)
+        {
+            List<string> subOptions = new List<string>();
+            List<SubOptionCheckbox> checkboxes = new List<SubOptionCheckbox>();
+
+            if (chosenOption.ToLower() == "type")
+            {
+                subOptions = getAllTypes(monsters);
+            }
+            else if (chosenOption.ToLower() == "size")
+            {
+                subOptions = getAllSizes(monsters);
+            }
+            else if (chosenOption.ToLower() == "alignment")
+            {
+                subOptions = getAllAlignments(monsters);
+            }
+            else if (chosenOption.ToLower() == "legendary")
+            {
+                subOptions = new List<string> { "Yes", "No" };
+            }
+
+            subOptions = subOptions.OrderBy(o => o).ToList();
+
+            foreach (string name in subOptions)
+            {
+                SubOptionCheckbox subOptionCheckbox = new SubOptionCheckbox()
+                {
+                    Name = name,
+                    Status = false
+                };
+
+                checkboxes.Add(subOptionCheckbox);
+            }
+
+            return checkboxes;
+        }
+
+        public static List<SubOptionEntry> getFilterEntries()
+        {
+            List<string> subOptions = new List<string> {"From", "To"};
+            List<SubOptionEntry> entries = new List<SubOptionEntry>();
+            
+            foreach (string name in subOptions)
+            {
+                SubOptionEntry subOptionEntry = new SubOptionEntry()
+                {
+                    Name = name,
+                    Limit = null
+                };
+
+                entries.Add(subOptionEntry);
+            }
+
+            return entries;
+
+        }
+
+        public static string CheckForNaturalArmor(Monster m)
+        {
+            // compares their AC to the dnd5e formula (which would be their AC if they didn't have extra armor)
+            if (10 + getAbilityScoreModifier(m.Dexterity) < m.ArmorClass)
+            {
+                return "(natural armor)";
+            }
+            else
+            {
+                return "";
+            }
         }
 
         public static string checkLanguages(string languages)
@@ -379,7 +484,7 @@ namespace DndApp.Repositories
                 // custom sort by legendary acions
                 List<Monster> nonlegendary = new List<Monster>();
                 List<Monster> legendary = new List<Monster>();
-
+ 
                 foreach (Monster monster in originalMonsters)
                 {
                     if (monster.LegendaryActions != null)
@@ -401,6 +506,113 @@ namespace DndApp.Repositories
             {
                 return originalMonsters;
             }
+        }
+
+        public static List<Monster> filterByCheckboxes (List<Monster> monsters, List<SubOptionCheckbox> checkboxes, string stringId)
+        {
+            List<Monster> filteredList = new List<Monster>();
+            // I only stumbled upon this one recently, probably a lot of ifs I can replace
+            List<SubOptionCheckbox> options = checkboxes.Where(o => o.Status == true).ToList();
+
+            if (stringId == "Type")
+            {
+                foreach (Monster monster in monsters)
+                {
+                    foreach (SubOptionCheckbox option in options)
+                    {
+                        if (monster.Type == option.Name)
+                        {
+                            filteredList.Add(monster);
+                        }
+                    }
+                }
+            }
+            else if (stringId == "Size")
+            {
+
+                foreach (Monster monster in monsters)
+                {
+                    foreach (SubOptionCheckbox option in options)
+                    {
+                        if (monster.Size == option.Name)
+                        {
+                            filteredList.Add(monster);
+                        }
+                    }
+                }
+            }
+            else if (stringId == "Alignment")
+            {
+
+                foreach (Monster monster in monsters)
+                {
+                    foreach (SubOptionCheckbox option in options)
+                    {
+                        if (monster.Alignment == option.Name)
+                        {
+                            filteredList.Add(monster);
+                        }
+                    }
+                }
+            }
+            else if (stringId == "Legendary")
+            {
+
+                foreach (Monster monster in monsters)
+                {
+                    foreach (SubOptionCheckbox option in options)
+                    {
+                        if (option.Name == "Yes" && monster.LegendaryActions != null)
+                        {
+                            filteredList.Add(monster);
+                        }
+                        else if (option.Name == "No" && monster.LegendaryActions == null)
+                        {
+                            filteredList.Add(monster);
+                        }
+                    }
+                }
+            }
+
+            return filteredList;
+        }
+
+        public static List<Monster> filterByEntries(List<Monster> monsters, List<SubOptionEntry> entries, string stringId)
+        {
+            List<Monster> filteredList = new List<Monster>();
+
+            if (stringId == "Challenge")
+            {
+                foreach (Monster monster in monsters)
+                {
+                    if (monster.ChallengeRating >= entries[0].Limit && monster.ChallengeRating <= entries[1].Limit)
+                    {
+                        filteredList.Add(monster);
+                    }
+                }
+            }
+            else if (stringId == "Armor Class")
+            {
+                foreach (Monster monster in monsters)
+                {
+                    if (monster.ArmorClass >= entries[0].Limit && monster.ArmorClass <= entries[1].Limit)
+                    {
+                        filteredList.Add(monster);
+                    }
+                }
+            }
+            else if (stringId == "Average Hitpoints")
+            {
+                foreach (Monster monster in monsters)
+                {
+                    if (monster.HitPoints >= entries[0].Limit && monster.HitPoints <= entries[1].Limit)
+                    {
+                        filteredList.Add(monster);
+                    }
+                }
+            }
+
+            return filteredList;
         }
     }
 }
