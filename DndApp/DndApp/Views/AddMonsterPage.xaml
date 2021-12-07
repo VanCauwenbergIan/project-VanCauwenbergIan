@@ -96,13 +96,13 @@
                     </Grid>
                     <Label Grid.Row="4" Text="Size" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold"/>
                     <BoxView Grid.Row="5" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Picker x:Name="pckSize" Grid.Row="5" BackgroundColor="Transparent"/>
+                    <Picker x:Name="pckSize" Grid.Row="5" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
                     <Label Grid.Row="6" Text="Type" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
                     <BoxView Grid.Row="7" BackgroundColor="#293742" CornerRadius="5"/>
                     <Entry x:Name="entType" Grid.Row="7" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                     <Label Grid.Row="8" Text="Alignment" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold"/>
                     <BoxView Grid.Row="9" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Picker x:Name="pckAlignment" Grid.Row="9" BackgroundColor="Transparent"/>
+                    <Picker x:Name="pckAlignment" Grid.Row="9" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
                     <!--MODIFY STATS PAGE - BASE MODIFIERS -->
                     <Grid Grid.Row="10" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
                         <Grid.ColumnDefinitions>
@@ -124,7 +124,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Proficiency Bonus" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entProficiencyBonus" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entProficiencyBonus" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -133,7 +133,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Hit Dice" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entHitDice" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entHitDice" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Label Grid.Row="12" Text="Proficiency bonus affects proficient skills and saving throws, hit dice affect the total amount of HP (together with the creature's size)." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
@@ -151,7 +151,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Str" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entStrength" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entStrength" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -160,7 +160,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Dex" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entDexterity" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entDexterity" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="2" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -169,7 +169,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Con" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entConstitution" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entConstitution" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="16" HorizontalOptions="StartAndExpand" Padding="8, 0, 0, 0">
@@ -185,7 +185,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Int " TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entintelligence" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entIntelligence" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -194,7 +194,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Wis" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entWisdom" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entWisdom" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="2" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -203,7 +203,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Cha" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entCharisma" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entCharisma" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Label Grid.Row="17" Text="All ability scores affect skills and saving throws. Dexterity also affects Armor Class, while constitutions affects a creature's hitpoints." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
@@ -219,7 +219,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Natural Armor" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entNaturalArmor" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entNaturalArmor" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start">
                             <Grid.ColumnDefinitions>
@@ -228,7 +228,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Challenge Rating" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entChallengeRating" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entChallengeRating" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Label Grid.Row="19" Text="Challenge rating determines the amount of XP for slaying a creature. This is best left up to the DM." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
@@ -241,20 +241,20 @@
                         <Grid Grid.Column="0" HorizontalOptions="Start">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="68"/>
-                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="56"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Walking" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entWalkingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entWalkingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="0, 0, 16, 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="76"/>
-                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="56"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Swimming" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entSwimmingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entSwimmingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="23" HorizontalOptions="StartAndExpand">
@@ -265,20 +265,20 @@
                         <Grid Grid.Column="0" HorizontalOptions="Start">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="68"/>
-                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="56"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Flying" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entFlyingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entFlyingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="0, 0, 16, 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="76"/>
-                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="56"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Burrowing" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entBurrowingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entBurrowingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="25" HorizontalOptions="StartAndExpand">
@@ -289,16 +289,16 @@
                         <Grid Grid.Column="0" HorizontalOptions="Start">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="68"/>
-                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="56"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Climbing" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entClimbingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <Entry x:Name="entClimbingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="0, 0, 16, 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="76"/>
-                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="56"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Hover" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <CheckBox x:Name="cbxHover" Grid.Column="1" Color="#E40712" IsChecked="{Binding Status, Mode=TwoWay}" VerticalOptions="Center" ScaleX="1.25" ScaleY="1.25"/>

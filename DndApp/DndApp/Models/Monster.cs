@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DndApp.Repositories;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -146,6 +147,66 @@ namespace DndApp.Models
             else
             {
                 return GCD(n2, n1 % n2);
+            }
+        }
+
+        public int ProficiencyBonus
+        {
+            get
+            {
+                if (5 <= this.ChallengeRating && this.ChallengeRating < 9)
+                {
+                    return 3;
+                }
+                else if (9 <= this.ChallengeRating && this.ChallengeRating < 13)
+                {
+                    return 4;
+                }
+                else if (13 <= this.ChallengeRating && this.ChallengeRating < 17)
+                {
+                    return 5;
+                }
+                else if (17 <= this.ChallengeRating && this.ChallengeRating < 21)
+                {
+                    return 6;
+                }
+                else if (21 <= this.ChallengeRating && this.ChallengeRating < 25)
+                {
+                    return 7;
+                }
+                else if (25 <= this.ChallengeRating && this.ChallengeRating < 29)
+                {
+                    return 8;
+                }
+                else if (29 <= this.ChallengeRating)
+                {
+                    return 9;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+        }
+
+        public int AmountOfHPDice
+        {
+            get
+            {
+                string[] num = this.HitDice.Split('d');
+
+                return Convert.ToInt32(num[0]);
+            }
+        }
+
+        public int NaturalArmor
+        {
+            get
+            {
+                int regularAC = 10 + MonsterMethods.getAbilityScoreModifier(this.Dexterity);
+                int extraAC = this.ArmorClass - regularAC;
+
+                return extraAC;
             }
         }
         // END OF CALCULATED PROPERTIES

@@ -287,7 +287,7 @@ namespace DndApp.Repositories
         public static string CheckForNaturalArmor(Monster m)
         {
             // compares their AC to the dnd5e formula (which would be their AC if they didn't have extra armor)
-            if (10 + getAbilityScoreModifier(m.Dexterity) < m.ArmorClass)
+            if (m.NaturalArmor > 0)
             {
                 return "(natural armor)";
             }

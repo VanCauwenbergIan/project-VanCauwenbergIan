@@ -2,7 +2,6 @@ C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\DndApp.dll
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\ref\DndApp.dll
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\DndApp.pdb
-C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\DndApp.csproj.AssemblyReference.cache
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\DndApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
@@ -26,3 +25,4 @@ C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\Xamarin.Forms.Platform.Android.pdb
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\FormsViewGroup.pdb
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\DndApp.csproj.CopyComplete
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\DndApp.csproj.AssemblyReference.cache
