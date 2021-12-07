@@ -1,12 +1,593 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DndApp.Views.AddMonsterPage">
+             x:Class="DndApp.Views.AddMonsterPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#090809">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--NAV BAR-->
+            <Grid Grid.Row="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
+                <!--btnBack not in use on this page-->
+                <Image x:Name="btnBack" Grid.Column="1" />
+                <Label x:Name="lblPageTitle" Text="Modify Stats" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Padding="32, 0, 0, 0"/>
+                <Button x:Name="btnConfirm" Text="Confirm Changes" Grid.Column="3" TextColor="#E40712" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Grid>
+            <!--MODIFY STATS PAGE-->
+            <ScrollView x:Name="srvModifyStats" Grid.Row="1" Orientation="Vertical" BackgroundColor="Transparent">
+                <Grid Margin="24, 16, 24, 24">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <!--MODIFY STATS PAGE - NAME AND WARNING -->
+                    <Label x:Name="lblWarning" Grid.Row="0" IsVisible="false" Text="This is an official sourcebook monster, which is unchangeable! Any changes made will be added as a new hombrew monster instead." TextColor="#E4E4E4" FontSize="12" Padding="0, 0, 0, 8"/>
+                    <Label Grid.Row="1" Text="Name" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold"/>
+                    <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Entry x:Name="entName" Grid.Row="2" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <!--MODIFY STATS PAGE - SIZE, TYPE, ALIGNMENT -->
+                    <Grid Grid.Row="3" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Size, Type, Alignment" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                    </Grid>
+                    <Label Grid.Row="4" Text="Size" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold"/>
+                    <BoxView Grid.Row="5" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Picker x:Name="pckSize" Grid.Row="5" BackgroundColor="Transparent"/>
+                    <Label Grid.Row="6" Text="Type" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
+                    <BoxView Grid.Row="7" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Entry x:Name="entType" Grid.Row="7" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <Label Grid.Row="8" Text="Alignment" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold"/>
+                    <BoxView Grid.Row="9" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Picker x:Name="pckAlignment" Grid.Row="9" BackgroundColor="Transparent"/>
+                    <!--MODIFY STATS PAGE - BASE MODIFIERS -->
+                    <Grid Grid.Row="10" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Base Modifiers" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid Grid.Row="11" HorizontalOptions="StartAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Proficiency Bonus" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entProficiencyBonus" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Hit Dice" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entHitDice" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                    </Grid>
+                    <Label Grid.Row="12" Text="Proficiency bonus affects proficient skills and saving throws, hit dice affect the total amount of HP (together with the creature's size)." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
+                    <Label Grid.Row="13" Text="Base Ability Modifiers:" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Grid Grid.Row="14" HorizontalOptions="StartAndExpand" Padding="8, 0, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Str" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entStrength" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Dex" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entDexterity" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="2" HorizontalOptions="Start" Padding="24, 0, 0, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Con" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entConstitution" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="16" HorizontalOptions="StartAndExpand" Padding="8, 0, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Int " TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entintelligence" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Wis" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entWisdom" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="2" HorizontalOptions="Start" Padding="24, 0, 0, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Cha" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entCharisma" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                    </Grid>
+                    <Label Grid.Row="17" Text="All ability scores affect skills and saving throws. Dexterity also affects Armor Class, while constitutions affects a creature's hitpoints." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
+                    <Grid Grid.Row="18" HorizontalOptions="StartAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Natural Armor" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entNaturalArmor" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Challenge Rating" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entChallengeRating" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                    </Grid>
+                    <Label Grid.Row="19" Text="Challenge rating determines the amount of XP for slaying a creature. This is best left up to the DM." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
+                    <Label Grid.Row="20" Text="Speed:" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Grid Grid.Row="21" HorizontalOptions="StartAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="68"/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Walking" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entWalkingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalOptions="Start" Padding="0, 0, 16, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="76"/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Swimming" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entSwimmingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="23" HorizontalOptions="StartAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="68"/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Flying" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entFlyingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalOptions="Start" Padding="0, 0, 16, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="76"/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Burrowing" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entBurrowingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="25" HorizontalOptions="StartAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="68"/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Climbing" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
+                            <Entry x:Name="entClimbingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalOptions="Start" Padding="0, 0, 16, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="76"/>
+                                <ColumnDefinition Width="36"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Hover" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <CheckBox x:Name="cbxHover" Grid.Column="1" Color="#E40712" IsChecked="{Binding Status, Mode=TwoWay}" VerticalOptions="Center" ScaleX="1.25" ScaleY="1.25"/>
+                        </Grid>
+                    </Grid>
+                    <!--MODIFY STATS PAGE - SENSES & LANGUAGES -->
+                    <Grid Grid.Row="26" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="166"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Senses, Languages" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                    </Grid>
+                    <Label Grid.Row="27" Text="Blindsight" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
+                    <BoxView Grid.Row="28" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Entry x:Name="entBlindsight" Grid.Row="28" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <Label Grid.Row="29" Text="Darkvision" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
+                    <BoxView Grid.Row="30" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Entry x:Name="entDarkvision" Grid.Row="30" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <Label Grid.Row="31" Text="Tremorsense" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
+                    <BoxView Grid.Row="32" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Entry x:Name="entTremorsense" Grid.Row="32" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <Label Grid.Row="33" Text="Truesight" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
+                    <BoxView Grid.Row="34" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Entry x:Name="entTruesight" Grid.Row="34" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <Label Grid.Row="35" Text="Languages" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
+                    <BoxView Grid.Row="36" BackgroundColor="#293742" CornerRadius="5"/>
+                    <Entry x:Name="entLanguages" Grid.Row="36" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <!--MODIFY STATS PAGE - PROFICIENCIES -->
+                    <Grid Grid.Row="37" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="118"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Proficiencies" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                        <Image x:Name="btnAddProf" Grid.Column="3"/>
+                    </Grid>
+                    <ListView x:Name="lvwProficiencies" Grid.Row="38">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid RowSpacing="16">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="24"/>
+                                            <ColumnDefinition Width="186"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblSkillName" Grid.Column="0" Text="{Binding Proficiency.Name}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                        <ImageButton x:Name="btnDeleteProf" Grid.Column="2" Source="buttonDelete.png"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <!--<Grid x:Name="grdProficiencies" Grid.Row="38" RowSpacing="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24"/>
+                        </Grid.RowDefinitions>-->
+                        <!--Rows should be dynamically added-->
+                        <!--<Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="24"/>
+                                <ColumnDefinition Width="186"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="lblSkillName" Grid.Column="0" Text="" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                            <Image x:Name="btnDeleteProf" Grid.Column="2"/>
+                        </Grid>-->
+                    <!--</Grid>-->
+                    <!--MODIFY STATS PAGE - EXPERTISE -->
+                    <Grid Grid.Row="39" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="84"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Expertise" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                        <Image x:Name="btnAddExpert" Grid.Column="3"/>
+                    </Grid>
+                    <ListView x:Name="lvwExpertise" Grid.Row="40">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid RowSpacing="16">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="24"/>
+                                            <ColumnDefinition Width="186"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblSkillName" Grid.Column="0" Text="{Binding Proficiency.Name}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                        <ImageButton x:Name="btnDeleteExpert" Grid.Column="2" Source="buttonDelete.png"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <!--<Grid x:Name="grdExpertise" Grid.Row="40" RowSpacing="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24"/>
+                        </Grid.RowDefinitions>-->
+                        <!--Rows should be dynamically added-->
+                        <!--<Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="24"/>
+                                <ColumnDefinition Width="186"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="lblSkillName" Grid.Column="0" Text="" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                            <Image x:Name="btnDeleteExpert" Grid.Column="2"/>
+                        </Grid>-->
+                    <!--</Grid>-->
+                    <!--MODIFY STATS PAGE - ABILITIES -->
+                    <Grid Grid.Row="41" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="74"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Abilities" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                        <Image x:Name="btnAddAbility" Grid.Column="3"/>
+                    </Grid>
+                    <ListView x:Name="lvwAbilities" Grid.Row="42">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label x:Name="lblAbilityName" Grid.Column="0" Text="{Binding Name}" FontSize="16" TextColor="#F4F7FB" FontAttributes="Bold"/>
+                                            <ImageButton x:Name="btnEditAbilty" Grid.Column="1" Source="buttonEdit.png"/>
+                                        </Grid>
+                                        <Label Grid.Row="1" Text="{Binding Description}" FontSize="14" TextColor="#E4E4E4"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <!--<Grid x:Name="grdAbilities" Grid.Row="42" HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label/>
+                                <Image/>
+                            </Grid>
+                        </Grid>
+                    </Grid>-->
+                    <!--MODIFY STATS PAGE - RESISTANCES -->
+                    <Grid Grid.Row="43" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="106"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Resistances" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                        <Image x:Name="btnAddResitance" Grid.Column="3"/>
+                    </Grid>
+                    <ListView x:Name="lvwResistances" Grid.Row="44">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="28"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblResistance" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                        <ImageButton x:Name="btnDeleteResistance" Grid.Column="1" Source="buttonDelete.png"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <!--MODIFY STATS PAGE - DAMAGE IMMUNITIES -->
+                    <Grid Grid.Row="45" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="164"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Damage Immunities" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                        <Image x:Name="btnAddDamageImmunity" Grid.Column="3"/>
+                    </Grid>
+                    <ListView x:Name="lvwDamageImmunities" Grid.Row="46">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="28"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblImmunity" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                        <ImageButton x:Name="btnDeleteDamageImmunity" Grid.Column="1" Source="buttonDelete.png"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <!--MODIFY STATS PAGE - VULNERABILITIES -->
+                    <Grid Grid.Row="47" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="134"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Vulnerabilities" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                        <Image x:Name="btnAddVulnerability" Grid.Column="3"/>
+                    </Grid>
+                    <ListView x:Name="lvwVulnerabilities" Grid.Row="48">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="28"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblVulnerability" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                        <ImageButton x:Name="btnDeleteVulnerabilities" Grid.Column="1" Source="buttonDelete.png"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <!--MODIFY STATS PAGE - CONDITION IMMUNITIES -->
+                    <Grid Grid.Row="49" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="182"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Condition Immunities" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                        <Image x:Name="btnAddCoditionImmunity" Grid.Column="3"/>
+                    </Grid>
+                    <ListView x:Name="lvwConditionImmunities" Grid.Row="50">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="28"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblImmunity" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                        <ImageButton x:Name="btnDeleteConditionImmunity" Grid.Column="1" Source="buttonDelete.png"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

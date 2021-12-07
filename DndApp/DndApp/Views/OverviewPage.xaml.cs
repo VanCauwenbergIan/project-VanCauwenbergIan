@@ -17,6 +17,8 @@ namespace DndApp.Views
     {
         // original lists (so basically ascending by name)
         public List<Monster> Monsters { get; set; }
+        public List<Monster> HomebrewMonsters { get; set; }
+        public List<Monster> CombinedMonsters { get; set; }
 
         // sorted lists (only ascending), we can just reverse the lists to sort from high to low. (saved, because some sorts take longer to process and this way we can just grab a list if the sort has already been used)
         public List<Monster> MonstersByType { get; set; }
@@ -55,7 +57,6 @@ namespace DndApp.Views
             // asigning the right images to the right "buttons" / <image> tags
             btnAdd.Source = ImageSource.FromResource("DndApp.Assets.buttonAdd.png");
             btnDropDown.Source = ImageSource.FromResource("DndApp.Assets.buttonDropRed.png");
-            imgIconSearch.Source = ImageSource.FromResource("DndApp.Assets.searchIconGrey.png");
             btnFilter.Source = ImageSource.FromResource("DndApp.Assets.buttonFilterRed.png");
             btnCloseFilter.Source = ImageSource.FromResource("DndApp.Assets.buttonCancel.png");
             btnCloseFilterOptions.Source = ImageSource.FromResource("DndApp.Assets.buttonBack.png");
@@ -118,11 +119,11 @@ namespace DndApp.Views
             {
                 if (FilteredMonsters == null)
                 {
-                    FilteredMonsters = MonsterMethodRepository.filterByEntries(CurrentMonsters, Entries, stringId);
+                    FilteredMonsters = MonsterMethods.filterByEntries(CurrentMonsters, Entries, stringId);
                 }
                 else
                 {
-                    FilteredMonsters = MonsterMethodRepository.filterByEntries(FilteredMonsters, Entries, stringId);
+                    FilteredMonsters = MonsterMethods.filterByEntries(FilteredMonsters, Entries, stringId);
                 }
 
                 lvwMonsters.ItemsSource = FilteredMonsters;
@@ -131,11 +132,11 @@ namespace DndApp.Views
             {
                 if (FilteredMonsters == null)
                 {
-                    FilteredMonsters = MonsterMethodRepository.filterByCheckboxes(CurrentMonsters, Checkboxes, stringId);
+                    FilteredMonsters = MonsterMethods.filterByCheckboxes(CurrentMonsters, Checkboxes, stringId);
                 }
                 else
                 {
-                    FilteredMonsters = MonsterMethodRepository.filterByCheckboxes(FilteredMonsters, Checkboxes, stringId);
+                    FilteredMonsters = MonsterMethods.filterByCheckboxes(FilteredMonsters, Checkboxes, stringId);
                 }
 
                 lvwMonsters.ItemsSource = FilteredMonsters;
@@ -157,7 +158,7 @@ namespace DndApp.Views
             {
                 if (CheckboxesType == null)
                 {
-                    CheckboxesType = MonsterMethodRepository.getFilterCheckboxes(Monsters, stringId);
+                    CheckboxesType = MonsterMethods.getFilterCheckboxes(CombinedMonsters, stringId);
                 }
                 subOptionCheckboxes = CheckboxesType;
             }
@@ -165,7 +166,7 @@ namespace DndApp.Views
             {
                 if (CheckboxesSize == null)
                 {
-                    CheckboxesSize = MonsterMethodRepository.getFilterCheckboxes(Monsters, stringId);
+                    CheckboxesSize = MonsterMethods.getFilterCheckboxes(CombinedMonsters, stringId);
                 }
                 subOptionCheckboxes = CheckboxesSize;
             }
@@ -173,7 +174,7 @@ namespace DndApp.Views
             {
                 if (CheckboxesAlignment == null)
                 {
-                    CheckboxesAlignment = MonsterMethodRepository.getFilterCheckboxes(Monsters, stringId);
+                    CheckboxesAlignment = MonsterMethods.getFilterCheckboxes(CombinedMonsters, stringId);
                 }
                 subOptionCheckboxes = CheckboxesAlignment;
             }
@@ -181,7 +182,7 @@ namespace DndApp.Views
             {
                 if (CheckboxesLegendary == null)
                 {
-                    CheckboxesLegendary = MonsterMethodRepository.getFilterCheckboxes(Monsters, stringId);
+                    CheckboxesLegendary = MonsterMethods.getFilterCheckboxes(CombinedMonsters, stringId);
                 }
                 subOptionCheckboxes = CheckboxesLegendary;
             }
@@ -189,7 +190,7 @@ namespace DndApp.Views
             {
                 if (entriesChallenge == null)
                 {
-                    entriesChallenge = MonsterMethodRepository.getFilterEntries();
+                    entriesChallenge = MonsterMethods.getFilterEntries();
                 }
                 subOptionEntries = entriesChallenge;
             }
@@ -197,7 +198,7 @@ namespace DndApp.Views
             {
                 if (entriesAC == null)
                 {
-                    entriesAC = MonsterMethodRepository.getFilterEntries();
+                    entriesAC = MonsterMethods.getFilterEntries();
                 }
                 subOptionEntries = entriesAC;
             }
@@ -205,7 +206,7 @@ namespace DndApp.Views
             {
                 if (entriesHP == null)
                 {
-                   entriesHP = MonsterMethodRepository.getFilterEntries();
+                   entriesHP = MonsterMethods.getFilterEntries();
                 }
                 subOptionEntries = entriesHP;
             }
@@ -229,9 +230,12 @@ namespace DndApp.Views
         private async void Init()
         {
             Monsters = await MonsterRepository.GetMonstersAsync();
+            HomebrewMonsters = await MonsterRepository.GetHomebrewMonsterAsync();
 
             rbtName.IsChecked = true;
-            CurrentMonsters = Monsters;
+            CurrentMonsters = Monsters.Concat(HomebrewMonsters).ToList();
+            CurrentMonsters = CurrentMonsters.OrderBy(o => o.Name).ToList();
+            CombinedMonsters = CurrentMonsters;
             lvwMonsters.ItemsSource = CurrentMonsters;
 
             // making icons clickable so they act as buttons (put it here so you can't open the sort menu while all the data isn't there yet, which would cause a crash if a sort or filter was applied)
@@ -277,7 +281,7 @@ namespace DndApp.Views
 
             if (selectedMonster != null)
             {
-                Navigation.PushAsync(new DetailPage(selectedMonster));
+                Navigation.PushAsync(new DetailPage(selectedMonster, Monsters, HomebrewMonsters));
                 lvwMonsters.SelectedItem = null;
             }
         }
@@ -294,7 +298,7 @@ namespace DndApp.Views
             {
                 // original list is laready sorted alphabetically
                 lblSortBy.Text = "Sort by: Name";
-                CurrentMonsters = checkForReverse(Monsters);
+                CurrentMonsters = checkForReverse(CombinedMonsters);
 
                 if (FilteredMonsters != null)
                 {
@@ -305,11 +309,11 @@ namespace DndApp.Views
             {
                 if (MonstersByType == null)
                 {
-                    MonstersByType = MonsterMethodRepository.sortListBy(Monsters, "type");
+                    MonstersByType = MonsterMethods.sortListBy(CombinedMonsters, "type");
                 }
                 if (FilteredMonsters != null)
                 {
-                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "type"));
+                    FilteredMonsters = checkForReverse(MonsterMethods.sortListBy(FilteredMonsters, "type"));
                 }
                 lblSortBy.Text = "Sort by: Type";
                 CurrentMonsters = checkForReverse(MonstersByType);
@@ -318,11 +322,11 @@ namespace DndApp.Views
             {
                 if (MonstersByCR == null)
                 {
-                    MonstersByCR = MonsterMethodRepository.sortListBy(Monsters, "cr");
+                    MonstersByCR = MonsterMethods.sortListBy(CombinedMonsters, "cr");
                 }
                 if (FilteredMonsters != null)
                 {
-                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "cr"));
+                    FilteredMonsters = checkForReverse(MonsterMethods.sortListBy(FilteredMonsters, "cr"));
                 }
                 lblSortBy.Text = "Sort by: Challenge Rating";
                 CurrentMonsters = checkForReverse(MonstersByCR);
@@ -331,11 +335,11 @@ namespace DndApp.Views
             {
                 if (MonstersBySize == null)
                 {
-                    MonstersBySize = MonsterMethodRepository.sortListBy(Monsters, "size");
+                    MonstersBySize = MonsterMethods.sortListBy(CombinedMonsters, "size");
                 }
                 if (FilteredMonsters != null)
                 {
-                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "size"));
+                    FilteredMonsters = checkForReverse(MonsterMethods.sortListBy(FilteredMonsters, "size"));
                 }
                 lblSortBy.Text = "Sort by: Size";
                 CurrentMonsters = checkForReverse(MonstersBySize);
@@ -344,11 +348,11 @@ namespace DndApp.Views
             {
                 if (MonstersByAlignment == null)
                 {
-                    MonstersByAlignment = MonsterMethodRepository.sortListBy(Monsters, "alignment");
+                    MonstersByAlignment = MonsterMethods.sortListBy(CombinedMonsters, "alignment");
                 }
                 if (FilteredMonsters != null)
                 {
-                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "alignment"));
+                    FilteredMonsters = checkForReverse(MonsterMethods.sortListBy(FilteredMonsters, "alignment"));
                 }
                 lblSortBy.Text = "Sort by: Alignment";
                 CurrentMonsters = checkForReverse(MonstersByAlignment);
@@ -357,11 +361,11 @@ namespace DndApp.Views
             {
                 if (MonstersByAC == null)
                 {
-                    MonstersByAC = MonsterMethodRepository.sortListBy(Monsters, "ac");
+                    MonstersByAC = MonsterMethods.sortListBy(CombinedMonsters, "ac");
                 }
                 if (FilteredMonsters != null)
                 {
-                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "ac"));
+                    FilteredMonsters = checkForReverse(MonsterMethods.sortListBy(FilteredMonsters, "ac"));
                 }
                 lblSortBy.Text = "Sort by: Armor Class";
                 CurrentMonsters = checkForReverse(MonstersByAC);
@@ -370,11 +374,11 @@ namespace DndApp.Views
             {
                 if (MonstersByHP == null)
                 {
-                    MonstersByHP = MonsterMethodRepository.sortListBy(Monsters, "hp");
+                    MonstersByHP = MonsterMethods.sortListBy(CombinedMonsters, "hp");
                 }
                 if (FilteredMonsters != null)
                 {
-                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "hp"));
+                    FilteredMonsters = checkForReverse(MonsterMethods.sortListBy(FilteredMonsters, "hp"));
                 }
                 lblSortBy.Text = "Sort by: Hitpoints";
                 CurrentMonsters = checkForReverse(MonstersByHP);
@@ -383,11 +387,11 @@ namespace DndApp.Views
             {
                 if (MonstersByLA == null)
                 {
-                    MonstersByLA = MonsterMethodRepository.sortListBy(Monsters, "la");
+                    MonstersByLA = MonsterMethods.sortListBy(CombinedMonsters, "la");
                 }
                 if (FilteredMonsters != null)
                 {
-                    FilteredMonsters = checkForReverse(MonsterMethodRepository.sortListBy(FilteredMonsters, "la"));
+                    FilteredMonsters = checkForReverse(MonsterMethods.sortListBy(FilteredMonsters, "la"));
                 }
                 lblSortBy.Text = "Sort by: Legendary Actions";
                 CurrentMonsters = checkForReverse(MonstersByLA);

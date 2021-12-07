@@ -16,7 +16,10 @@ namespace DndApp.Views
     public partial class DetailPage : ContentPage
     {
         public Monster Monster { get; set; }
-        public DetailPage(Monster selectedMonster)
+        public List<Monster> OriginalMonsters { get; set; }
+        public List<Monster> HomebrewMonsters { get; set; }
+
+        public DetailPage(Monster selectedMonster, List<Monster> oMonsters, List<Monster> hbMonsters)
         {
             // save monster received from overviewpage
             Monster = selectedMonster;
@@ -35,9 +38,12 @@ namespace DndApp.Views
 
             // make the right ones clickable
             TapGestureRecognizer recognizer_return = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_editdetails = new TapGestureRecognizer();
 
             recognizer_return.Tapped += Recognizer_Tapped_return;
+            recognizer_editdetails.Tapped += Recognizer_Tapped_editdetails;
             btnBack.GestureRecognizers.Add(recognizer_return);
+            btnEdit.GestureRecognizers.Add(recognizer_editdetails);
         }
 
         private void Recognizer_Tapped_return(object sender, EventArgs e)
@@ -46,29 +52,41 @@ namespace DndApp.Views
             Navigation.PopAsync();
         }
 
+        private void Recognizer_Tapped_editdetails(object sender, EventArgs e)
+        {
+            if (srvActions.IsVisible == true)
+            {
+                Navigation.PushAsync(new ModifyActionsPage(Monster, OriginalMonsters, HomebrewMonsters));
+            }
+            else
+            {
+                Navigation.PushAsync(new AddMonsterPage(Monster, OriginalMonsters, HomebrewMonsters));
+            }
+        }
+
         private void LoadMonster()
         {
             // fill in all the labels and spans with the right values of the monster
             lblPageTitle.Text = Monster.Name;
             lblDescriptionString.Text = $"{Monster.Size} {Monster.Type}, {Monster.Alignment}";
-            spnArmorClass.Text = $"{Monster.ArmorClass} {MonsterMethodRepository.CheckForNaturalArmor(Monster)}";
+            spnArmorClass.Text = $"{Monster.ArmorClass} {MonsterMethods.CheckForNaturalArmor(Monster)}";
             spnHitPoints.Text = $"{Monster.HitPoints} ({Monster.HitDice})";
-            spnSpeedString.Text = MonsterMethodRepository.StringifySpeed(Monster);
-            lblStr.Text = $"{Monster.Strength} {MonsterMethodRepository.getAbilityScoreModifierString(Monster.Strength)}";
-            lblDex.Text = $"{Monster.Dexterity} {MonsterMethodRepository.getAbilityScoreModifierString(Monster.Dexterity)}";
-            lblCon.Text = $"{Monster.Constitution} {MonsterMethodRepository.getAbilityScoreModifierString(Monster.Constitution)}";
-            lblInt.Text = $"{Monster.Intelligence} {MonsterMethodRepository.getAbilityScoreModifierString(Monster.Intelligence)}";
-            lblWis.Text = $"{Monster.Wisdom} {MonsterMethodRepository.getAbilityScoreModifierString(Monster.Wisdom)}";
-            lblCha.Text = $"{Monster.Charisma} {MonsterMethodRepository.getAbilityScoreModifierString(Monster.Charisma)}";
-            spnSavingThrowsString.Text = MonsterMethodRepository.getSavingThrows(Monster);
-            spnSkillsString.Text = MonsterMethodRepository.getSkills(Monster);
-            spnSensesString.Text = MonsterMethodRepository.getSenses(Monster);
-            spnLanguages.Text = MonsterMethodRepository.checkLanguages(Monster.Languages);
+            spnSpeedString.Text = MonsterMethods.StringifySpeed(Monster);
+            lblStr.Text = $"{Monster.Strength} {MonsterMethods.getAbilityScoreModifierString(Monster.Strength)}";
+            lblDex.Text = $"{Monster.Dexterity} {MonsterMethods.getAbilityScoreModifierString(Monster.Dexterity)}";
+            lblCon.Text = $"{Monster.Constitution} {MonsterMethods.getAbilityScoreModifierString(Monster.Constitution)}";
+            lblInt.Text = $"{Monster.Intelligence} {MonsterMethods.getAbilityScoreModifierString(Monster.Intelligence)}";
+            lblWis.Text = $"{Monster.Wisdom} {MonsterMethods.getAbilityScoreModifierString(Monster.Wisdom)}";
+            lblCha.Text = $"{Monster.Charisma} {MonsterMethods.getAbilityScoreModifierString(Monster.Charisma)}";
+            spnSavingThrowsString.Text = MonsterMethods.getSavingThrows(Monster);
+            spnSkillsString.Text = MonsterMethods.getSkills(Monster);
+            spnSensesString.Text = MonsterMethods.getSenses(Monster);
+            spnLanguages.Text = MonsterMethods.checkLanguages(Monster.Languages);
             spnChallengeRatingString.Text = $"{Monster.ChallengeRating} ({Monster.ExperiencePoints} XP)";
-            spnDamageVulnerabilities.Text = MonsterMethodRepository.stringifyListStrings(Monster.DamageVulnerabilities);
-            spnDamageResistances.Text = MonsterMethodRepository.stringifyListStrings(Monster.DamageResistances);
-            spnDamageImmunities.Text = MonsterMethodRepository.stringifyListStrings(Monster.DamageImmunities);
-            spnConditionImmunities.Text = MonsterMethodRepository.getConditionImmunities(Monster);
+            spnDamageVulnerabilities.Text = MonsterMethods.stringifyListStrings(Monster.DamageVulnerabilities);
+            spnDamageResistances.Text = MonsterMethods.stringifyListStrings(Monster.DamageResistances);
+            spnDamageImmunities.Text = MonsterMethods.stringifyListStrings(Monster.DamageImmunities);
+            spnConditionImmunities.Text = MonsterMethods.getConditionImmunities(Monster);
 
             ShowFilledProperties();
             LoadMonsterAbilities();
@@ -79,13 +97,13 @@ namespace DndApp.Views
         {
             // only reveal the following properties if they are properly filled in
             // margin reacts to which certain properties are visible as to avoid empty spaces while hidden or no whitespace while revealed
-            if (MonsterMethodRepository.getSavingThrows(Monster) != "")
+            if (MonsterMethods.getSavingThrows(Monster) != "")
             {
                 lblSavingThrowsString.IsVisible = true;
                 lblSavingThrowsString.Margin = new Thickness(0, 16, 0, 16);
                 lblSensesString.Margin = new Thickness(0, 0, 0, 16);
             }
-            if (MonsterMethodRepository.getSkills(Monster) != "")
+            if (MonsterMethods.getSkills(Monster) != "")
             {
                 lblSkillsString.IsVisible = true;
                 lblSensesString.Margin = new Thickness(0, 0, 0, 16);
@@ -141,7 +159,7 @@ namespace DndApp.Views
                     lblDamageImmunities.Margin = new Thickness(0, 16, 0, 16);
                 }
             }
-            if (MonsterMethodRepository.getConditionImmunities(Monster) != "")
+            if (MonsterMethods.getConditionImmunities(Monster) != "")
             {
                 lblConditionImmunities.IsVisible = true;
                 lblSensesString.Margin = new Thickness(0, 0, 0, 16);
@@ -166,7 +184,7 @@ namespace DndApp.Views
                 {
                     Label title = new Label();
                     Label body = new Label();
-                    title.Text = $"{ability.Name} {MonsterMethodRepository.getUsage(ability)}";
+                    title.Text = $"{ability.Name} {MonsterMethods.getUsage(ability)}";
                     title.FontSize = 16;
                     title.FontAttributes = FontAttributes.Bold;
                     title.TextColor = Color.FromHex("#F4F7FB");
@@ -190,7 +208,7 @@ namespace DndApp.Views
                 {
                     Label title = new Label();
                     Label body = new Label();
-                    title.Text = $"{action.Name} {MonsterMethodRepository.getUsage(action)}";
+                    title.Text = $"{action.Name} {MonsterMethods.getUsage(action)}";
                     title.FontSize = 16;
                     title.FontAttributes = FontAttributes.Bold;
                     title.TextColor = Color.FromHex("#F4F7FB");
@@ -219,7 +237,7 @@ namespace DndApp.Views
                 {
                     Label title = new Label();
                     Label body = new Label();
-                    title.Text = $"{action.Name} {MonsterMethodRepository.getUsage(action)}";
+                    title.Text = $"{action.Name} {MonsterMethods.getUsage(action)}";
                     title.FontSize = 16;
                     title.FontAttributes = FontAttributes.Bold;
                     title.TextColor = Color.FromHex("#E40712");

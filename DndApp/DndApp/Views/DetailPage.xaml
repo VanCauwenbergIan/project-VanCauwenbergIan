@@ -286,7 +286,7 @@
                     <!--LEGENDARY ACTIONS SECTION - (NEED TO BE DYNAMICALLY ADDED)-->
                     <Grid Grid.Row="2" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="163"/>
+                            <ColumnDefinition Width="164"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="Legendary Actions" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>

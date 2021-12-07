@@ -50,22 +50,8 @@
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="24"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="1" ColumnSpacing="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="8"/>
-                        <ColumnDefinition Width="24"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="8"/>
-                    </Grid.ColumnDefinitions>
-                    <BoxView Grid.ColumnSpan="4" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Image x:Name="imgIconSearch" Grid.Column="1" HeightRequest="32" VerticalOptions="Center" HorizontalOptions="Center" />
-                    <Grid Grid.Column="2" VerticalOptions="StartAndExpand">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="36"/>
-                        </Grid.RowDefinitions>
-                        <Entry x:Name="entSearchBar" Grid.Row="0" TextColor="#F4F7FB" FontSize="14" BackgroundColor="#293742" VerticalOptions="StartAndExpand"/>
-                    </Grid>
-                </Grid>
+                <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 0, 0"/>
+                <SearchBar x:Name="entSearchBar" Grid.Column="1" TextColor="#F4F7FB" FontSize="14" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                 <Image x:Name="btnFilter" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>
             </Grid>
             <!--LIST VIEW (nice to have: loading indication)-->
@@ -196,7 +182,7 @@
                     <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
                     <Image x:Name="btnCloseFilter" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
                     <Label Text="Filter Monsters" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Margin="24, 0, 0, 0"/>
-                    <Button x:Name="btnClearAllFilters" Text="Clear all" TextTransform="Lowercase" TextColor="#E40712" BackgroundColor="Transparent" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="btnClearAllFiltersClicked"/>
+                    <Button x:Name="btnClearAllFilters" Text="Clear all" TextColor="#E40712" BackgroundColor="Transparent" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="btnClearAllFiltersClicked"/>
                 </Grid>
                 <!--FRAMES (HARDCODED)-->
                 <ScrollView x:Name="srvFilterOptions" Grid.Row ="1" Orientation="Vertical">

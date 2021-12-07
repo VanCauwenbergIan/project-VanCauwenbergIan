@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DndApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace DndApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ModifyActionsPage : ContentPage
     {
-        public ModifyActionsPage()
+        public ModifyActionsPage(Monster selectedMonster, List<Monster> oMonsters, List<Monster> hbMonsters)
         {
             InitializeComponent();
         }
