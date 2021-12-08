@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using static Android.Content.ClipData;
@@ -49,7 +49,21 @@ namespace DndApp.Views
         {
             InitializeComponent();
             LoadIcons();
+            CheckConnection();
             Init();
+        }
+
+        private void CheckConnection()
+        {
+            Connectivity.ConnectivityChanged += ToNoNetworkPage;
+        }
+
+        private void ToNoNetworkPage(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.ConnectionProfiles.Contains(ConnectionProfile.WiFi) == false && e.ConnectionProfiles.Contains(ConnectionProfile.Cellular) == false)
+            {
+                Navigation.PushAsync(new NoNetworkPage());
+            }
         }
 
         private void LoadIcons()
@@ -236,6 +250,8 @@ namespace DndApp.Views
             CurrentMonsters = Monsters.Concat(HomebrewMonsters).ToList();
             CurrentMonsters = CurrentMonsters.OrderBy(o => o.Name).ToList();
             CombinedMonsters = CurrentMonsters;
+            grdActivity.IsVisible = false;
+            actListview.IsRunning = false;
             lvwMonsters.ItemsSource = CurrentMonsters;
 
             // making icons clickable so they act as buttons (put it here so you can't open the sort menu while all the data isn't there yet, which would cause a crash if a sort or filter was applied)

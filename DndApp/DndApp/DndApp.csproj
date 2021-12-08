@@ -22,6 +22,7 @@
     <None Remove="Assets\buttonNextGrey.png" />
     <None Remove="Assets\buttonRadarRed.png" />
     <None Remove="Assets\dotIconRed.png" />
+    <None Remove="Assets\NoInternetDecoration.jpg" />
     <None Remove="Assets\searchIconGrey.png" />
   </ItemGroup>
 
@@ -37,6 +38,7 @@
     <EmbeddedResource Include="Assets\buttonRadarRed.png" />
     <EmbeddedResource Include="Assets\buttonCancel.png" />
     <EmbeddedResource Include="Assets\dotIconRed.png" />
+    <EmbeddedResource Include="Assets\noInternetDecoration.jpg" />
     <EmbeddedResource Include="Assets\searchIconGrey.png" />
   </ItemGroup>
 
@@ -68,6 +70,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ModifyActionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NoNetworkPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\OverviewPage.xaml">

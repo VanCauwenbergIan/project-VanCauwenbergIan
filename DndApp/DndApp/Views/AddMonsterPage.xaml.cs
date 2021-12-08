@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,6 +18,9 @@ namespace DndApp.Views
         public List<string> OptionsSize = new List<string> { "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan" };
         // 1d4, 1d6, 1d8, 1d10, 1d12, 1d20
         public List<string> OptionsAlignment = new List<string> { "chaotic evil", "neutral evil", "lawful evil", "chaotic neutral", "neutral", "lawful neutral", "unaligned", "chaotic good", "neutral good", "lawful good" };
+        public List<Monster> OriginalMonsters { get; set; }
+        public List<Monster> HomebrewMonsters { get; set; }
+
         public List<ProficiencyAndValue> Proficiencies { get; set; }
         public List<ProficiencyAndValue> Expertises { get; set; }
 
@@ -25,9 +28,13 @@ namespace DndApp.Views
         public AddMonsterPage(Monster selectedMonster, List<Monster> oMonsters, List<Monster> hbMonsters)
         {
             SelectedMonster = selectedMonster;
+            OriginalMonsters = oMonsters;
+            HomebrewMonsters = hbMonsters;
+
             InitializeComponent();
             LoadIcons();
             LoadPickers();
+            CheckConnection();
             LoadMonsterInfo();
         }
 
@@ -37,6 +44,20 @@ namespace DndApp.Views
             InitializeComponent();
             LoadIcons();
             LoadPickers();
+            CheckConnection();
+        }
+
+        private void CheckConnection()
+        {
+            Connectivity.ConnectivityChanged += ToNoNetworkPage;
+        }
+
+        private void ToNoNetworkPage(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.ConnectionProfiles.Contains(ConnectionProfile.WiFi) == false && e.ConnectionProfiles.Contains(ConnectionProfile.Cellular) == false)
+            {
+                Navigation.PushAsync(new NoNetworkPage());
+            }
         }
 
         private void LoadIcons()
@@ -63,8 +84,11 @@ namespace DndApp.Views
 
         private void LoadMonsterInfo()
         {
-
-            lblWarning.IsVisible = true;
+            
+            if (OriginalMonsters.Contains(SelectedMonster) == true)
+            {
+                lblWarning.IsVisible = true;
+            }
 
             entName.Text = SelectedMonster.Name;
 

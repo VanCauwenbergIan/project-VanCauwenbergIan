@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,7 +23,21 @@ namespace DndApp.Views
             SelectedMonster = monster;
             InitializeComponent();
             LoadIcons();
+            CheckConnection();
             LoadBarChartData();
+        }
+
+        private void CheckConnection()
+        {
+            Connectivity.ConnectivityChanged += ToNoNetworkPage;
+        }
+
+        private void ToNoNetworkPage(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.ConnectionProfiles.Contains(ConnectionProfile.WiFi) == false && e.ConnectionProfiles.Contains(ConnectionProfile.Cellular) == false)
+            {
+                Navigation.PushAsync(new NoNetworkPage());
+            }
         }
 
         private void LoadIcons()

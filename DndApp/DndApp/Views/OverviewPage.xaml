@@ -115,6 +115,21 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <!--ACTIVITY INDICATOR-->
+            <Grid x:Name="grdActivity" Grid.Row="5" IsVisible="True" HorizontalOptions="CenterAndExpand" Padding="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="32"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Fetching data... please be patient" Grid.Column="0" FontSize="14" TextColor="#F4F7FB" VerticalOptions="Center"/>
+                    <ActivityIndicator x:Name="actListview" Grid.Column="2" IsRunning="True" Color="White"/>
+                </Grid>
+            </Grid>
             <!--SORT MENU (POP UP)-->
             <ContentView Grid.RowSpan="6" x:Name="popSortBy" IsVisible="false" >
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
