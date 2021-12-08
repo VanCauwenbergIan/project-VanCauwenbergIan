@@ -95,6 +95,21 @@ namespace DndApp.Repositories
             return stringifyListStrings(proficiencies);
         }
 
+        public static List<ProficiencyAndValue> getSavingThrowsRaw(Monster m)
+        {
+            List<ProficiencyAndValue> savingThrows = new List<ProficiencyAndValue>();
+
+            foreach (ProficiencyAndValue proficiency in m.Proficiencies)
+            {
+                if (proficiency.Proficiency.Name.StartsWith("Saving Throw: ") == true)
+                {
+                    savingThrows.Add(proficiency);
+                }
+            }
+
+            return savingThrows;
+        }
+
         public static string getSkills(Monster m)
         {
             // filters object of the proficiency class into only those that are skills and returns them as a formatted string
@@ -282,6 +297,66 @@ namespace DndApp.Repositories
 
             return entries;
 
+        }
+
+        public static List<ProficiencyAndValue> CheckProficiencies (Monster selectedMonster, bool doubleProficiency)
+        {
+            // double proficiency (or in other words expertise) decides if this function returns single proficiences or double proficienies/expertise
+            List<string> StrProficiencies = new List<string> {"saving-throw-str", "skill-athletics"};
+            List<string> DexProficiencies = new List<string> {"saving-throw-dex", "skill-acrobatics", "skill-sleight-of-hand", "skill-stealth"};
+            List<string> IntProficiencies = new List<string> {"saving-throw-int", "skill-arcana", "skill-history", "skill-investigation", "skill-nature", "skill-religion" };
+            List<string> WisProficiencies = new List<string> {"saving-throw-wis", "skill-animal-handling", "skill-insight", "skill-medicine", "skill-perception", "skill-survival" };
+            List<string> ChaProficiencies = new List<string> {"saving-throw-cha", "skill-deception", "skill-intimidation", "skill-performance", "skill-persuasion" };
+            List<string> ConProficiencies = new List<string> { "saving-throw-con" };
+            // yes, CON doesn't have any skills tied to it
+            List<ProficiencyAndValue> filteredList = new List<ProficiencyAndValue> ();
+
+            int asm = 0;
+
+            foreach (ProficiencyAndValue proficiency in selectedMonster.Proficiencies)
+            {
+                if (StrProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+                {
+                    asm = getAbilityScoreModifier(selectedMonster.Strength);
+                }
+                else if (DexProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+                {
+                    asm = getAbilityScoreModifier(selectedMonster.Dexterity);
+                }
+                else if (IntProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+                {
+                    asm = getAbilityScoreModifier(selectedMonster.Intelligence);
+                }
+                else if (WisProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+                {
+                    asm = getAbilityScoreModifier(selectedMonster.Wisdom);
+                }
+                else if (ChaProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+                {
+                    asm = getAbilityScoreModifier(selectedMonster.Charisma);
+                }
+                else if (ConProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+                {
+                    asm = getAbilityScoreModifier(selectedMonster.Constitution);
+                }
+
+                if (doubleProficiency == false)
+                {
+                    if (proficiency.Value - asm - selectedMonster.ProficiencyBonus == 0)
+                    {
+                        filteredList.Add(proficiency);
+                    }
+                }
+                else
+                {
+                    if (proficiency.Value - asm - (2 * selectedMonster.ProficiencyBonus) == 0)
+                    {
+                        filteredList.Add(proficiency);
+                    }
+                }
+            }
+
+            return filteredList;
         }
 
         public static string CheckForNaturalArmor(Monster m)

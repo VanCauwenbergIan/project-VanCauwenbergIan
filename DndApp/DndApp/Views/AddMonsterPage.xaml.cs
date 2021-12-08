@@ -1,4 +1,5 @@
 ﻿using DndApp.Models;
+using DndApp.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace DndApp.Views
         public List<string> OptionsSize = new List<string> { "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan" };
         // 1d4, 1d6, 1d8, 1d10, 1d12, 1d20
         public List<string> OptionsAlignment = new List<string> { "chaotic evil", "neutral evil", "lawful evil", "chaotic neutral", "neutral", "lawful neutral", "unaligned", "chaotic good", "neutral good", "lawful good" };
+        public List<ProficiencyAndValue> Proficiencies { get; set; }
+        public List<ProficiencyAndValue> Expertises { get; set; }
 
         // constructor for put 
         public AddMonsterPage(Monster selectedMonster, List<Monster> oMonsters, List<Monster> hbMonsters)
@@ -60,6 +63,9 @@ namespace DndApp.Views
 
         private void LoadMonsterInfo()
         {
+
+            lblWarning.IsVisible = true;
+
             entName.Text = SelectedMonster.Name;
 
             entType.Text = SelectedMonster.Type;
@@ -99,6 +105,17 @@ namespace DndApp.Views
             entTremorsense.Text = SelectedMonster.Senses.Tremorsense;
             entTruesight.Text = SelectedMonster.Senses.Truesight;
             entLanguages.Text = SelectedMonster.Languages;
+
+            Proficiencies = MonsterMethods.CheckProficiencies(SelectedMonster, false);
+            Expertises = MonsterMethods.CheckProficiencies(SelectedMonster, true);
+
+            lvwProficiencies.ItemsSource = Proficiencies;
+            lvwExpertise.ItemsSource = Expertises;
+            lvwAbilities.ItemsSource = SelectedMonster.SpecialAbilities;
+            lvwResistances.ItemsSource = SelectedMonster.DamageResistances;
+            lvwDamageImmunities.ItemsSource = SelectedMonster.DamageImmunities;
+            lvwVulnerabilities.ItemsSource = SelectedMonster.DamageVulnerabilities;
+            lvwConditionImmunities.ItemsSource = SelectedMonster.ConditionImmunities;
         }
 
         private void LoadPickers()

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MyFXVbMoo+yV4IklxzfEInIyw+WVgiOq6DNTNDhXX+XJBXX7YdzLKAPozfDnimQ7G8WY+IkeplaBmEAyAlB7yg==",
+  "dgSpecHash": "GYkA7I6bIccfNy0gjgPGs5ybjN7T+GCLS+9Od00/4aYpKcKyOrxZn1Ylw8twuLQDbxL8RR5h4hQptg9ciNoolg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ian Van Cauwenberg\\Desktop\\TinyProject\\project-VanCauwenbergIan\\DndApp\\DndApp.UWP\\DndApp.UWP.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,10 @@
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.net.native.sharedlibrary\\2.2.8-rel-29722-00\\runtime.win10-x86.microsoft.net.native.sharedlibrary.2.2.8-rel-29722-00.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\\2.2.12\\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk.2.2.12.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\\6.2.12\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform.6.2.12.nupkg.sha512",
+    "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\syncfusion.licensing\\19.3.0.57\\syncfusion.licensing.19.3.0.57.nupkg.sha512",
+    "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\syncfusion.sfchart.uwp\\19.3.0.57\\syncfusion.sfchart.uwp.19.3.0.57.nupkg.sha512",
+    "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\syncfusion.xamarin.core\\19.3.0.57\\syncfusion.xamarin.core.19.3.0.57.nupkg.sha512",
+    "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\syncfusion.xamarin.sfchart\\19.3.0.57\\syncfusion.xamarin.sfchart.19.3.0.57.nupkg.sha512",
     "C:\\Users\\Ian Van Cauwenberg\\.nuget\\packages\\win2d.uwp\\1.20.0\\win2d.uwp.1.20.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"

@@ -11,6 +11,45 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
+      "Syncfusion.Licensing/19.3.0.57": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/MonoAndroid10.0/Syncfusion.Core.XForms.Android.dll": {},
+          "lib/MonoAndroid10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10.0/Syncfusion.Core.XForms.Android.dll": {},
+          "lib/MonoAndroid10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.Android.dll": {},
+          "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.Android.dll": {},
+          "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "System.Numerics.Vectors/4.5.0": {
         "type": "package",
         "compile": {
@@ -985,6 +1024,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Syncfusion.Xamarin.SfChart": "19.3.0.57",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012"
         },
@@ -1023,6 +1064,109 @@
         "newtonsoft.json.13.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
+      ]
+    },
+    "Syncfusion.Licensing/19.3.0.57": {
+      "sha512": "+KlPbfggYy1s6PwkIlAZj9yh04CEAqdITK0ch3gAEJWteu+WueCqurXn1YIecFpRLoBXsNYP/BvuOQpmVOmnQw==",
+      "type": "package",
+      "path": "syncfusion.licensing/19.3.0.57",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/MonoAndroid10.0/Syncfusion.Licensing.dll",
+        "lib/MonoAndroid90/Syncfusion.Licensing.dll",
+        "lib/Xamarin.Mac/Syncfusion.Licensing.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Licensing.dll",
+        "lib/net20/Syncfusion.Licensing.dll",
+        "lib/net35/Syncfusion.Licensing.dll",
+        "lib/net40/Syncfusion.Licensing.dll",
+        "lib/net45/Syncfusion.Licensing.dll",
+        "lib/net451/Syncfusion.Licensing.dll",
+        "lib/net46/Syncfusion.Licensing.dll",
+        "lib/net5.0-windows10.0/Syncfusion.Licensing.dll",
+        "lib/net5.0/Syncfusion.Licensing.dll",
+        "lib/netcoreapp3.1/Syncfusion.Licensing.dll",
+        "lib/netstandard1.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.2/Syncfusion.Licensing.dll",
+        "lib/netstandard1.4/Syncfusion.Licensing.dll",
+        "lib/netstandard2.0/Syncfusion.Licensing.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
+        "lib/uap10.0/Syncfusion.Licensing.dll",
+        "syncfusion.licensing.19.3.0.57.nupkg.sha512",
+        "syncfusion.licensing.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
+    "Syncfusion.Xamarin.Core/19.3.0.57": {
+      "sha512": "5FY00jVe9x41SJsXLUrWIY/GMRmy+CZfNxiMrZZsJsZ9qCvm/9PoRZFB+on9WAx9KuPoRvyKrZKI1CL3BTAzxA==",
+      "type": "package",
+      "path": "syncfusion.xamarin.core/19.3.0.57",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.dll",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.xml",
+        "lib/MonoAndroid90/Syncfusion.Core.XForms.Android.dll",
+        "lib/MonoAndroid90/Syncfusion.Core.XForms.dll",
+        "lib/MonoAndroid90/Syncfusion.Core.XForms.xml",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.macOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.xml",
+        "lib/netstandard2.0/Syncfusion.Core.XForms.dll",
+        "lib/netstandard2.0/Syncfusion.Core.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.pri",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/Syncfusion.Core.XForms.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ClearButtonViewVisibleIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/DropDownIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ToggleCollapsedIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ToggleVisibleIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.xml",
+        "syncfusion.xamarin.core.19.3.0.57.nupkg.sha512",
+        "syncfusion.xamarin.core.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
+    "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+      "sha512": "muuIZBqat/9duwCh/isXerpEKZ+SqAJMjbrow/Lf0VBubdweDcUAgqcBU/TjHVph5/HAxW4FIE51Y70j9JVxHA==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfchart/19.3.0.57",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.xml",
+        "lib/MonoAndroid90/Syncfusion.SfChart.XForms.Android.dll",
+        "lib/MonoAndroid90/Syncfusion.SfChart.XForms.dll",
+        "lib/MonoAndroid90/Syncfusion.SfChart.XForms.xml",
+        "lib/Xamarin.Mac/Syncfusion.SfChart.XForms.dll",
+        "lib/Xamarin.Mac/Syncfusion.SfChart.XForms.macOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.xml",
+        "lib/netstandard2.0/Syncfusion.SfChart.XForms.dll",
+        "lib/netstandard2.0/Syncfusion.SfChart.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfChart.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfChart.XForms.xml",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.xml",
+        "syncfusion.xamarin.sfchart.19.3.0.57.nupkg.sha512",
+        "syncfusion.xamarin.sfchart.nuspec",
+        "syncfusion_logo.png"
       ]
     },
     "System.Numerics.Vectors/4.5.0": {

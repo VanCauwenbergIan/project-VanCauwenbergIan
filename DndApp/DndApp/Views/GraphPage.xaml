@@ -1,12 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DndApp.Views.GraphPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             xmlns:local="clr-namespace:DndApp.Models" 
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             x:Class="DndApp.Views.GraphPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#293742">
+    <ContentPage.BindingContext>
+        <local:StatsViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        <!--NAV BAR-->
+        <Grid Grid.Row="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="24"/>
+            </Grid.ColumnDefinitions>
+            <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
+            <Image x:Name="btnBack" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label x:Name="lblTitle" Text="Monster Stats" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </Grid>
+        <!--RADAR CHART-->
+        <chart:SfChart Grid.Row="1" BackgroundColor="#293742">
+
+            <chart:SfChart.PrimaryAxis>
+                <chart:CategoryAxis>
+                    <chart:CategoryAxis.MajorGridLineStyle>
+                        <chart:ChartLineStyle StrokeColor="#707070" />
+                    </chart:CategoryAxis.MajorGridLineStyle>
+                    <chart:CategoryAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold"/>
+                    </chart:CategoryAxis.LabelStyle>
+                </chart:CategoryAxis >
+            </chart:SfChart.PrimaryAxis>
+
+            <chart:SfChart.SecondaryAxis>
+                <chart:NumericalAxis PolarAngle="Rotate90">
+                    <chart:NumericalAxis.MajorGridLineStyle>
+                        <chart:ChartLineStyle StrokeColor="#707070" />
+                    </chart:NumericalAxis.MajorGridLineStyle>
+                    <chart:NumericalAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle TextColor="#F4F7FB" FontSize="12" FontAttributes="Bold"/>
+                    </chart:NumericalAxis.LabelStyle>
+                </chart:NumericalAxis>
+            </chart:SfChart.SecondaryAxis>
+
+            <chart:RadarSeries x:Name="brcStatsST" ItemsSource="{Binding DataST}" StrokeWidth="3" Color="#0047AB"  StrokeColor="#0047AB" XBindingPath="Ability" IsVisibleOnLegend="False" YBindingPath="Value" Opacity="0.5"/>
+            <chart:RadarSeries x:Name="brcStatsAS" ItemsSource="{Binding DataAS}" StrokeWidth="3" Color="#E40712"  StrokeColor="#E40712" XBindingPath="Ability" IsVisibleOnLegend="False" YBindingPath="Value" Opacity="0.5"/>
+        </chart:SfChart>
+        <!--RADAR CHART LEGEND-->
+        <Grid Grid.Row="2" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="48"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#80DF1F29" CornerRadius="2" BorderColor="#DF1F29" />
+                <Label Grid.Column="2" Text="Ability Score Modifiers" FontSize="16" FontAttributes="Bold" TextColor="#F4F7FB"/>
+            </Grid>
+            <Grid Grid.Row="2" ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#800047AB" CornerRadius="2" BorderColor="#0047AB" />
+                <Label Grid.Column="2" Text="Saving Throw Modifiers (proficient)" FontSize="16" FontAttributes="Bold" TextColor="#F4F7FB"/>
+            </Grid>
+        </Grid>
+    </Grid>
 </ContentPage>

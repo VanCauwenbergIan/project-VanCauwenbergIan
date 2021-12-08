@@ -328,6 +328,58 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "Syncfusion.Licensing/19.3.0.57": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.SfChart.UWP/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.SfChart.UWP": "19.3.0.57",
+          "Syncfusion.Xamarin.Core": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Win2D.uwp/1.20.0": {
         "type": "package",
         "compile": {
@@ -388,6 +440,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Syncfusion.Xamarin.SfChart": "19.3.0.57",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012"
         },
@@ -905,6 +959,58 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "Syncfusion.Licensing/19.3.0.57": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.SfChart.UWP/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.SfChart.UWP": "19.3.0.57",
+          "Syncfusion.Xamarin.Core": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Win2D.uwp/1.20.0": {
         "type": "package",
         "compile": {
@@ -954,6 +1060,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Syncfusion.Xamarin.SfChart": "19.3.0.57",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012"
         },
@@ -1472,6 +1580,58 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "Syncfusion.Licensing/19.3.0.57": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.SfChart.UWP/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.SfChart.UWP": "19.3.0.57",
+          "Syncfusion.Xamarin.Core": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Win2D.uwp/1.20.0": {
         "type": "package",
         "compile": {
@@ -1521,6 +1681,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Syncfusion.Xamarin.SfChart": "19.3.0.57",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012"
         },
@@ -2039,6 +2201,58 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "Syncfusion.Licensing/19.3.0.57": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.SfChart.UWP/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.SfChart.UWP": "19.3.0.57",
+          "Syncfusion.Xamarin.Core": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Win2D.uwp/1.20.0": {
         "type": "package",
         "compile": {
@@ -2085,6 +2299,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Syncfusion.Xamarin.SfChart": "19.3.0.57",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012"
         },
@@ -2602,6 +2818,58 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "Syncfusion.Licensing/19.3.0.57": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.SfChart.UWP/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.SfChart.UWP": "19.3.0.57",
+          "Syncfusion.Xamarin.Core": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Win2D.uwp/1.20.0": {
         "type": "package",
         "compile": {
@@ -2651,6 +2919,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Syncfusion.Xamarin.SfChart": "19.3.0.57",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012"
         },
@@ -3169,6 +3439,58 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "Syncfusion.Licensing/19.3.0.57": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.SfChart.UWP/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.SfChart.UWP": "19.3.0.57",
+          "Syncfusion.Xamarin.Core": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Win2D.uwp/1.20.0": {
         "type": "package",
         "compile": {
@@ -3218,6 +3540,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Syncfusion.Xamarin.SfChart": "19.3.0.57",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012"
         },
@@ -3735,6 +4059,58 @@
           "runtimes/win10-x86/nativeassets/uap10.0.15138/clrcompression.dll": {}
         }
       },
+      "Syncfusion.Licensing/19.3.0.57": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.SfChart.UWP/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.SfChart.UWP": "19.3.0.57",
+          "Syncfusion.Xamarin.Core": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Win2D.uwp/1.20.0": {
         "type": "package",
         "compile": {
@@ -3784,6 +4160,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Syncfusion.Xamarin.SfChart": "19.3.0.57",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012"
         },
@@ -4302,6 +4680,58 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "Syncfusion.Licensing/19.3.0.57": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.SfChart.UWP/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.SfChart.UWP": "19.3.0.57",
+          "Syncfusion.Xamarin.Core": "19.3.0.57",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Win2D.uwp/1.20.0": {
         "type": "package",
         "compile": {
@@ -4351,6 +4781,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Licensing": "19.3.0.57",
+          "Syncfusion.Xamarin.SfChart": "19.3.0.57",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012"
         },
@@ -8856,6 +9288,159 @@
         "runtimes/win10-x86/lib/uap10.0.15138/mscorlib.dll",
         "runtimes/win10-x86/lib/uap10.0.15138/netstandard.dll",
         "runtimes/win10-x86/nativeassets/uap10.0.15138/clrcompression.dll"
+      ]
+    },
+    "Syncfusion.Licensing/19.3.0.57": {
+      "sha512": "+KlPbfggYy1s6PwkIlAZj9yh04CEAqdITK0ch3gAEJWteu+WueCqurXn1YIecFpRLoBXsNYP/BvuOQpmVOmnQw==",
+      "type": "package",
+      "path": "syncfusion.licensing/19.3.0.57",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/MonoAndroid10.0/Syncfusion.Licensing.dll",
+        "lib/MonoAndroid90/Syncfusion.Licensing.dll",
+        "lib/Xamarin.Mac/Syncfusion.Licensing.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Licensing.dll",
+        "lib/net20/Syncfusion.Licensing.dll",
+        "lib/net35/Syncfusion.Licensing.dll",
+        "lib/net40/Syncfusion.Licensing.dll",
+        "lib/net45/Syncfusion.Licensing.dll",
+        "lib/net451/Syncfusion.Licensing.dll",
+        "lib/net46/Syncfusion.Licensing.dll",
+        "lib/net5.0-windows10.0/Syncfusion.Licensing.dll",
+        "lib/net5.0/Syncfusion.Licensing.dll",
+        "lib/netcoreapp3.1/Syncfusion.Licensing.dll",
+        "lib/netstandard1.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.2/Syncfusion.Licensing.dll",
+        "lib/netstandard1.4/Syncfusion.Licensing.dll",
+        "lib/netstandard2.0/Syncfusion.Licensing.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
+        "lib/uap10.0/Syncfusion.Licensing.dll",
+        "syncfusion.licensing.19.3.0.57.nupkg.sha512",
+        "syncfusion.licensing.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
+    "Syncfusion.SfChart.UWP/19.3.0.57": {
+      "sha512": "vEon7kfEByoWd4fkd7CzAVjTL24ZNm9ShHLsJIo9Pn12YXxXQMXpOdsfxi/5vlRvFos2dMZ10VD8Y7C/wpGR1g==",
+      "type": "package",
+      "path": "syncfusion.sfchart.uwp/19.3.0.57",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/uap10.0/Syncfusion.SfChart.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfChart.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfChart.UWP.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartArea/Themes/SfChart3D.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartArea/Themes/SfChart3D.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartSeries/Themes/ChartSeries.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartSeries/Themes/ChartSeries.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartArea/Themes/ChartArea.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartArea/Themes/ChartArea.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartAxis/Themes/ChartAxis.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartAxis/Themes/ChartAxis.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartSeries/Themes/ChartSeries.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartSeries/Themes/ChartSeries.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ChartToolBar.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ChartToolBar.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ResizableScrollBar.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ResizableScrollBar.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/Resizer.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/Resizer.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/SfRangeNavigator.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/SfRangeNavigator.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Properties/Syncfusion.SfChart.UWP_2017.rd.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Sparkline/Themes/Sparkline.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Sparkline/Themes/Sparkline.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Syncfusion.SfChart.UWP.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Syncfusion.SfChart.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Common.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Common.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Legend.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Legend.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Symbol.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Symbol.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/generic.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/generic.xbf",
+        "syncfusion.sfchart.uwp.19.3.0.57.nupkg.sha512",
+        "syncfusion.sfchart.uwp.nuspec",
+        "syncfusion_logo.png",
+        "tools/VisualStudioToolsManifest.xml"
+      ]
+    },
+    "Syncfusion.Xamarin.Core/19.3.0.57": {
+      "sha512": "5FY00jVe9x41SJsXLUrWIY/GMRmy+CZfNxiMrZZsJsZ9qCvm/9PoRZFB+on9WAx9KuPoRvyKrZKI1CL3BTAzxA==",
+      "type": "package",
+      "path": "syncfusion.xamarin.core/19.3.0.57",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.dll",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.xml",
+        "lib/MonoAndroid90/Syncfusion.Core.XForms.Android.dll",
+        "lib/MonoAndroid90/Syncfusion.Core.XForms.dll",
+        "lib/MonoAndroid90/Syncfusion.Core.XForms.xml",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.macOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.xml",
+        "lib/netstandard2.0/Syncfusion.Core.XForms.dll",
+        "lib/netstandard2.0/Syncfusion.Core.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.pri",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/Syncfusion.Core.XForms.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ClearButtonViewVisibleIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/DropDownIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ToggleCollapsedIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ToggleVisibleIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.xml",
+        "syncfusion.xamarin.core.19.3.0.57.nupkg.sha512",
+        "syncfusion.xamarin.core.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
+    "Syncfusion.Xamarin.SfChart/19.3.0.57": {
+      "sha512": "muuIZBqat/9duwCh/isXerpEKZ+SqAJMjbrow/Lf0VBubdweDcUAgqcBU/TjHVph5/HAxW4FIE51Y70j9JVxHA==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfchart/19.3.0.57",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfChart.XForms.xml",
+        "lib/MonoAndroid90/Syncfusion.SfChart.XForms.Android.dll",
+        "lib/MonoAndroid90/Syncfusion.SfChart.XForms.dll",
+        "lib/MonoAndroid90/Syncfusion.SfChart.XForms.xml",
+        "lib/Xamarin.Mac/Syncfusion.SfChart.XForms.dll",
+        "lib/Xamarin.Mac/Syncfusion.SfChart.XForms.macOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.xml",
+        "lib/netstandard2.0/Syncfusion.SfChart.XForms.dll",
+        "lib/netstandard2.0/Syncfusion.SfChart.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfChart.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfChart.XForms.xml",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.xml",
+        "syncfusion.xamarin.sfchart.19.3.0.57.nupkg.sha512",
+        "syncfusion.xamarin.sfchart.nuspec",
+        "syncfusion_logo.png"
       ]
     },
     "Win2D.uwp/1.20.0": {

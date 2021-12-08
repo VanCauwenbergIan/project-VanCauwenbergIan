@@ -39,11 +39,14 @@ namespace DndApp.Views
             // make the right ones clickable
             TapGestureRecognizer recognizer_return = new TapGestureRecognizer();
             TapGestureRecognizer recognizer_editdetails = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_barchart = new TapGestureRecognizer();
 
             recognizer_return.Tapped += Recognizer_Tapped_return;
             recognizer_editdetails.Tapped += Recognizer_Tapped_editdetails;
+            recognizer_barchart.Tapped += Recognizer_Tapped_barchart;
             btnBack.GestureRecognizers.Add(recognizer_return);
             btnEdit.GestureRecognizers.Add(recognizer_editdetails);
+            btnRadarChart.GestureRecognizers.Add(recognizer_barchart);
         }
 
         private void Recognizer_Tapped_return(object sender, EventArgs e)
@@ -62,6 +65,11 @@ namespace DndApp.Views
             {
                 Navigation.PushAsync(new AddMonsterPage(Monster, OriginalMonsters, HomebrewMonsters));
             }
+        }
+
+        private void Recognizer_Tapped_barchart(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new GraphPage(Monster));
         }
 
         private void LoadMonster()

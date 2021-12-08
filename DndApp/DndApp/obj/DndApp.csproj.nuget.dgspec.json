@@ -56,6 +56,14 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "Syncfusion.Licensing": {
+              "target": "Package",
+              "version": "[19.3.0.57, )"
+            },
+            "Syncfusion.Xamarin.SfChart": {
+              "target": "Package",
+              "version": "[19.3.0.57, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.6.1, )"
