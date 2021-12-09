@@ -59,6 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="MyRendererE.cs" />
+    <Compile Include="MyRendererP.cs" />
+    <Compile Include="MyRendererRB.cs" />
+    <Compile Include="MyRendererSB.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

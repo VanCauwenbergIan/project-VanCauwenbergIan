@@ -17,6 +17,7 @@
     <None Remove="Assets\buttonCancel.png" />
     <None Remove="Assets\buttonDelete.png" />
     <None Remove="Assets\buttonDropRed.png" />
+    <None Remove="Assets\buttonDropSmall.png" />
     <None Remove="Assets\buttonEdit.png" />
     <None Remove="Assets\buttonFilterRed.png" />
     <None Remove="Assets\buttonNextGrey.png" />
@@ -32,6 +33,7 @@
     <EmbeddedResource Include="Assets\buttonBack.png" />
     <EmbeddedResource Include="Assets\buttonDelete.png" />
     <EmbeddedResource Include="Assets\buttonDropRed.png" />
+    <EmbeddedResource Include="Assets\buttonDropSmall.png" />
     <EmbeddedResource Include="Assets\buttonEdit.png" />
     <EmbeddedResource Include="Assets\buttonFilterRed.png" />
     <EmbeddedResource Include="Assets\buttonNextGrey.png" />
@@ -60,9 +62,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AddMonsterPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
+    <Compile Update="Views\AddMonsterPage.xaml.cs">
+      <DependentUpon>AddMonsterPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Views\DetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -76,6 +81,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\OverviewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddMonsterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

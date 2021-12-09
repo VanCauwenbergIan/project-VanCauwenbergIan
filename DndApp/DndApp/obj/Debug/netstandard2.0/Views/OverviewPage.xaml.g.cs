@@ -29,7 +29,7 @@ namespace DndApp.Views {
         private global::Xamarin.Forms.Image btnDropDown;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.SearchBar entSearchBar;
+        private global::DndApp.Models.MySearch entSearchBar;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Image btnFilter;
@@ -47,28 +47,28 @@ namespace DndApp.Views {
         private global::Xamarin.Forms.ContentView popSortBy;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.RadioButton rbtName;
+        private global::DndApp.Models.MyRadio rbtName;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.RadioButton rbtType;
+        private global::DndApp.Models.MyRadio rbtType;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.RadioButton rbtChallenge;
+        private global::DndApp.Models.MyRadio rbtChallenge;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.RadioButton rbtSize;
+        private global::DndApp.Models.MyRadio rbtSize;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.RadioButton rbtAlignment;
+        private global::DndApp.Models.MyRadio rbtAlignment;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.RadioButton rbtArmorClass;
+        private global::DndApp.Models.MyRadio rbtArmorClass;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.RadioButton rbtAverageHitPoints;
+        private global::DndApp.Models.MyRadio rbtAverageHitPoints;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.RadioButton rbtLegendary;
+        private global::DndApp.Models.MyRadio rbtLegendary;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Button btnLowToHigh;
@@ -137,20 +137,20 @@ namespace DndApp.Views {
             btnAdd = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnAdd");
             lblSortBy = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "lblSortBy");
             btnDropDown = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnDropDown");
-            entSearchBar = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.SearchBar>(this, "entSearchBar");
+            entSearchBar = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MySearch>(this, "entSearchBar");
             btnFilter = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnFilter");
             lvwMonsters = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "lvwMonsters");
             grdActivity = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "grdActivity");
             actListview = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ActivityIndicator>(this, "actListview");
             popSortBy = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ContentView>(this, "popSortBy");
-            rbtName = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.RadioButton>(this, "rbtName");
-            rbtType = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.RadioButton>(this, "rbtType");
-            rbtChallenge = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.RadioButton>(this, "rbtChallenge");
-            rbtSize = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.RadioButton>(this, "rbtSize");
-            rbtAlignment = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.RadioButton>(this, "rbtAlignment");
-            rbtArmorClass = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.RadioButton>(this, "rbtArmorClass");
-            rbtAverageHitPoints = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.RadioButton>(this, "rbtAverageHitPoints");
-            rbtLegendary = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.RadioButton>(this, "rbtLegendary");
+            rbtName = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyRadio>(this, "rbtName");
+            rbtType = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyRadio>(this, "rbtType");
+            rbtChallenge = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyRadio>(this, "rbtChallenge");
+            rbtSize = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyRadio>(this, "rbtSize");
+            rbtAlignment = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyRadio>(this, "rbtAlignment");
+            rbtArmorClass = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyRadio>(this, "rbtArmorClass");
+            rbtAverageHitPoints = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyRadio>(this, "rbtAverageHitPoints");
+            rbtLegendary = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyRadio>(this, "rbtLegendary");
             btnLowToHigh = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Button>(this, "btnLowToHigh");
             btnHighToLow = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Button>(this, "btnHighToLow");
             btnCancel = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Button>(this, "btnCancel");

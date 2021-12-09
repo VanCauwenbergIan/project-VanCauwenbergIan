@@ -34,6 +34,24 @@
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.12\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\syncfusion.licensing\19.3.0.57\lib\uap10.0\Syncfusion.Licensing.dll">
+      <PackagePath>Syncfusion.Licensing.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\syncfusion.sfchart.uwp\19.3.0.57\lib\uap10.0\Syncfusion.SfChart.UWP.dll">
+      <PackagePath>Syncfusion.SfChart.UWP.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\syncfusion.xamarin.core\19.3.0.57\lib\uap10.0\Syncfusion.Core.XForms.UWP.dll">
+      <PackagePath>Syncfusion.Core.XForms.UWP.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\syncfusion.xamarin.core\19.3.0.57\lib\uap10.0\Syncfusion.Core.XForms.dll">
+      <PackagePath>Syncfusion.Core.XForms.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\syncfusion.xamarin.sfchart\19.3.0.57\lib\uap10.0\Syncfusion.SfChart.XForms.UWP.dll">
+      <PackagePath>Syncfusion.SfChart.XForms.UWP.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\syncfusion.xamarin.sfchart\19.3.0.57\lib\uap10.0\Syncfusion.SfChart.XForms.dll">
+      <PackagePath>Syncfusion.SfChart.XForms.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\win2d.uwp\1.20.0\runtimes\win10-x86\native\Microsoft.Graphics.Canvas.dll">
       <PackagePath>Microsoft.Graphics.Canvas.dll</PackagePath>
     </AppxPackagedFile>
@@ -55,11 +73,23 @@
     <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\DndApp.dll">
       <PackagePath>DndApp.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\Mono.Android.dll">
+      <PackagePath>Mono.Android.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\win2d.uwp\1.20.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.19041.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\syncfusion.sfchart.uwp\19.3.0.57\lib\uap10.0\Syncfusion.SfChart.UWP\Syncfusion.SfChart.UWP.xr.xml">
+      <PackagePath>Syncfusion.SfChart.UWP\Syncfusion.SfChart.UWP.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\syncfusion.sfchart.uwp\19.3.0.57\lib\uap10.0\Syncfusion.SfChart.UWP\Properties\Syncfusion.SfChart.UWP_2017.rd.xml">
+      <PackagePath>Syncfusion.SfChart.UWP\Properties\Syncfusion.SfChart.UWP_2017.rd.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ian Van Cauwenberg\.nuget\packages\syncfusion.xamarin.core\19.3.0.57\lib\uap10.0\Syncfusion.Core.XForms.UWP\Syncfusion.Core.XForms.UWP.xr.xml">
+      <PackagePath>Syncfusion.Core.XForms.UWP\Syncfusion.Core.XForms.UWP.xr.xml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft\Xamarin\NuGet\xamarin.forms\5.0.0.2012\lib\uap10.0.16299\Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml">
       <PackagePath>Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml</PackagePath>

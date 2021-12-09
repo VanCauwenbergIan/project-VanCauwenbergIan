@@ -1,6 +1,18 @@
 DndApp.Droid.MainActivity, DndApp.Android;crc648b03a8f8c754c4f4.MainActivity
 DndApp.Droid.MainActivity;crc648b03a8f8c754c4f4.MainActivity
 dndapp.droid.MainActivity;crc648b03a8f8c754c4f4.MainActivity
+DndApp.Droid.MyRendererE, DndApp.Android;crc648b03a8f8c754c4f4.MyRendererE
+DndApp.Droid.MyRendererE;crc648b03a8f8c754c4f4.MyRendererE
+dndapp.droid.MyRendererE;crc648b03a8f8c754c4f4.MyRendererE
+DndApp.Droid.MyRendererP, DndApp.Android;crc648b03a8f8c754c4f4.MyRendererP
+DndApp.Droid.MyRendererP;crc648b03a8f8c754c4f4.MyRendererP
+dndapp.droid.MyRendererP;crc648b03a8f8c754c4f4.MyRendererP
+DndApp.Droid.MyRendererRB, DndApp.Android;crc648b03a8f8c754c4f4.MyRendererRB
+DndApp.Droid.MyRendererRB;crc648b03a8f8c754c4f4.MyRendererRB
+dndapp.droid.MyRendererRB;crc648b03a8f8c754c4f4.MyRendererRB
+DndApp.Droid.MyRendererSB, DndApp.Android;crc648b03a8f8c754c4f4.MyRendererSB
+DndApp.Droid.MyRendererSB;crc648b03a8f8c754c4f4.MyRendererSB
+dndapp.droid.MyRendererSB;crc648b03a8f8c754c4f4.MyRendererSB
 Syncfusion.XForms.Android.Graphics.SfGradientViewRenderer, Syncfusion.Core.XForms.Android;crc640879981a986d658b.SfGradientViewRenderer
 Syncfusion.XForms.Android.Graphics.SfGradientViewRenderer;crc640879981a986d658b.SfGradientViewRenderer
 syncfusion.xforms.android.graphics.SfGradientViewRenderer;crc640879981a986d658b.SfGradientViewRenderer

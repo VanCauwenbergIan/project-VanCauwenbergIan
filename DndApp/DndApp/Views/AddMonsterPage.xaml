@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:DndApp.Models"
              x:Class="DndApp.Views.AddMonsterPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#090809">
@@ -85,7 +85,7 @@
                     <Label x:Name="lblWarning" Grid.Row="0" IsVisible="false" Text="This is an official sourcebook monster, which is unchangeable! Any changes made will be added as a new hombrew monster instead." TextColor="#E4E4E4" FontSize="12" Padding="0, 0, 0, 8"/>
                     <Label Grid.Row="1" Text="Name" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold"/>
                     <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Entry x:Name="entName" Grid.Row="2" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <models:MyEntry x:Name="entName" Grid.Row="2" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                     <!--MODIFY STATS PAGE - SIZE, TYPE, ALIGNMENT -->
                     <Grid Grid.Row="3" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
                         <Grid.ColumnDefinitions>
@@ -97,13 +97,29 @@
                     </Grid>
                     <Label Grid.Row="4" Text="Size" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold"/>
                     <BoxView Grid.Row="5" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Picker x:Name="pckSize" Grid.Row="5" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
+                    <Grid Grid.Row="5" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="24"/>
+                            <ColumnDefinition Width="16"/>
+                        </Grid.ColumnDefinitions>
+                        <models:MyPicker x:Name="pckSize" VerticalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
+                        <Image x:Name="btnSize" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    </Grid>
                     <Label Grid.Row="6" Text="Type" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
                     <BoxView Grid.Row="7" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Entry x:Name="entType" Grid.Row="7" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <models:MyEntry x:Name="entType" Grid.Row="7" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                     <Label Grid.Row="8" Text="Alignment" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold"/>
                     <BoxView Grid.Row="9" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Picker x:Name="pckAlignment" Grid.Row="9" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
+                    <Grid Grid.Row="9" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="24"/>
+                            <ColumnDefinition Width="16"/>
+                        </Grid.ColumnDefinitions>
+                        <models:MyPicker x:Name="pckAlignment" VerticalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
+                        <Image x:Name="btnAlignment"  Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    </Grid>
                     <!--MODIFY STATS PAGE - BASE MODIFIERS -->
                     <Grid Grid.Row="10" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
                         <Grid.ColumnDefinitions>
@@ -125,7 +141,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Proficiency Bonus" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entProficiencyBonus" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entProficiencyBonus" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -134,7 +150,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Hit Dice" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entHitDice" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entHitDice" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Label Grid.Row="12" Text="Proficiency bonus affects proficient skills and saving throws, hit dice affect the total amount of HP (together with the creature's size)." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
@@ -152,7 +168,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Str" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entStrength" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entStrength" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -161,7 +177,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Dex" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entDexterity" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entDexterity" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="2" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -170,7 +186,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Con" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entConstitution" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entConstitution" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="16" HorizontalOptions="StartAndExpand" Padding="8, 0, 0, 0">
@@ -186,7 +202,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Int " TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entIntelligence" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entIntelligence" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -195,7 +211,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Wis" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entWisdom" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entWisdom" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="2" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
@@ -204,7 +220,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Cha" TextTransform="Uppercase" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entCharisma" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entCharisma" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Label Grid.Row="17" Text="All ability scores affect skills and saving throws. Dexterity also affects Armor Class, while constitutions affects a creature's hitpoints." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
@@ -220,7 +236,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Natural Armor" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entNaturalArmor" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entNaturalArmor" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start">
                             <Grid.ColumnDefinitions>
@@ -229,7 +245,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Challenge Rating" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entChallengeRating" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entChallengeRating" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Label Grid.Row="19" Text="Challenge rating determines the amount of XP for slaying a creature. This is best left up to the DM." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
@@ -246,7 +262,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Walking" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entWalkingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entWalkingSpeed" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="0, 0, 16, 0">
                             <Grid.ColumnDefinitions>
@@ -255,7 +271,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Swimming" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entSwimmingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entSwimmingSpeed" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="23" HorizontalOptions="StartAndExpand">
@@ -270,7 +286,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Flying" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entFlyingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entFlyingSpeed" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="0, 0, 16, 0">
                             <Grid.ColumnDefinitions>
@@ -279,7 +295,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Burrowing" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entBurrowingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entBurrowingSpeed" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="25" HorizontalOptions="StartAndExpand">
@@ -294,7 +310,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="Climbing" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <Entry x:Name="entClimbingSpeed" Grid.Column="1" FontSize="14" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            <models:MyEntry x:Name="entClimbingSpeed" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
                         <Grid Grid.Column="1" HorizontalOptions="Start" Padding="0, 0, 16, 0">
                             <Grid.ColumnDefinitions>
@@ -316,19 +332,19 @@
                     </Grid>
                     <Label Grid.Row="27" Text="Blindsight" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
                     <BoxView Grid.Row="28" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Entry x:Name="entBlindsight" Grid.Row="28" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <models:MyEntry x:Name="entBlindsight" Grid.Row="28" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                     <Label Grid.Row="29" Text="Darkvision" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
                     <BoxView Grid.Row="30" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Entry x:Name="entDarkvision" Grid.Row="30" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <models:MyEntry x:Name="entDarkvision" Grid.Row="30" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                     <Label Grid.Row="31" Text="Tremorsense" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
                     <BoxView Grid.Row="32" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Entry x:Name="entTremorsense" Grid.Row="32" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <models:MyEntry x:Name="entTremorsense" Grid.Row="32" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                     <Label Grid.Row="33" Text="Truesight" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
                     <BoxView Grid.Row="34" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Entry x:Name="entTruesight" Grid.Row="34" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <models:MyEntry x:Name="entTruesight" Grid.Row="34" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                     <Label Grid.Row="35" Text="Languages" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" Padding="0, 8, 0, 0"/>
                     <BoxView Grid.Row="36" BackgroundColor="#293742" CornerRadius="5"/>
-                    <Entry x:Name="entLanguages" Grid.Row="36" FontSize="14" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                    <models:MyEntry x:Name="entLanguages" Grid.Row="36" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                     <!--MODIFY STATS PAGE - PROFICIENCIES -->
                     <Grid Grid.Row="37" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
                         <Grid.ColumnDefinitions>

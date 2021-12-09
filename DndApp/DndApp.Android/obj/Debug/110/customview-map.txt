@@ -50,6 +50,7 @@ FrameLayout;C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenber
 FrameLayout;C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.Android\obj\Debug\110\lp\48\jl\res\layout\bottomtablayout.xml
 HorizontalScrollView;C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.Android\obj\Debug\110\lp\3\jl\res\layout\chart_legend.xml
 item;C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.Android\obj\Debug\110\lp\48\jl\res\values\styles.xml
+item;obj\Debug\110\res\values\styles.xml
 LinearLayout;C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.Android\obj\Debug\110\lp\3\jl\res\layout\chart_legend.xml
 LinearLayout;C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.Android\obj\Debug\110\lp\3\jl\res\layout\chart_legend_item.xml
 LinearLayout;C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.Android\obj\Debug\110\lp\48\jl\res\layout\bottomtablayout.xml

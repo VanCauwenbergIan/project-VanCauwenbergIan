@@ -23,6 +23,8 @@ namespace DndApp.Views
         {
             // save monster received from overviewpage
             Monster = selectedMonster;
+            OriginalMonsters = oMonsters;
+            HomebrewMonsters = hbMonsters;
 
             InitializeComponent();
             LoadIcons();

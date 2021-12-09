@@ -70,6 +70,8 @@ namespace DndApp.Views
             btnAddDamageImmunity.Source = ImageSource.FromResource("DndApp.Assets.buttonAddRed.png");
             btnAddVulnerability.Source = ImageSource.FromResource("DndApp.Assets.buttonAddRed.png");
             btnAddCoditionImmunity.Source = ImageSource.FromResource("DndApp.Assets.buttonAddRed.png");
+            btnSize.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
+            btnAlignment.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
 
             TapGestureRecognizer recognizer_return = new TapGestureRecognizer();
 
@@ -84,7 +86,7 @@ namespace DndApp.Views
 
         private void LoadMonsterInfo()
         {
-            
+
             if (OriginalMonsters.Contains(SelectedMonster) == true)
             {
                 lblWarning.IsVisible = true;

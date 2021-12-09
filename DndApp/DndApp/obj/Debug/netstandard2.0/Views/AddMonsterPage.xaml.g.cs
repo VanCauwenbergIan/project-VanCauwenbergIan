@@ -32,79 +32,85 @@ namespace DndApp.Views {
         private global::Xamarin.Forms.Label lblWarning;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entName;
+        private global::DndApp.Models.MyEntry entName;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Picker pckSize;
+        private global::DndApp.Models.MyPicker pckSize;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entType;
+        private global::Xamarin.Forms.Image btnSize;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Picker pckAlignment;
+        private global::DndApp.Models.MyEntry entType;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entProficiencyBonus;
+        private global::DndApp.Models.MyPicker pckAlignment;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entHitDice;
+        private global::Xamarin.Forms.Image btnAlignment;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entStrength;
+        private global::DndApp.Models.MyEntry entProficiencyBonus;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entDexterity;
+        private global::DndApp.Models.MyEntry entHitDice;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entConstitution;
+        private global::DndApp.Models.MyEntry entStrength;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entIntelligence;
+        private global::DndApp.Models.MyEntry entDexterity;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entWisdom;
+        private global::DndApp.Models.MyEntry entConstitution;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entCharisma;
+        private global::DndApp.Models.MyEntry entIntelligence;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entNaturalArmor;
+        private global::DndApp.Models.MyEntry entWisdom;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entChallengeRating;
+        private global::DndApp.Models.MyEntry entCharisma;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entWalkingSpeed;
+        private global::DndApp.Models.MyEntry entNaturalArmor;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entSwimmingSpeed;
+        private global::DndApp.Models.MyEntry entChallengeRating;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entFlyingSpeed;
+        private global::DndApp.Models.MyEntry entWalkingSpeed;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entBurrowingSpeed;
+        private global::DndApp.Models.MyEntry entSwimmingSpeed;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entClimbingSpeed;
+        private global::DndApp.Models.MyEntry entFlyingSpeed;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::DndApp.Models.MyEntry entBurrowingSpeed;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::DndApp.Models.MyEntry entClimbingSpeed;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.CheckBox cbxHover;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entBlindsight;
+        private global::DndApp.Models.MyEntry entBlindsight;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entDarkvision;
+        private global::DndApp.Models.MyEntry entDarkvision;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entTremorsense;
+        private global::DndApp.Models.MyEntry entTremorsense;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entTruesight;
+        private global::DndApp.Models.MyEntry entTruesight;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Entry entLanguages;
+        private global::DndApp.Models.MyEntry entLanguages;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Image btnAddProf;
@@ -156,31 +162,33 @@ namespace DndApp.Views {
             btnConfirm = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Button>(this, "btnConfirm");
             srvModifyStats = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ScrollView>(this, "srvModifyStats");
             lblWarning = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "lblWarning");
-            entName = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entName");
-            pckSize = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "pckSize");
-            entType = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entType");
-            pckAlignment = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "pckAlignment");
-            entProficiencyBonus = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entProficiencyBonus");
-            entHitDice = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entHitDice");
-            entStrength = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entStrength");
-            entDexterity = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entDexterity");
-            entConstitution = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entConstitution");
-            entIntelligence = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entIntelligence");
-            entWisdom = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entWisdom");
-            entCharisma = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entCharisma");
-            entNaturalArmor = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entNaturalArmor");
-            entChallengeRating = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entChallengeRating");
-            entWalkingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entWalkingSpeed");
-            entSwimmingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entSwimmingSpeed");
-            entFlyingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entFlyingSpeed");
-            entBurrowingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entBurrowingSpeed");
-            entClimbingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entClimbingSpeed");
+            entName = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entName");
+            pckSize = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyPicker>(this, "pckSize");
+            btnSize = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnSize");
+            entType = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entType");
+            pckAlignment = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyPicker>(this, "pckAlignment");
+            btnAlignment = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnAlignment");
+            entProficiencyBonus = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entProficiencyBonus");
+            entHitDice = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entHitDice");
+            entStrength = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entStrength");
+            entDexterity = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entDexterity");
+            entConstitution = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entConstitution");
+            entIntelligence = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entIntelligence");
+            entWisdom = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entWisdom");
+            entCharisma = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entCharisma");
+            entNaturalArmor = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entNaturalArmor");
+            entChallengeRating = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entChallengeRating");
+            entWalkingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entWalkingSpeed");
+            entSwimmingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entSwimmingSpeed");
+            entFlyingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entFlyingSpeed");
+            entBurrowingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entBurrowingSpeed");
+            entClimbingSpeed = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entClimbingSpeed");
             cbxHover = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.CheckBox>(this, "cbxHover");
-            entBlindsight = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entBlindsight");
-            entDarkvision = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entDarkvision");
-            entTremorsense = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entTremorsense");
-            entTruesight = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entTruesight");
-            entLanguages = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "entLanguages");
+            entBlindsight = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entBlindsight");
+            entDarkvision = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entDarkvision");
+            entTremorsense = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entTremorsense");
+            entTruesight = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entTruesight");
+            entLanguages = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entLanguages");
             btnAddProf = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnAddProf");
             lvwProficiencies = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "lvwProficiencies");
             btnAddExpert = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnAddExpert");

@@ -464,5 +464,11 @@ namespace DndApp.Views
             entriesChallenge = null;
             entriesHP = null;
         }
+
+        private void haltSelection(object sender, EventArgs e)
+        {
+            lvwFilterCheckboxes.SelectedItem = null;
+            lvwFilterEntries.SelectedItem = null;
+        }
     }
 }

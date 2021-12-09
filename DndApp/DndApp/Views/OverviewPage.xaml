@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:DndApp.Models"
              x:Class="DndApp.Views.OverviewPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#090809">
@@ -51,7 +51,7 @@
                     <ColumnDefinition Width="24"/>
                 </Grid.ColumnDefinitions>
                 <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 0, 0"/>
-                <SearchBar x:Name="entSearchBar" Grid.Column="1" TextColor="#F4F7FB" FontSize="14" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                <models:MySearch x:Name="entSearchBar" Grid.Column="1" TextColor="#F4F7FB" FontSize="18" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                 <Image x:Name="btnFilter" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>
             </Grid>
             <!--LIST VIEW (nice to have: loading indication)-->
@@ -151,14 +151,14 @@
                             </Grid.RowDefinitions>
                             <Label Grid.Row="1" Text="Sort Monsters By:" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
                             <!--need to find a way to change the color of these radio buttons, sicne rn they're just the default black with pink-->
-                            <RadioButton x:Name="rbtName" Grid.Row="2" Content=" Name" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
-                            <RadioButton x:Name="rbtType" Grid.Row="3" Content=" Type" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
-                            <RadioButton x:Name="rbtChallenge" Grid.Row="4" Content=" Challenge" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
-                            <RadioButton x:Name="rbtSize" Grid.Row="5" Content=" Size" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
-                            <RadioButton x:Name="rbtAlignment" Grid.Row="6" Content=" Alignment" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
-                            <RadioButton x:Name="rbtArmorClass" Grid.Row="7" Content=" Armor Class" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
-                            <RadioButton x:Name="rbtAverageHitPoints" Grid.Row="8" Content=" Average HP" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
-                            <RadioButton x:Name="rbtLegendary" Grid.Row="9" Content=" Legendary" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <models:MyRadio x:Name="rbtName" Grid.Row="2" Content=" Name" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <models:MyRadio x:Name="rbtType" Grid.Row="3" Content=" Type" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <models:MyRadio x:Name="rbtChallenge" Grid.Row="4" Content=" Challenge" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <models:MyRadio x:Name="rbtSize" Grid.Row="5" Content=" Size" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <models:MyRadio x:Name="rbtAlignment" Grid.Row="6" Content=" Alignment" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <models:MyRadio x:Name="rbtArmorClass" Grid.Row="7" Content=" Armor Class" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <models:MyRadio x:Name="rbtAverageHitPoints" Grid.Row="8" Content=" Average HP" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
+                            <models:MyRadio x:Name="rbtLegendary" Grid.Row="9" Content=" Legendary" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
                             <Grid Grid.Row="10" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -354,7 +354,7 @@
                     <!--<Button x:Name="btnClearAll" Text="Clear all" TextTransform="Lowercase" TextColor="#E40712" BackgroundColor="Transparent" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>-->
                 </Grid>
                 <!--FILTER SUBOPTIONS (DYNAMICALLY GENERATED)-->
-                <ListView x:Name="lvwFilterCheckboxes" Grid.Row="1" IsVisible="False">
+                <ListView x:Name="lvwFilterCheckboxes" Grid.Row="1" IsVisible="False" ItemSelected="haltSelection">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -372,7 +372,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <ListView x:Name="lvwFilterEntries" RowHeight="64" Grid.Row="1" IsVisible="False">
+                <ListView x:Name="lvwFilterEntries" RowHeight="64" Grid.Row="1" IsVisible="False" ItemSelected="haltSelection">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -384,8 +384,8 @@
                                         <ColumnDefinition Width="24"/>
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="lblSubOptionName" Grid.Column="1" Text="{Binding Name}" TextColor="#F4F7FB" FontSize="16" VerticalOptions="Center"  HorizontalOptions="StartAndExpand"/>
-                                    <BoxView Grid.Column="2" BackgroundColor="#293742" CornerRadius="5" HeightRequest="40" VerticalOptions="Center"/>
-                                    <Entry x:Name="entSubOption" Grid.Column="2" Text="{Binding Limit, Mode=TwoWay}" TextColor="#F4F7FB" HorizontalTextAlignment="Center" FontSize="16" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Column="2" BackgroundColor="#293742" CornerRadius="5" HeightRequest="36" VerticalOptions="Center"/>
+                                    <models:MyEntry x:Name="entSubOption" Grid.Column="2" Text="{Binding Limit, Mode=TwoWay}" TextColor="#F4F7FB" HorizontalTextAlignment="Center" FontSize="20" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

@@ -62,3 +62,17 @@ C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\obj\x86\Debug\ProjectArchitectures.txt
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\obj\x86\Debug\.winmd_cache\$Microsoft.Graphics.Canvas.winmd_636160715180000000.json
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_637424743200000000.json
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Syncfusion.SfChart.UWP\Syncfusion.SfChart.UWP.xr.xml
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Syncfusion.SfChart.UWP\Properties\Syncfusion.SfChart.UWP_2017.rd.xml
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Syncfusion.Core.XForms.UWP\Syncfusion.Core.XForms.UWP.xr.xml
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Syncfusion.Licensing.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Syncfusion.SfChart.UWP.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Syncfusion.Core.XForms.UWP.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Syncfusion.Core.XForms.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Syncfusion.SfChart.XForms.UWP.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Syncfusion.SfChart.XForms.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Mono.Android.dll
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Mono.Android.pdb
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\bin\x86\Debug\Mono.Android.xml
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\obj\x86\Debug\Syncfusion.SfChart.UWP.pri.xml
+C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp.UWP\obj\x86\Debug\Syncfusion.Core.XForms.UWP.pri.xml
