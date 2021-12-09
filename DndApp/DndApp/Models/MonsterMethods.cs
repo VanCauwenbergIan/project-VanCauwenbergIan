@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Action = DndApp.Models.Action;
 
 namespace DndApp.Repositories
@@ -297,6 +298,22 @@ namespace DndApp.Repositories
 
             return entries;
 
+        }
+
+        public static List<Monster> getMonstersByName(string searchQuery, List<Monster> monsters)
+        {
+            List<Monster> results = new List<Monster>();
+            searchQuery = searchQuery.ToLower();
+
+            foreach (Monster monster in monsters)
+            {
+                if (monster.Name.ToLower().Contains(searchQuery))
+                {
+                    results.Add(monster);
+                }
+            }
+
+            return results;
         }
 
         public static List<ProficiencyAndValue> CheckProficiencies (Monster selectedMonster, bool doubleProficiency)

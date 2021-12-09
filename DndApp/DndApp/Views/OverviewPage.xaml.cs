@@ -415,11 +415,25 @@ namespace DndApp.Views
 
             if (FilteredMonsters == null)
             {
-                lvwMonsters.ItemsSource = CurrentMonsters;
+                if (sbrSearch.Text != null)
+                {
+                    lvwMonsters.ItemsSource = MonsterMethods.getMonstersByName(sbrSearch.Text, CurrentMonsters);
+                }
+                else
+                {
+                    lvwMonsters.ItemsSource = CurrentMonsters;
+                }
             }
             else
             {
-                lvwMonsters.ItemsSource = FilteredMonsters;
+                if (sbrSearch.Text != null)
+                {
+                    lvwMonsters.ItemsSource = MonsterMethods.getMonstersByName(sbrSearch.Text, FilteredMonsters);
+                }
+                else
+                {
+                    lvwMonsters.ItemsSource = FilteredMonsters;
+                }
             }
             popSortBy.IsVisible = false;
 
@@ -469,6 +483,57 @@ namespace DndApp.Views
         {
             lvwFilterCheckboxes.SelectedItem = null;
             lvwFilterEntries.SelectedItem = null;
+        }
+
+        private async void textSearchBarChanged(object sender, EventArgs e)
+        {
+            if (actListview.IsRunning == false)
+            {
+                Task task = null;
+                int delay = 1000;
+
+                SearchBar searchBar = (SearchBar)sender;
+                if (searchBar.Text != null)
+                {
+                    if (FilteredMonsters == null)
+                    {
+                        if (task == null || task.IsCompleted)
+                        {
+                            task = Task.Run(async () =>
+                            {
+                                await Task.Delay(delay);
+                                Device.BeginInvokeOnMainThread(() => {
+                                    lvwMonsters.ItemsSource = MonsterMethods.getMonstersByName(searchBar.Text, CurrentMonsters);
+                                });           
+                            });
+                        }
+                    }
+                    else
+                    {
+                        if (task == null || task.IsCompleted)
+                        {
+                            task = Task.Run(async () =>
+                            {
+                                await Task.Delay(delay);
+                                Device.BeginInvokeOnMainThread(() => {
+                                    lvwMonsters.ItemsSource = MonsterMethods.getMonstersByName(searchBar.Text, FilteredMonsters);
+                                });
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    if (FilteredMonsters == null)
+                    {
+                        lvwMonsters.ItemsSource = CurrentMonsters;
+                    }
+                    else
+                    {
+                        lvwMonsters.ItemsSource = FilteredMonsters;
+                    }
+                }
+            }
         }
     }
 }

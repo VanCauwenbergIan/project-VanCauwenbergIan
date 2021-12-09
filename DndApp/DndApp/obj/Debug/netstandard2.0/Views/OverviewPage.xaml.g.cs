@@ -29,7 +29,7 @@ namespace DndApp.Views {
         private global::Xamarin.Forms.Image btnDropDown;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::DndApp.Models.MySearch entSearchBar;
+        private global::DndApp.Models.MySearch sbrSearch;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Image btnFilter;
@@ -137,7 +137,7 @@ namespace DndApp.Views {
             btnAdd = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnAdd");
             lblSortBy = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "lblSortBy");
             btnDropDown = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnDropDown");
-            entSearchBar = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MySearch>(this, "entSearchBar");
+            sbrSearch = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MySearch>(this, "sbrSearch");
             btnFilter = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnFilter");
             lvwMonsters = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "lvwMonsters");
             grdActivity = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "grdActivity");

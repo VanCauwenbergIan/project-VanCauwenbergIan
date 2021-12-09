@@ -41,7 +41,7 @@
                 <Label x:Name="lblSortBy" Text="Sort by: Name" Grid.Column="1" TextColor="#E40712" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                 <Image x:Name="btnDropDown" Grid.Column="2" Aspect="AspectFill" VerticalOptions="Center"/>
             </Grid>
-            <!--SEARCH BAR (nice to have: change selection color entry and remove line underneath, might just use a rendered default <searchbar> if I find out how that works)-->
+            <!--SEARCH BAR -->
             <Grid Grid.Row="3" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
@@ -51,7 +51,7 @@
                     <ColumnDefinition Width="24"/>
                 </Grid.ColumnDefinitions>
                 <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 0, 0"/>
-                <models:MySearch x:Name="entSearchBar" Grid.Column="1" TextColor="#F4F7FB" FontSize="18" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                <models:MySearch x:Name="sbrSearch" Grid.Column="1" TextColor="#F4F7FB" FontSize="18" BackgroundColor="Transparent" VerticalOptions="StartAndExpand" TextChanged="textSearchBarChanged"/>
                 <Image x:Name="btnFilter" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center"/>
             </Grid>
             <!--LIST VIEW (nice to have: loading indication)-->
