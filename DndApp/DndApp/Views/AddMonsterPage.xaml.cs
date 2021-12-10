@@ -16,6 +16,7 @@ namespace DndApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddMonsterPage : ContentPage
     {
+        AddMonsterViewModel Obj;
         public Monster SelectedMonster { get; set; }
         public List<string> OptionsSize = new List<string> { "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan" };
         // 1d4, 1d6, 1d8, 1d10, 1d12, 1d20
@@ -88,6 +89,7 @@ namespace DndApp.Views
 
         private void LoadMonsterInfo()
         {
+            Obj = new AddMonsterViewModel();
 
             if (OriginalMonsters.Contains(SelectedMonster) == true)
             {
@@ -136,13 +138,83 @@ namespace DndApp.Views
             Proficiencies = MonsterMethods.CheckProficiencies(SelectedMonster, false);
             Expertises = MonsterMethods.CheckProficiencies(SelectedMonster, true);
 
-            lvwProficiencies.ItemsSource = Proficiencies;
-            lvwExpertise.ItemsSource = Expertises;
-            lvwAbilities.ItemsSource = SelectedMonster.SpecialAbilities;
-            lvwResistances.ItemsSource = SelectedMonster.DamageResistances;
-            lvwDamageImmunities.ItemsSource = SelectedMonster.DamageImmunities;
-            lvwVulnerabilities.ItemsSource = SelectedMonster.DamageVulnerabilities;
-            lvwConditionImmunities.ItemsSource = SelectedMonster.ConditionImmunities;
+            if (Proficiencies != null)
+            {
+                Obj.SingleProficiencies.Clear();
+
+                foreach (ProficiencyAndValue proficiency in Proficiencies)
+                {
+                    Obj.SingleProficiencies.Add(proficiency);
+                }
+
+                bdlSingleProficiencies.BindingContext = Obj;
+            }
+            if (Expertises != null)
+            {
+                Obj.DoubleProficiencies.Clear();
+
+                foreach (ProficiencyAndValue expertise in Expertises)
+                {
+                    Obj.DoubleProficiencies.Add(expertise);
+                }
+
+                bdlDoubleProficiencies.BindingContext = Obj;
+            }
+            if (SelectedMonster.DamageVulnerabilities != null)
+            {
+                Obj.DamageVulnerabilities.Clear();
+
+                foreach (string vulnerability in SelectedMonster.DamageVulnerabilities)
+                {
+                    Obj.DamageVulnerabilities.Add(vulnerability);
+                }
+
+                bdlDamageVulnerabilities.BindingContext = Obj;
+            }
+            if (SelectedMonster.DamageResistances != null)
+            {
+                Obj.DamageResistances.Clear();
+
+                foreach (string resistance in SelectedMonster.DamageResistances)
+                {
+                    Obj.DamageResistances.Add(resistance);
+                }
+
+                bdlDamageResistances.BindingContext = Obj;
+            }
+            if (SelectedMonster.DamageImmunities != null)
+            {
+                Obj.DamageImmunities.Clear();
+
+                foreach (string immunity in SelectedMonster.DamageImmunities)
+                {
+                    Obj.DamageImmunities.Add(immunity);
+                }
+
+                bdlDamageImmunities.BindingContext = Obj;
+            }
+            if (SelectedMonster.ConditionImmunities != null)
+            {
+                Obj.ConditionImmunities.Clear();
+
+                foreach (ConditionImmunity immunity in SelectedMonster.ConditionImmunities)
+                {
+                    Obj.ConditionImmunities.Add(immunity);
+                }
+
+                bdlConditionImmunities.BindingContext = Obj;
+            }
+            if (SelectedMonster.SpecialAbilities != null)
+            {
+                Obj.SpecialAbilities.Clear();
+
+                foreach (Action specialAbility in SelectedMonster.SpecialAbilities)
+                {
+                    Obj.SpecialAbilities.Add(specialAbility);
+                }
+
+                bdlAbilities.BindingContext = Obj;
+            }
         }
 
         private void LoadPickers()
@@ -397,8 +469,8 @@ namespace DndApp.Views
             int maxValue = Convert.ToInt32(num[1]);
             int amount = Convert.ToInt32(num[0]);
 
-            // formula to get average hp: ((( max value single dice + 1 ) / 2) + con asm) * amount of dice
-            int average = Convert.ToInt32(Math.Floor(((maxValue + 1) / 2.0) + MonsterMethods.getAbilityScoreModifier(con)) * amount);
+            // formula to get average hp: ((( max value single dice + 1 ) / 2) + con asm) * amount of dice => round down
+            int average = Convert.ToInt32(Math.Floor((((maxValue + 1) / 2.0) + MonsterMethods.getAbilityScoreModifier(con)) * amount));
 
             return average;
         }

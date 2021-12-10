@@ -27,8 +27,6 @@ namespace DndApp.Models
         {
             DataST = new ObservableCollection<StatsModel>();
             DataAS = new ObservableCollection<StatsModel>();
-        {
-        };
         }
     }
 }

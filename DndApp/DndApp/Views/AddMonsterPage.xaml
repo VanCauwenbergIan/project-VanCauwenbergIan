@@ -349,24 +349,20 @@
                         <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
                         <Image x:Name="btnAddProf" Grid.Column="3"/>
                     </Grid>
-                    <StackLayout Grid.Row="38" VerticalOptions="Fill" HorizontalOptions="StartAndExpand" Orientation="Vertical">
-                        <ListView x:Name="lvwProficiencies" VerticalOptions="FillAndExpand" RowHeight="44">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <Grid RowSpacing="16">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="28"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label x:Name="lblSkillName" Grid.Column="0" Text="{Binding Proficiency.Name}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
-                                            <ImageButton x:Name="btnDeleteProf" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
-                                        </Grid>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                    <StackLayout x:Name="bdlSingleProficiencies" Grid.Row="38" BindableLayout.ItemsSource="{Binding SingleProficiencies}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowSpacing="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="28"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="lblSkillName" Grid.Column="0" Text="{Binding Proficiency.Name}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                    <ImageButton x:Name="btnDeleteProf" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
                     <!--MODIFY STATS PAGE - EXPERTISE -->
                     <Grid Grid.Row="39" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
@@ -380,24 +376,20 @@
                         <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
                         <Image x:Name="btnAddExpert" Grid.Column="3"/>
                     </Grid>
-                    <StackLayout Grid.Row="40" VerticalOptions="Fill" HorizontalOptions="StartAndExpand" Orientation="Vertical">
-                        <ListView x:Name="lvwExpertise" VerticalOptions="FillAndExpand" RowHeight="44">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <Grid RowSpacing="16">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="28"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label x:Name="lblSkillName" Grid.Column="0" Text="{Binding Proficiency.Name}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
-                                            <ImageButton x:Name="btnDeleteExpert" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
-                                        </Grid>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                    <StackLayout x:Name="bdlDoubleProficiencies" Grid.Row="40" BindableLayout.ItemsSource="{Binding DoubleProficiencies}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowSpacing="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="28"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="lblSkillName" Grid.Column="0" Text="{Binding Proficiency.Name}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                    <ImageButton x:Name="btnDeleteExpert" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
                     <!--MODIFY STATS PAGE - RESISTANCES -->
                     <Grid Grid.Row="41" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
@@ -411,24 +403,20 @@
                         <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
                         <Image x:Name="btnAddResitance" Grid.Column="3"/>
                     </Grid>
-                    <StackLayout Grid.Row="42" VerticalOptions="Fill" HorizontalOptions="StartAndExpand" Orientation="Vertical">
-                        <ListView x:Name="lvwResistances" VerticalOptions="FillAndExpand" RowHeight="44">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <Grid ColumnSpacing="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="28"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label x:Name="lblResistance" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
-                                            <ImageButton x:Name="btnDeleteResistance" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
-                                        </Grid>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                    <StackLayout x:Name="bdlDamageResistances" Grid.Row="42" BindableLayout.ItemsSource="{Binding DamageResistances}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="28"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="lblResistance" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                    <ImageButton x:Name="btnDeleteResistance" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
                     <!--MODIFY STATS PAGE - DAMAGE IMMUNITIES -->
                     <Grid Grid.Row="43" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
@@ -442,24 +430,20 @@
                         <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
                         <Image x:Name="btnAddDamageImmunity" Grid.Column="3"/>
                     </Grid>
-                    <StackLayout Grid.Row="44" VerticalOptions="Fill" HorizontalOptions="StartAndExpand" Orientation="Vertical">
-                        <ListView x:Name="lvwDamageImmunities" VerticalOptions="FillAndExpand" RowHeight="44">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <Grid ColumnSpacing="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="28"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label x:Name="lblImmunity" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
-                                            <ImageButton x:Name="btnDeleteDamageImmunity" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
-                                        </Grid>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                    <StackLayout x:Name="bdlDamageImmunities" Grid.Row="44" BindableLayout.ItemsSource="{Binding DamageImmunities}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="28"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="lblImmunity" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                    <ImageButton x:Name="btnDeleteDamageImmunity" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
                     <!--MODIFY STATS PAGE - VULNERABILITIES -->
                     <Grid Grid.Row="45" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
@@ -473,24 +457,20 @@
                         <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
                         <Image x:Name="btnAddVulnerability" Grid.Column="3"/>
                     </Grid>
-                    <StackLayout Grid.Row="46" VerticalOptions="Fill" HorizontalOptions="StartAndExpand" Orientation="Vertical">
-                        <ListView x:Name="lvwVulnerabilities" VerticalOptions="FillAndExpand" RowHeight="44">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <Grid ColumnSpacing="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="28"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label x:Name="lblVulnerability" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
-                                            <ImageButton x:Name="btnDeleteVulnerabilities" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
-                                        </Grid>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                    <StackLayout x:Name="bdlDamageVulnerabilities" Grid.Row="46" BindableLayout.ItemsSource="{Binding DamageVulnerabilities}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="28"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="lblVulnerability" Grid.Column="0" Text="{Binding .}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                    <ImageButton x:Name="btnDeleteVulnerabilities" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
                     <!--MODIFY STATS PAGE - CONDITION IMMUNITIES -->
                     <Grid Grid.Row="47" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
@@ -504,24 +484,20 @@
                         <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
                         <Image x:Name="btnAddCoditionImmunity" Grid.Column="3"/>
                     </Grid>
-                    <StackLayout Grid.Row="48" VerticalOptions="Fill" HorizontalOptions="StartAndExpand" Orientation="Vertical">
-                        <ListView x:Name="lvwConditionImmunities" VerticalOptions="FillAndExpand" RowHeight="44">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <Grid ColumnSpacing="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="28"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label x:Name="lblImmunity" Grid.Column="0" Text="{Binding Name}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
-                                            <ImageButton x:Name="btnDeleteConditionImmunity" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
-                                        </Grid>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                    <StackLayout x:Name="bdlConditionImmunities" Grid.Row="48" BindableLayout.ItemsSource="{Binding ConditionImmunities}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="28"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="lblImmunity" Grid.Column="0" Text="{Binding Name}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+                                    <ImageButton x:Name="btnDeleteConditionImmunity" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
                     <!--MODIFY STATS PAGE - ABILITIES -->
                     <Grid Grid.Row="49" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
@@ -535,30 +511,28 @@
                         <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
                         <Image x:Name="btnAddAbility" Grid.Column="3"/>
                     </Grid>
-                    <ListView x:Name="lvwAbilities" VerticalOptions="Start" HasUnevenRows="True" Grid.Row="50">
-                        <ListView.ItemTemplate>
+                    <StackLayout x:Name="bdlAbilities" Grid.Row="50" BindableLayout.ItemsSource="{Binding SpecialAbilities}">
+                        <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="28"/>
-                                            <RowDefinition/>
-                                            <RowDefinition Height="16"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid Grid.Row="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="28"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label x:Name="lblAbilityName" Grid.Column="0" Text="{Binding Name}" FontSize="16" TextColor="#F4F7FB" FontAttributes="Bold"/>
-                                            <ImageButton x:Name="btnEditAbilty" Grid.Column="1" Source="buttonEdit.png" BackgroundColor="Transparent"/>
-                                        </Grid>
-                                        <Label Grid.Row="1" Text="{Binding Description}" FontSize="14" TextColor="#E4E4E4"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="28"/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="16"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="28"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblAbilityName" Grid.Column="0" Text="{Binding Name}" FontSize="16" TextColor="#F4F7FB" FontAttributes="Bold"/>
+                                        <ImageButton x:Name="btnEditAbilty" Grid.Column="1" Source="buttonEdit.png" BackgroundColor="Transparent"/>
                                     </Grid>
-                                </ViewCell>
+                                    <Label Grid.Row="1" Text="{Binding Description}" FontSize="14" TextColor="#E4E4E4"/>
+                                </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
                 </Grid>
             </ScrollView>
         </Grid>
