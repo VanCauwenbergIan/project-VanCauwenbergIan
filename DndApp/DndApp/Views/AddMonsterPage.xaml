@@ -23,7 +23,7 @@
                 <!--btnBack not in use on this page-->
                 <Image x:Name="btnBack" Grid.Column="1" />
                 <Label x:Name="lblPageTitle" Text="Modify Stats" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Padding="32, 0, 0, 0"/>
-                <Button x:Name="btnConfirm" Text="Confirm Changes" Grid.Column="3" TextColor="#E40712" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Button x:Name="btnConfirm" Text="Confirm Changes" Grid.Column="3" TextColor="#E40712" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Clicked="btnConfirmClicked"/>
             </Grid>
             <!--MODIFY STATS PAGE-->
             <ScrollView x:Name="srvModifyStats" Grid.Row="1" Orientation="Vertical" BackgroundColor="Transparent">
@@ -101,7 +101,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="24"/>
-                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="1"/>
                         </Grid.ColumnDefinitions>
                         <models:MyPicker x:Name="pckSize" VerticalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
                         <Image x:Name="btnSize" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
@@ -115,7 +115,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="24"/>
-                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="1"/>
                         </Grid.ColumnDefinitions>
                         <models:MyPicker x:Name="pckAlignment" VerticalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
                         <Image x:Name="btnAlignment"  Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
@@ -131,19 +131,10 @@
                     </Grid>
                     <Grid Grid.Row="11" HorizontalOptions="StartAndExpand">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" HorizontalOptions="Start">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="36"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="Proficiency Bonus" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
-                            <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
-                            <models:MyEntry x:Name="entProficiencyBonus" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
-                        </Grid>
-                        <Grid Grid.Column="1" HorizontalOptions="Start" Padding="24, 0, 0, 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="36"/>
@@ -152,9 +143,10 @@
                             <BoxView Grid.Column="1" BackgroundColor="#293742" CornerRadius="5"/>
                             <models:MyEntry x:Name="entHitDice" Grid.Column="1" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
                         </Grid>
+                        <Label Grid.Column="1" Text="Hit dice, together with size, affect the total amount of HP" TextColor="#E4E4E4" FontSize="12" Padding="8, 0, 0, 0" VerticalOptions="Center"/>
                     </Grid>
-                    <Label Grid.Row="12" Text="Proficiency bonus affects proficient skills and saving throws, hit dice affect the total amount of HP (together with the creature's size)." TextColor="#E4E4E4" FontSize="12" Padding="8, 8, 0, 8"/>
-                    <Label Grid.Row="13" Text="Base Ability Modifiers:" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                    <!--row 12 is no longer in use, but since it's auto-height and there are like 50 rows, I ain't removing it completely. Reason: you can no longer choose a proficiency bonus yourself, so I removed it from the layout-->
+                    <Label Grid.Row="13" Text="Base Ability Scores:" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
                     <Grid Grid.Row="14" HorizontalOptions="StartAndExpand" Padding="8, 0, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />

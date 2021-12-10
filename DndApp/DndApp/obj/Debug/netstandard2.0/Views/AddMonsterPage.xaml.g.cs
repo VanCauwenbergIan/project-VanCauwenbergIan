@@ -50,9 +50,6 @@ namespace DndApp.Views {
         private global::Xamarin.Forms.Image btnAlignment;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::DndApp.Models.MyEntry entProficiencyBonus;
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::DndApp.Models.MyEntry entHitDice;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
@@ -168,7 +165,6 @@ namespace DndApp.Views {
             entType = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entType");
             pckAlignment = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyPicker>(this, "pckAlignment");
             btnAlignment = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "btnAlignment");
-            entProficiencyBonus = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entProficiencyBonus");
             entHitDice = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entHitDice");
             entStrength = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entStrength");
             entDexterity = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::DndApp.Models.MyEntry>(this, "entDexterity");

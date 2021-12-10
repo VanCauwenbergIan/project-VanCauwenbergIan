@@ -241,6 +241,11 @@ namespace DndApp.Views
             popFilterOptions.IsVisible = true;
         }
 
+        private void Recognize_Tapped_addmonster(Object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddMonsterPage(Monsters, HomebrewMonsters));
+        }
+
         private async void Init()
         {
             Monsters = await MonsterRepository.GetMonstersAsync();
@@ -260,12 +265,14 @@ namespace DndApp.Views
             TapGestureRecognizer recognizer_closefilters = new TapGestureRecognizer();
             TapGestureRecognizer recognizer_filterchosen = new TapGestureRecognizer();
             TapGestureRecognizer recognizer_closesuboptions = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_addmonster = new TapGestureRecognizer();
 
             recognizer_sort.Tapped += Recognizer_Tapped_sort;
             recognizer_openfilters.Tapped += Recognizer_Tapped_openfilters;
             recognizer_closefilters.Tapped += Recognize_Tapped_closedfilters;
             recognizer_filterchosen.Tapped += Recognize_Tapped_filterchosen;
             recognizer_closesuboptions.Tapped += Recognize_Tapped_closesuboptions;
+            recognizer_addmonster.Tapped += Recognize_Tapped_addmonster;
 
             // a simple way to pass a string along with the frames that can be accessed by the event handler
             frmFilterType.ClassId = "Type";
@@ -281,6 +288,7 @@ namespace DndApp.Views
             btnFilter.GestureRecognizers.Add(recognizer_openfilters);
             btnCloseFilterOptions.GestureRecognizers.Add(recognizer_closesuboptions);
             btnCloseFilter.GestureRecognizers.Add(recognizer_closefilters);
+            btnAdd.GestureRecognizers.Add(recognizer_addmonster);
             frmFilterType.GestureRecognizers.Add(recognizer_filterchosen);
             frmFilterChallenge.GestureRecognizers.Add(recognizer_filterchosen);
             frmFilterSize.GestureRecognizers.Add(recognizer_filterchosen);
@@ -288,6 +296,16 @@ namespace DndApp.Views
             frmFilterArmorClass.GestureRecognizers.Add(recognizer_filterchosen);
             frmFilterAverageHP.GestureRecognizers.Add(recognizer_filterchosen);
             frmFilterLegendary.GestureRecognizers.Add(recognizer_filterchosen);
+
+            MessagingCenter.Subscribe<Monster>(this, "refresh!", async (newMonster) =>
+            {
+                // we only refresh the homebrew monsters to avoid the long loading time
+                HomebrewMonsters = await MonsterRepository.GetHomebrewMonsterAsync();
+                CurrentMonsters = Monsters.Concat(HomebrewMonsters).ToList();
+                CurrentMonsters = CurrentMonsters.OrderBy(o => o.Name).ToList();
+                CombinedMonsters = CurrentMonsters;
+                btnConfirmClicked(this, null);
+            });
         }
 
         private void MonsterSelected(object sender, SelectedItemChangedEventArgs e)
@@ -323,7 +341,7 @@ namespace DndApp.Views
             }
             else if (rbtType.IsChecked == true)
             {
-                if (MonstersByType == null)
+                if (MonstersByType == null || sender.GetType() == typeof(OverviewPage))
                 {
                     MonstersByType = MonsterMethods.sortListBy(CombinedMonsters, "type");
                 }
@@ -336,7 +354,7 @@ namespace DndApp.Views
             }
             else if (rbtChallenge.IsChecked == true)
             {
-                if (MonstersByCR == null)
+                if (MonstersByCR == null || sender.GetType() == typeof(OverviewPage))
                 {
                     MonstersByCR = MonsterMethods.sortListBy(CombinedMonsters, "cr");
                 }
@@ -349,7 +367,7 @@ namespace DndApp.Views
             }
             else if (rbtSize.IsChecked == true)
             {
-                if (MonstersBySize == null)
+                if (MonstersBySize == null || sender.GetType() == typeof(OverviewPage))
                 {
                     MonstersBySize = MonsterMethods.sortListBy(CombinedMonsters, "size");
                 }
@@ -362,7 +380,7 @@ namespace DndApp.Views
             }
             else if (rbtAlignment.IsChecked == true)
             {
-                if (MonstersByAlignment == null)
+                if (MonstersByAlignment == null || sender.GetType() == typeof(OverviewPage))
                 {
                     MonstersByAlignment = MonsterMethods.sortListBy(CombinedMonsters, "alignment");
                 }
@@ -375,7 +393,7 @@ namespace DndApp.Views
             }
             else if (rbtArmorClass.IsChecked == true)
             {
-                if (MonstersByAC == null)
+                if (MonstersByAC == null || sender.GetType() == typeof(OverviewPage))
                 {
                     MonstersByAC = MonsterMethods.sortListBy(CombinedMonsters, "ac");
                 }
@@ -388,7 +406,7 @@ namespace DndApp.Views
             }
             else if (rbtAverageHitPoints.IsChecked == true)
             {
-                if (MonstersByHP == null)
+                if (MonstersByHP == null || sender.GetType() == typeof(OverviewPage))
                 {
                     MonstersByHP = MonsterMethods.sortListBy(CombinedMonsters, "hp");
                 }
@@ -401,7 +419,7 @@ namespace DndApp.Views
             }
             else if (rbtLegendary.IsChecked == true)
             {
-                if (MonstersByLA == null)
+                if (MonstersByLA == null || sender.GetType() == typeof(OverviewPage))
                 {
                     MonstersByLA = MonsterMethods.sortListBy(CombinedMonsters, "la");
                 }
