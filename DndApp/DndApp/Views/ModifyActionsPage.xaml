@@ -1,12 +1,107 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DndApp.Views.ModifyActionsPage">
+             x:Class="DndApp.Views.ModifyActionsPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#090809">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--NAV BAR-->
+            <Grid Grid.Row="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
+                <Image x:Name="btnBack" Grid.Column="1" />
+                <Label x:Name="lblPageTitle" Text="Modify Actions" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Padding="32, 0, 0, 0"/>
+                <Button x:Name="btnConfirm" Text="Confirm Changes" Grid.Column="3" TextColor="#E40712" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Clicked="btnConfirmClicked"/>
+            </Grid>
+            <ScrollView x:Name="srvModifyActions" Grid.Row="1" Orientation="Vertical" BackgroundColor="Transparent">
+                <Grid Margin="24, 16, 24, 24">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <!--MODIFY STATS PAGE - ACTIONS -->
+                    <Grid Grid.Row="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Actions" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                        <Image x:Name="btnAddAction" Grid.Column="3"/>
+                    </Grid>
+                    <StackLayout x:Name="bdlActions" Grid.Row="1" BindableLayout.ItemsSource="{Binding Actions}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="28"/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="16"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="28"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblActionName" Grid.Column="0" Text="{Binding Name}" FontSize="16" TextColor="#F4F7FB" FontAttributes="Bold"/>
+                                        <ImageButton x:Name="btnEditAction" Grid.Column="1" Source="buttonEdit.png" BackgroundColor="Transparent"/>
+                                    </Grid>
+                                    <Label Grid.Row="1" Text="{Binding Description}" FontSize="14" TextColor="#E4E4E4"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <!--MODIFY STATS PAGE - LEGENDARY ACTIONS -->
+                    <Grid Grid.Row="2" ColumnSpacing="0" HorizontalOptions="FillAndExpand" Padding="0, 16, 0, 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="164"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Legendary Actions" FontSize="16" FontAttributes="Bold" TextColor="#E40712" TextTransform="Uppercase" VerticalOptions="CenterAndExpand"/>
+                        <BoxView Grid.Column="1" BackgroundColor="#E40712" HeightRequest="1" VerticalOptions="Center"/>
+                        <Image x:Name="btnAddLegendaryAction" Grid.Column="3"/>
+                    </Grid>
+                    <StackLayout x:Name="bdlLegendaryActions" Grid.Row="3" BindableLayout.ItemsSource="{Binding LegendaryActions}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="28"/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="16"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="28"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblLegendaryActionName" Grid.Column="0" Text="{Binding Name}" FontSize="16" TextColor="#F4F7FB" FontAttributes="Bold"/>
+                                        <ImageButton x:Name="btnEditLegendaryAction" Grid.Column="1" Source="buttonEdit.png" BackgroundColor="Transparent"/>
+                                    </Grid>
+                                    <Label Grid.Row="1" Text="{Binding Description}" FontSize="14" TextColor="#E4E4E4"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

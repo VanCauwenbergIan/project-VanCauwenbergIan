@@ -82,6 +82,97 @@ namespace DndApp.Repositories
             }
         }
 
+        public static async Task<List<ConditionImmunity>> GetConditions()
+        {
+            string url = $"{_BASEURI}/api/conditions";
+
+            using (HttpClient client = GetHttpClient())
+            {
+                try
+                {
+                    List<ConditionImmunity> conditions = new List<ConditionImmunity>();
+
+                    string json = await client.GetStringAsync(url);
+
+                    var data = JsonConvert.DeserializeObject<JsonToMonster>(json).results;
+
+                    // I'm just reusing the class I made to get monsters from the results in the main API call here
+                    foreach (var item in data)
+                    {
+                        ConditionImmunity conditionImmunity = new ConditionImmunity()
+                        {
+                            ConditionID = item.MonsterId,
+                            Name = item.Name
+                        };
+
+                        conditions.Add(conditionImmunity);
+                    }
+
+                    return conditions;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public static async Task<List<ProficiencyAndValue.ProficiencyObject>> GetProficiencies()
+        {
+            string url1 = $"{_BASEURI}/api/skills";
+            string url2 = $"{_BASEURI}/api/proficiencies";
+
+            using (HttpClient client = GetHttpClient())
+            {
+                try
+                {
+                    List<ProficiencyAndValue.ProficiencyObject> skills = new List<ProficiencyAndValue.ProficiencyObject>();
+                    List<ProficiencyAndValue.ProficiencyObject> allProficiencies = new List<ProficiencyAndValue.ProficiencyObject>();
+                    List<ProficiencyAndValue.ProficiencyObject> usefullProficiencies = new List<ProficiencyAndValue.ProficiencyObject>();
+
+                    string jsonSkills = await client.GetStringAsync(url1);
+                    string jsonProficiencies = await client.GetStringAsync(url2);
+
+                    var dataSkills = JsonConvert.DeserializeObject<JsonToMonster>(jsonSkills).results;
+                    var dataProficiencies = JsonConvert.DeserializeObject<JsonToMonster>(jsonProficiencies).results;
+
+                    foreach (var item in dataSkills)
+                    {
+                        ProficiencyAndValue.ProficiencyObject skill = new ProficiencyAndValue.ProficiencyObject()
+                        {
+                            ProficiencyId = item.MonsterId,
+                            Name = item.Name
+                        };
+
+                        skills.Add(skill);
+                    }
+                    foreach (var item in dataProficiencies)
+                    {
+                        ProficiencyAndValue.ProficiencyObject proficiency = new ProficiencyAndValue.ProficiencyObject()
+                        {
+                            ProficiencyId = item.MonsterId,
+                            Name = item.Name
+                        };
+
+                        allProficiencies.Add(proficiency);
+                    }
+                    foreach (ProficiencyAndValue.ProficiencyObject proficiency in allProficiencies)
+                    {
+                        if (proficiency.ProficiencyId.StartsWith("saving-throw-"))
+                        {
+                            usefullProficiencies.Add(proficiency);
+                        }
+                    }
+
+                    return usefullProficiencies.Concat(skills).ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         // NOTE: the actual second API doesn't run locally (although you could for an emulated android device). I only included the second solution for easy readability
         public static async Task PostHomebrewMonsterAsync(Monster monster)
         {

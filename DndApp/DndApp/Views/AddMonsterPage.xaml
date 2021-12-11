@@ -20,7 +20,6 @@
                     <ColumnDefinition Width="24"/>
                 </Grid.ColumnDefinitions>
                 <BoxView BackgroundColor="#090809" Grid.ColumnSpan ="5" />
-                <!--btnBack not in use on this page-->
                 <Image x:Name="btnBack" Grid.Column="1" />
                 <Label x:Name="lblPageTitle" Text="Modify Stats" Grid.Column="2" TextColor="#F4F7FB" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Padding="32, 0, 0, 0"/>
                 <Button x:Name="btnConfirm" Text="Confirm Changes" Grid.Column="3" TextColor="#E40712" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Clicked="btnConfirmClicked"/>
@@ -359,7 +358,7 @@
                                         <ColumnDefinition Width="28"/>
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="lblSkillName" Grid.Column="0" Text="{Binding Proficiency.Name}" TextColor="#F4F7FB" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
-                                    <ImageButton x:Name="btnDeleteProf" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent"/>
+                                    <ImageButton x:Name="btnDeleteProf" ClassId="{Binding Proficiency.Name}" Grid.Column="2" Source="buttonDelete.png" BackgroundColor="Transparent" Clicked="DeleteProficiency"/>
                                 </Grid>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
@@ -535,6 +534,39 @@
                     </StackLayout>
                 </Grid>
             </ScrollView>
+            <!--PROFICIENCIES (POP UP)-->
+            <ContentView Grid.RowSpan="2" x:Name="popSingleProficiency" IsVisible="false">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
+                        <Grid RowSpacing="16"  Padding="0, 0, 0, 16" BackgroundColor="#26282A">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="8"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="1" Text="Add new proficiency" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
+                            <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
+                            <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="24"/>
+                                    <ColumnDefinition Width="1"/>
+                                </Grid.ColumnDefinitions>
+                                <models:MyPicker x:Name="pckProficiency" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
+                                <Image x:Name="btnPckProficiency" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </Grid>
+                            <Grid Grid.Row="3" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="btnCancelProf" ClassId="prof" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnOptionsCancelClicked"/>
+                                <Button x:Name="btnConfirmProf" ClassId="prof" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnOptionsConfirmClicked"/>
+                            </Grid>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

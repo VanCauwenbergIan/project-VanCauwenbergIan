@@ -18,9 +18,13 @@ namespace DndApp.Views
     {
         AddMonsterViewModel Obj;
         public Monster SelectedMonster { get; set; }
+        // I could get most of these through the API as well, but they're literally just saved as strings, might as well hardcode them.
         public List<string> OptionsSize = new List<string> { "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan" };
         // 1d4, 1d6, 1d8, 1d10, 1d12, 1d20
         public List<string> OptionsAlignment = new List<string> { "chaotic evil", "neutral evil", "lawful evil", "chaotic neutral", "neutral", "lawful neutral", "unaligned", "chaotic good", "neutral good", "lawful good" };
+        public List<string> OptionsDamage = new List<string> { "acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"};
+        public List<ConditionImmunity> OptionsConditions = new List<ConditionImmunity>();
+        public List<ProficiencyAndValue.ProficiencyObject> OptionsProficiencies = new List<ProficiencyAndValue.ProficiencyObject>();
         public List<Monster> OriginalMonsters { get; set; }
         public List<Monster> HomebrewMonsters { get; set; }
 
@@ -75,16 +79,99 @@ namespace DndApp.Views
             btnAddCoditionImmunity.Source = ImageSource.FromResource("DndApp.Assets.buttonAddRed.png");
             btnSize.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
             btnAlignment.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
+            btnPckProficiency.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
 
             TapGestureRecognizer recognizer_return = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_openprof = new TapGestureRecognizer();
 
             recognizer_return.Tapped += Recognizer_Tapped_return;
+            recognizer_openprof.Tapped += Recognizer_Tapped_openprof;
             btnBack.GestureRecognizers.Add(recognizer_return);
+            btnAddProf.GestureRecognizers.Add(recognizer_openprof);
         }
 
         private void Recognizer_Tapped_return(object sender, EventArgs e)
         {
             Navigation.PopAsync();
+        }
+
+        private void Recognizer_Tapped_openprof(object sender, EventArgs e)
+        {
+            popSingleProficiency.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popSingleProficiency.IsVisible = true;
+        }
+
+        private void btnOptionsCancelClicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            string classId = button.ClassId;
+
+            if(classId == "prof")
+            {
+                popSingleProficiency.IsVisible = false;
+            }
+        }
+
+        private void btnOptionsConfirmClicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            string classId = button.ClassId;
+
+            if (classId == "prof" && pckProficiency.SelectedItem != null)
+            {
+                ProficiencyAndValue.ProficiencyObject selectedOption = new ProficiencyAndValue.ProficiencyObject();
+
+                foreach (ProficiencyAndValue.ProficiencyObject proficiency in OptionsProficiencies)
+                {
+                    if (proficiency.Name == pckProficiency.SelectedItem.ToString())
+                    {
+                        selectedOption = proficiency;
+                        break;
+                    }
+                }
+
+                if (selectedOption.Name.StartsWith("Saving Throw: "))
+                {
+                    selectedOption.ProficiencyId = selectedOption.Name.ToLower().Replace(" ", "-").Replace(":","");
+                }
+                else
+                {
+                    selectedOption.ProficiencyId = "skill-" + selectedOption.Name.ToLower().Replace(" ", "-");
+                }
+
+                ProficiencyAndValue fullProficiency = new ProficiencyAndValue()
+                {
+                    Proficiency = selectedOption,
+                    Value = 0
+                };
+
+                if (Obj.SingleProficiencies.Contains(fullProficiency) == false && Proficiencies.Contains(fullProficiency) == false)
+                {
+                    Obj.SingleProficiencies.Add(fullProficiency);
+                    Proficiencies.Add(fullProficiency);
+
+                    bdlSingleProficiencies.BindingContext = Obj;
+                }
+
+                popSingleProficiency.IsVisible = false;
+            }
+        }
+
+        private void DeleteProficiency(object sender, EventArgs e)
+        {
+            var button = (ImageButton)sender;
+            string classId = button.ClassId;
+
+            foreach(ProficiencyAndValue proficiency in Proficiencies)
+            {
+                if (proficiency.Proficiency.Name == classId)
+                {
+                    Proficiencies.Remove(proficiency);
+                    Obj.SingleProficiencies.Remove(proficiency);
+                    bdlSingleProficiencies.BindingContext = Obj;
+                    break;
+                }
+            }
         }
 
         private void LoadMonsterInfo()
@@ -217,16 +304,17 @@ namespace DndApp.Views
             }
         }
 
-        private void LoadPickers()
+        private async void LoadPickers()
         {
-            foreach (string size in OptionsSize)
-            {
-                pckSize.Items.Add(size);
-            }
+            pckSize.ItemsSource = OptionsSize;
+            pckAlignment.ItemsSource = OptionsAlignment;
 
-            foreach (string alignment in OptionsAlignment)
+            OptionsConditions = await MonsterRepository.GetConditions();
+            OptionsProficiencies = await MonsterRepository.GetProficiencies();
+
+            foreach (ProficiencyAndValue.ProficiencyObject proficiency in OptionsProficiencies)
             {
-                pckAlignment.Items.Add(alignment);
+                pckProficiency.Items.Add(proficiency.Name);
             }
         }
 
@@ -247,6 +335,9 @@ namespace DndApp.Views
                 int dex = Int32.Parse(entDexterity.Text);
                 int con = Int32.Parse(entConstitution.Text);
                 int wis = Int32.Parse(entWisdom.Text);
+                int str = Int32.Parse(entStrength.Text);
+                int intel = Int32.Parse(entIntelligence.Text);
+                int cha = Int32.Parse(entCharisma.Text);
                 int na = Int32.Parse(entNaturalArmor.Text);
                 double cr = Double.Parse(entChallengeRating.Text);
 
@@ -258,13 +349,18 @@ namespace DndApp.Views
                 int pp = CalculatePassivePerception(cr, wis);
                 // change after adding proficiencies!!!!!!! 
 
+                foreach(ProficiencyAndValue proficiency in Proficiencies)
+                {
+                    if (proficiency.Value == 0)
+                    {
+                        proficiency.Value = CalculateProficiencyValue(proficiency, new List<int>{ str, dex, con, intel, wis, cha}, CalculateProficiencyBonus(cr), false);
+                    }
+                }
+
                 // remaining properties
                 string size = pckSize.SelectedItem.ToString();
                 string type = entType.Text;
                 string alignment = pckAlignment.SelectedItem.ToString();
-                int strength = Int32.Parse(entStrength.Text);
-                int intelligence = Int32.Parse(entIntelligence.Text);
-                int charisma = Int32.Parse(entCharisma.Text);
                 string languages = entLanguages.Text;
                 string walkingSpeed = entWalkingSpeed.Text;
                 string swimmingSpeed = entSwimmingSpeed.Text;
@@ -277,7 +373,7 @@ namespace DndApp.Views
                 string tremorsense = entTremorsense.Text;
                 string truesight = entTruesight.Text;
 
-                List<ProficiencyAndValue> proficiencies = new List<ProficiencyAndValue>();
+                List<ProficiencyAndValue> proficiencies = Proficiencies;
                 List<string> damageVulnerabilities = new List<string>();
                 List<string> damageResistances = new List<string>();
                 List<string> damageImmunities = new List<string>();
@@ -297,12 +393,12 @@ namespace DndApp.Views
                         ArmorClass = ac,
                         HitPoints = hp,
                         HitDice = hd,
-                        Strength = strength,
+                        Strength = str,
                         Dexterity = dex,
                         Constitution = con,
-                        Intelligence = intelligence,
+                        Intelligence = intel,
                         Wisdom = wis,
-                        Charisma = charisma,
+                        Charisma = cha,
                         Languages = languages,
                         ChallengeRating = cr,
                         ExperiencePoints = xp,
@@ -331,9 +427,19 @@ namespace DndApp.Views
                     };
 
                     await MonsterRepository.PostHomebrewMonsterAsync(newMonster);
-
                     // problem: normally we would pass on data when creating a page, but then the whole overviewpage would reload for one single monster. Not exactly the best UX
                     MessagingCenter.Send<Monster>(newMonster, "refresh!");
+
+                    if (SelectedMonster != null)
+                    {
+                        // we want to go back 2 pages instead to reach the overviewpage
+                        Navigation.RemovePage(Navigation.NavigationStack[1]);
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        await Navigation.PopAsync();
+                    }
                 }
                 else
                 {
@@ -345,12 +451,12 @@ namespace DndApp.Views
                     SelectedMonster.ArmorClass = ac;
                     SelectedMonster.HitPoints = hp;
                     SelectedMonster.HitDice = hd;
-                    SelectedMonster.Strength = strength;
+                    SelectedMonster.Strength = str;
                     SelectedMonster.Dexterity = dex;
                     SelectedMonster.Constitution = con;
-                    SelectedMonster.Intelligence = intelligence;
+                    SelectedMonster.Intelligence = intel;
                     SelectedMonster.Wisdom = wis;
-                    SelectedMonster.Charisma = charisma;
+                    SelectedMonster.Charisma = cha;
                     SelectedMonster.Languages = languages;
                     SelectedMonster.ChallengeRating = cr;
                     SelectedMonster.ExperiencePoints = xp;
@@ -373,9 +479,58 @@ namespace DndApp.Views
 
                     // note: regardless of making a put request... a post will still happen in some cases: the name has been changed, the type has been changed or both!!! (the monster's id (rowkey) is a formatted version of the name, type is the partitionkey of monsters within the table storage.
                     await MonsterRepository.PutHomebrewMonsterAsync(SelectedMonster);
-
                     MessagingCenter.Send<Monster>(SelectedMonster, "refresh!");
+
+                    Navigation.RemovePage(Navigation.NavigationStack[1]);
+                    await Navigation.PopAsync();
                 }
+            }
+        }
+
+        private int CalculateProficiencyValue(ProficiencyAndValue proficiency, List<int> abilityScores, int proficiencyBonus ,bool doubleProficiency)
+        {
+            //new List<int>{ str, dex, con, intel, wis, cha}
+            List<string> StrProficiencies = new List<string> { "saving-throw-str", "skill-athletics" };
+            List<string> DexProficiencies = new List<string> { "saving-throw-dex", "skill-acrobatics", "skill-sleight-of-hand", "skill-stealth" };
+            List<string> IntProficiencies = new List<string> { "saving-throw-int", "skill-arcana", "skill-history", "skill-investigation", "skill-nature", "skill-religion" };
+            List<string> WisProficiencies = new List<string> { "saving-throw-wis", "skill-animal-handling", "skill-insight", "skill-medicine", "skill-perception", "skill-survival" };
+            List<string> ChaProficiencies = new List<string> { "saving-throw-cha", "skill-deception", "skill-intimidation", "skill-performance", "skill-persuasion" };
+            List<string> ConProficiencies = new List<string> { "saving-throw-con" };
+
+            int asm = 0;
+
+            if (StrProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+            {
+                asm = MonsterMethods.getAbilityScoreModifier(abilityScores[0]);
+            }
+            else if (DexProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+            {
+                asm = MonsterMethods.getAbilityScoreModifier(abilityScores[1]);
+            }
+            else if (ConProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+            {
+                asm = MonsterMethods.getAbilityScoreModifier(abilityScores[2]);
+            }
+            else if (IntProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+            {
+                asm = MonsterMethods.getAbilityScoreModifier(abilityScores[3]);
+            }
+            else if (WisProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+            {
+                asm = MonsterMethods.getAbilityScoreModifier(abilityScores[4]);
+            }
+            else if (ChaProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
+            {
+                asm = MonsterMethods.getAbilityScoreModifier(abilityScores[5]);
+            }
+
+            if (doubleProficiency == false)
+            {
+                return asm + proficiencyBonus;
+            }
+            else
+            {
+                return asm + (2 * proficiencyBonus);
             }
         }
 

@@ -150,7 +150,6 @@
                                 <RowDefinition Height="40"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="1" Text="Sort Monsters By:" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
-                            <!--need to find a way to change the color of these radio buttons, sicne rn they're just the default black with pink-->
                             <models:MyRadio x:Name="rbtName" Grid.Row="2" Content=" Name" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
                             <models:MyRadio x:Name="rbtType" Grid.Row="3" Content=" Type" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
                             <models:MyRadio x:Name="rbtChallenge" Grid.Row="4" Content=" Challenge" TextColor="#F4F7FB" Margin="8, 0, 0, 0"/>
@@ -172,8 +171,8 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button x:Name="btnCancel" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnCancelClicked"/>
-                                <Button x:Name="btnConfirm" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnConfirmClicked"/>
+                                <Button x:Name="btnCancel" ClassId="prof" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnCancelClicked"/>
+                                <Button x:Name="btnConfirm" ClassId="prof" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnConfirmClicked"/>
                             </Grid>
                         </Grid>
                     </StackLayout>
