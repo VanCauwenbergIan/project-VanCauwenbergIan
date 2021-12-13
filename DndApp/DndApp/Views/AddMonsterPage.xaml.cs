@@ -25,12 +25,17 @@ namespace DndApp.Views
         public List<string> OptionsDamage = new List<string> { "acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"};
         public List<ConditionImmunity> OptionsConditions = new List<ConditionImmunity>();
         public List<ProficiencyAndValue.ProficiencyObject> OptionsProficiencies = new List<ProficiencyAndValue.ProficiencyObject>();
+        public List<string> OptionsUsage = new List<string> { "recharge on roll", "per day", "per long rest", "per short rest"};
         public List<Monster> OriginalMonsters { get; set; }
         public List<Monster> HomebrewMonsters { get; set; }
 
         public List<ProficiencyAndValue> Proficiencies { get; set; }
         public List<ProficiencyAndValue> Expertises { get; set; }
-
+        public List<string> DamageResistances { get; set; }
+        public List<string> DamageVulnerabilities { get; set; }
+        public List<string> DamageImmunities { get; set; }
+        public List<ConditionImmunity> ConditionImmunities { get; set; }
+        public List<Action> Abilities { get; set; }
         // constructor for put 
         public AddMonsterPage(Monster selectedMonster, List<Monster> oMonsters, List<Monster> hbMonsters)
         {
@@ -80,14 +85,38 @@ namespace DndApp.Views
             btnSize.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
             btnAlignment.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
             btnPckProficiency.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
+            btnPckExpertise.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
+            btnPckDamageResistance.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
+            btnPckDamageVulnerability.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
+            btnPckDamageImmunity.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
+            btnPckConditionImmunity.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
+            btnPckUsage.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
 
             TapGestureRecognizer recognizer_return = new TapGestureRecognizer();
             TapGestureRecognizer recognizer_openprof = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_openexp = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_openres = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_openvul = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_opendamimu = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_openconimu = new TapGestureRecognizer();
+            TapGestureRecognizer recognizer_openabi = new TapGestureRecognizer();
 
             recognizer_return.Tapped += Recognizer_Tapped_return;
             recognizer_openprof.Tapped += Recognizer_Tapped_openprof;
+            recognizer_openexp.Tapped += Recognizer_Tapped_openexp;
+            recognizer_openres.Tapped += Recognizer_Tapped_openres;
+            recognizer_openvul.Tapped += Recognizer_Tapped_openvul;
+            recognizer_opendamimu.Tapped += Recognizer_Tapped_opendamimu;
+            recognizer_openconimu.Tapped += Recognizer_Tapped_openconimu;
+            recognizer_openabi.Tapped += Recognizer_Tapped_openabi;
             btnBack.GestureRecognizers.Add(recognizer_return);
             btnAddProf.GestureRecognizers.Add(recognizer_openprof);
+            btnAddExpert.GestureRecognizers.Add(recognizer_openexp);
+            btnAddResitance.GestureRecognizers.Add(recognizer_openres);
+            btnAddVulnerability.GestureRecognizers.Add(recognizer_openvul);
+            btnAddDamageImmunity.GestureRecognizers.Add(recognizer_opendamimu);
+            btnAddCoditionImmunity.GestureRecognizers.Add(recognizer_openconimu);
+            btnAddAbility.GestureRecognizers.Add(recognizer_openabi);
         }
 
         private void Recognizer_Tapped_return(object sender, EventArgs e)
@@ -101,6 +130,42 @@ namespace DndApp.Views
             popSingleProficiency.IsVisible = true;
         }
 
+        private void Recognizer_Tapped_openexp(object sender, EventArgs e)
+        {
+            popDoubleProficiency.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popDoubleProficiency.IsVisible = true;
+        }
+
+        private void Recognizer_Tapped_openres(Object sender, EventArgs e)
+        {
+            popDamageResistances.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popDamageResistances.IsVisible = true;
+        }
+
+        private void Recognizer_Tapped_openvul(Object sender, EventArgs e)
+        {
+            popDamageVulnerabilities.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popDamageVulnerabilities.IsVisible = true;
+        }
+
+        private void Recognizer_Tapped_opendamimu(Object sender, EventArgs e)
+        {
+            popDamageImmunities.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popDamageImmunities.IsVisible = true;
+        }
+
+        private void Recognizer_Tapped_openconimu(Object sender, EventArgs e)
+        {
+            popConditionImmunity.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popConditionImmunity.IsVisible = true;
+        }
+
+        private void Recognizer_Tapped_openabi(Object sender, EventArgs e)
+        {
+            popAbilities.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popAbilities.IsVisible = true;
+        }
+
         private void btnOptionsCancelClicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
@@ -109,6 +174,45 @@ namespace DndApp.Views
             if(classId == "prof")
             {
                 popSingleProficiency.IsVisible = false;
+                pckProficiency.SelectedItem = null;
+            }
+            else if (classId == "exp")
+            {
+                popDoubleProficiency.IsVisible = false;
+                pckExpertise.SelectedItem = null;
+            }
+            else if (classId == "res")
+            {
+                popDamageResistances.IsVisible = false;
+                pckDamageResistance.SelectedItem = null;
+            }
+            else if (classId == "vul")
+            {
+                popDamageVulnerabilities.IsVisible = false;
+                pckDamageVulnerability.SelectedItem = null;
+            }
+            else if (classId == "damimu")
+            {
+                popDamageImmunities.IsVisible = false;
+                pckDamageImmunity.SelectedItem = null;
+            }
+            else if (classId == "conimu")
+            {
+                popConditionImmunity.IsVisible = false;
+                pckConditionImmunity.SelectedItem = null;
+            }
+            else if (classId == "abi")
+            {
+                btnDeleteAbi.IsVisible = false;
+                popAbilities.IsVisible = false;
+                ediNameAbility.Text = null;
+                ediNameAbility.IsEnabled = true;
+                ediDescriptionAbility.Text = null;
+                cbxToggleUsage.IsChecked = false;
+                pckUsage.SelectedItem = null;
+                entTimes.Text = null;
+                entDice.Text = null;
+                entMinRoll.Text = null;
             }
         }
 
@@ -119,6 +223,7 @@ namespace DndApp.Views
 
             if (classId == "prof" && pckProficiency.SelectedItem != null)
             {
+                int counter = 0;
                 ProficiencyAndValue.ProficiencyObject selectedOption = new ProficiencyAndValue.ProficiencyObject();
 
                 foreach (ProficiencyAndValue.ProficiencyObject proficiency in OptionsProficiencies)
@@ -145,7 +250,23 @@ namespace DndApp.Views
                     Value = 0
                 };
 
-                if (Obj.SingleProficiencies.Contains(fullProficiency) == false && Proficiencies.Contains(fullProficiency) == false)
+                // prevent the user from adding a skill or saving throw that's already an expertise or proficiency
+                foreach (ProficiencyAndValue prof in Expertises)
+                {
+                    if (prof.Proficiency.ProficiencyId == fullProficiency.Proficiency.ProficiencyId)
+                    {
+                        counter++;
+                    }
+                }
+                foreach (ProficiencyAndValue prof in Proficiencies)
+                {
+                    if (prof.Proficiency.ProficiencyId == fullProficiency.Proficiency.ProficiencyId)
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter == 0)
                 {
                     Obj.SingleProficiencies.Add(fullProficiency);
                     Proficiencies.Add(fullProficiency);
@@ -154,6 +275,305 @@ namespace DndApp.Views
                 }
 
                 popSingleProficiency.IsVisible = false;
+            }
+            else if (classId == "exp" && pckExpertise.SelectedItem != null)
+            {
+                ProficiencyAndValue.ProficiencyObject selectedOption = new ProficiencyAndValue.ProficiencyObject();
+                int counter = 0;
+
+                foreach (ProficiencyAndValue.ProficiencyObject proficiency in OptionsProficiencies)
+                {
+                    if (proficiency.Name == pckExpertise.SelectedItem.ToString())
+                    {
+                        selectedOption = proficiency;
+                        break;
+                    }
+
+
+                }
+
+                if (selectedOption.Name.StartsWith("Saving Throw: "))
+                {
+                    selectedOption.ProficiencyId = selectedOption.Name.ToLower().Replace(" ", "-").Replace(":", "");
+                }
+                else
+                {
+                    selectedOption.ProficiencyId = "skill-" + selectedOption.Name.ToLower().Replace(" ", "-");
+                }
+
+                ProficiencyAndValue fullProficiency = new ProficiencyAndValue()
+                {
+                    Proficiency = selectedOption,
+                    Value = 0
+                };
+
+                foreach(ProficiencyAndValue prof in Expertises)
+                {
+                    if (prof.Proficiency.ProficiencyId == fullProficiency.Proficiency.ProficiencyId)
+                    {
+                        counter++;
+                    }
+                }
+                foreach(ProficiencyAndValue prof in Proficiencies)
+                {
+                    if (prof.Proficiency.ProficiencyId == fullProficiency.Proficiency.ProficiencyId)
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter == 0)
+                {
+                    Obj.DoubleProficiencies.Add(fullProficiency);
+                    Expertises.Add(fullProficiency);
+
+                    bdlDoubleProficiencies.BindingContext = Obj;
+                }
+
+                popDoubleProficiency.IsVisible = false;
+            }
+            else if (classId == "res" && pckDamageResistance.SelectedItem != null)
+            {
+                string selectedOption = pckDamageResistance.SelectedItem.ToString();
+
+                if (DamageResistances.Contains(selectedOption) == false && DamageVulnerabilities.Contains(selectedOption) == false && DamageImmunities.Contains(selectedOption) == false)
+                {
+                    Obj.DamageResistances.Add(selectedOption);
+                    DamageResistances.Add(selectedOption);
+
+                    bdlDamageResistances.BindingContext = Obj;
+                }
+
+                popDamageResistances.IsVisible = false;
+            }
+            else if (classId == "vul" && pckDamageVulnerability.SelectedItem != null)
+            {
+                string selectedOption = pckDamageVulnerability.SelectedItem.ToString();
+
+                if (DamageResistances.Contains(selectedOption) == false && DamageVulnerabilities.Contains(selectedOption) == false && DamageImmunities.Contains(selectedOption) == false)
+                {
+                    Obj.DamageVulnerabilities.Add(selectedOption);
+                    DamageVulnerabilities.Add(selectedOption);
+
+                    bdlDamageVulnerabilities.BindingContext = Obj;
+                }
+
+                popDamageVulnerabilities.IsVisible = false;
+            }
+            else if (classId == "damimu" && pckDamageImmunity.SelectedItem != null)
+            {
+                string selectedOption = pckDamageImmunity.SelectedItem.ToString();
+
+                if (DamageResistances.Contains(selectedOption) == false && DamageVulnerabilities.Contains(selectedOption) == false && DamageImmunities.Contains(selectedOption) == false)
+                {
+                    Obj.DamageImmunities.Add(selectedOption);
+                    DamageImmunities.Add(selectedOption);
+
+                    bdlDamageImmunities.BindingContext = Obj;
+                }
+
+                popDamageImmunities.IsVisible = false;
+            }
+            else if (classId == "conimu" && pckConditionImmunity.SelectedItem != null)
+            {
+                int counter = 0;
+                ConditionImmunity conditionImmunity = new ConditionImmunity();
+
+                foreach (ConditionImmunity condition in OptionsConditions)
+                {
+                    if (condition.Name == pckConditionImmunity.SelectedItem.ToString())
+                    {
+                        conditionImmunity = condition;
+                        break;
+                    }
+                }
+
+                foreach (ConditionImmunity condition in ConditionImmunities)
+                {
+                    if (condition.ConditionID == conditionImmunity.ConditionID)
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter == 0)
+                {
+                    Obj.ConditionImmunities.Add(conditionImmunity);
+                    ConditionImmunities.Add(conditionImmunity);
+
+                    bdlConditionImmunities.BindingContext = Obj;
+                }
+
+                popConditionImmunity.IsVisible = false;
+            }
+            else if (classId == "abi" && ediNameAbility.Text != null && ediDescriptionAbility.Text != null && ediNameAbility.Text != "" && ediDescriptionAbility.Text != "")
+            {
+                int counter = 0;
+                Action ability = new Action();
+                ability.Name = ediNameAbility.Text;
+                ability.Description = ediDescriptionAbility.Text;
+
+                if (Abilities != null)
+                {
+                    Obj.SpecialAbilities.Clear();
+                    foreach (Action a in Abilities)
+                    {
+                        if (a.Name == ability.Name)
+                        {
+                            counter++;
+                            a.Name = ability.Name;
+                            a.Description = ability.Description;
+                            a.Usage = null;
+                        }
+                        Obj.SpecialAbilities.Add(a);
+                        bdlAbilities.BindingContext = Obj;
+                    }
+                }
+                else
+                {
+                    Abilities = new List<Action>();
+                }
+
+                popAbilities.IsVisible = false;
+                ediDescriptionAbility.Text = null;
+                ediNameAbility.Text = null;
+                ediNameAbility.IsEnabled = true;
+
+                if (cbxToggleUsage.IsChecked == true)
+                {
+                    popAbilityUsage.IsVisible = true;
+                    popAbilityUsage.BindingContext = ability;
+                }
+                else
+                {
+                    ability.Usage = null;
+                }
+
+                if (counter == 0)
+                {
+                    Obj.SpecialAbilities.Add(ability);
+                    Abilities.Add(ability);
+
+                    bdlAbilities.BindingContext = Obj;
+                }
+
+                cbxToggleUsage.IsChecked = false;
+                btnDeleteAbi.IsVisible = false;
+            }
+        }
+
+        private void pckUsageTypeSelected(object sender, EventArgs e)
+        {
+            if (pckUsage.SelectedItem != null)
+            {
+                if (pckUsage.SelectedItem.ToString() == "recharge on roll")
+                {
+                    grdUsageRoll.IsVisible = true;
+                    grdUsageTime.IsVisible = false;
+                }
+                else
+                {
+                    grdUsageTime.IsVisible = true;
+                    grdUsageRoll.IsVisible = false;
+                }
+            }
+        }
+
+        private void btnUsageConfirmClicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            string classId = button.ClassId;
+            int i = 0;
+
+            foreach (Action ability in Abilities)
+            {
+                if (ability.Name == classId)
+                {
+                    if (grdUsageRoll.IsVisible == true)
+                    {
+                        if (entDice.Text != null && entMinRoll.Text != null && entDice.Text != "" && entMinRoll.Text != "")
+                        {
+                            if (int.TryParse(entMinRoll.Text, out i) == true)
+                            {
+                                string[] usageCheck = entDice.Text.Split('d');
+
+                                if (int.TryParse(usageCheck[0], out i) == true && int.TryParse(usageCheck[1], out i) == true)
+                                {
+                                    ability.Usage = new UsageObject()
+                                    {
+                                        Type = pckUsage.SelectedItem.ToString(),
+                                        Dice = entDice.Text,
+                                        MinimumValue = Int32.Parse(entMinRoll.Text)
+                                    };
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (entTimes.Text != null && entTimes.Text != "")
+                        {
+                            if (int.TryParse(entTimes.Text, out i) == true)
+                            {
+                                ability.Usage = new UsageObject()
+                                {
+                                    Type = pckUsage.SelectedItem.ToString(),
+                                    Times = Int32.Parse(entTimes.Text)
+                                };
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+
+            grdUsageTime.IsVisible = false;
+            grdUsageRoll.IsVisible = false;
+            popAbilityUsage.IsVisible = false;
+            pckUsage.SelectedItem = null;
+            entTimes.Text = null;
+            entDice.Text = null;
+            entMinRoll.Text = null;
+        }
+
+        private void EditAbility(object sender, EventArgs e)
+        {
+            var button = (ImageButton)sender;
+            string classId = button.ClassId;
+
+            foreach (Action ability in Abilities)
+            {
+                if (ability.Name == classId)
+                {
+                    ediNameAbility.Text = ability.Name;
+                    ediNameAbility.IsEnabled = false;
+                    ediDescriptionAbility.Text = ability.Description;
+
+                    if (ability.Usage != null)
+                    {
+                        cbxToggleUsage.IsChecked = true;
+                        pckUsage.SelectedItem = ability.Usage.Type;
+
+                        if (pckUsage.SelectedItem.ToString() == "recharge on roll")
+                        {
+                            entDice.Text = ability.Usage.Dice;
+                            entMinRoll.Text = ability.Usage.MinimumValue.ToString();
+                        }
+                        else
+                        {
+                            entTimes.Text = ability.Usage.Times.ToString();
+                        }
+                    }
+                    else
+                    {
+                        cbxToggleUsage.IsChecked = false;
+                    }
+                    btnDeleteAbi.IsVisible = true;
+                    popAbilityUsage.BindingContext = ability;
+                    popAbilities.IsVisible = true;
+
+                    break;
+                }
             }
         }
 
@@ -172,6 +592,130 @@ namespace DndApp.Views
                     break;
                 }
             }
+
+            pckProficiency.SelectedItem = null;
+        }
+
+        private void DeleteExpertise(object sender, EventArgs e)
+        {
+            var button = (ImageButton)sender;
+            string classId = button.ClassId;
+
+            foreach(ProficiencyAndValue expertise in Expertises)
+            {
+                if (expertise.Proficiency.Name == classId)
+                {
+                    Expertises.Remove(expertise);
+                    Obj.DoubleProficiencies.Remove(expertise);
+                    bdlDoubleProficiencies.BindingContext = Obj;
+                    break;
+                }
+            }
+
+            pckExpertise.SelectedItem = null;
+        }
+
+        private void DeleteResistance(Object sender, EventArgs e)
+        {
+            var button = (ImageButton)sender;
+            string classId = button.ClassId;
+
+            foreach(string resistance in DamageResistances)
+            {
+                if (resistance == classId)
+                {
+                    DamageResistances.Remove(resistance);
+                    Obj.DamageResistances.Remove(resistance);
+                    bdlDamageResistances.BindingContext = Obj;
+                    break;
+                }
+            }
+
+            pckDamageResistance.SelectedItem = null;
+        }
+
+        private void DeleteVulnerability(Object sender, EventArgs e)
+        {
+            var button = (ImageButton)sender;
+            string classId = button.ClassId;
+
+            foreach(string vulnerability in DamageVulnerabilities)
+            {
+                if (vulnerability == classId)
+                {
+                    DamageVulnerabilities.Remove(vulnerability);
+                    Obj.DamageVulnerabilities.Remove(vulnerability);
+                    bdlDamageVulnerabilities.BindingContext = Obj;
+                    break;
+                }
+            }
+
+            pckDamageVulnerability.SelectedItem = null;
+        }
+
+        private void DeleteDamageImmunity(Object sender, EventArgs e)
+        {
+            var button = (ImageButton)sender;
+            string classId = button.ClassId;
+
+            foreach(string immunity in DamageImmunities)
+            {
+                if (immunity == classId)
+                {
+                    DamageImmunities.Remove(immunity);
+                    Obj.DamageImmunities.Remove(immunity);
+                    bdlDamageImmunities.BindingContext = Obj;
+                    break;
+                }
+            }
+
+            pckDamageImmunity.SelectedItem = null;
+        }
+
+        private void DeleteConditionImmunity(Object sender, EventArgs e)
+        {
+            var button = (ImageButton)sender;
+            string classId = button.ClassId;
+
+            foreach(ConditionImmunity immunity in ConditionImmunities)
+            {
+                if (immunity.Name == classId)
+                {
+                    ConditionImmunities.Remove(immunity);
+                    Obj.ConditionImmunities.Remove(immunity);
+                    bdlConditionImmunities.BindingContext = Obj;
+                    break;
+                }
+            }
+
+            pckConditionImmunity.SelectedItem = null;
+        }
+
+        private void DeleteAbility(Object sender, EventArgs e)
+        {
+            string name = ediNameAbility.Text;
+
+            foreach(Action ability in Abilities)
+            {
+                if (ability.Name == name)
+                {
+                    Abilities.Remove(ability);
+                    Obj.SpecialAbilities.Remove(ability);
+                    bdlAbilities.BindingContext = Obj;
+                    break;
+                }
+            }
+
+            btnDeleteAbi.IsVisible = false;
+            popAbilities.IsVisible = false;
+            ediNameAbility.Text = null;
+            ediNameAbility.IsEnabled = true;
+            ediDescriptionAbility.Text = null;
+            cbxToggleUsage.IsChecked = false;
+            pckUsage.SelectedItem = null;
+            entTimes.Text = null;
+            entDice.Text = null;
+            entMinRoll.Text = null;
         }
 
         private void LoadMonsterInfo()
@@ -224,6 +768,11 @@ namespace DndApp.Views
 
             Proficiencies = MonsterMethods.CheckProficiencies(SelectedMonster, false);
             Expertises = MonsterMethods.CheckProficiencies(SelectedMonster, true);
+            DamageVulnerabilities = SelectedMonster.DamageVulnerabilities;
+            DamageResistances = SelectedMonster.DamageResistances;
+            DamageImmunities = SelectedMonster.DamageImmunities;
+            ConditionImmunities = SelectedMonster.ConditionImmunities;
+            Abilities = SelectedMonster.SpecialAbilities;
 
             if (Proficiencies != null)
             {
@@ -247,55 +796,55 @@ namespace DndApp.Views
 
                 bdlDoubleProficiencies.BindingContext = Obj;
             }
-            if (SelectedMonster.DamageVulnerabilities != null)
+            if (DamageVulnerabilities != null)
             {
                 Obj.DamageVulnerabilities.Clear();
 
-                foreach (string vulnerability in SelectedMonster.DamageVulnerabilities)
+                foreach (string vulnerability in DamageVulnerabilities)
                 {
                     Obj.DamageVulnerabilities.Add(vulnerability);
                 }
 
                 bdlDamageVulnerabilities.BindingContext = Obj;
             }
-            if (SelectedMonster.DamageResistances != null)
+            if (DamageResistances != null)
             {
                 Obj.DamageResistances.Clear();
 
-                foreach (string resistance in SelectedMonster.DamageResistances)
+                foreach (string resistance in DamageResistances)
                 {
                     Obj.DamageResistances.Add(resistance);
                 }
 
                 bdlDamageResistances.BindingContext = Obj;
             }
-            if (SelectedMonster.DamageImmunities != null)
+            if (DamageImmunities != null)
             {
                 Obj.DamageImmunities.Clear();
 
-                foreach (string immunity in SelectedMonster.DamageImmunities)
+                foreach (string immunity in DamageImmunities)
                 {
                     Obj.DamageImmunities.Add(immunity);
                 }
 
                 bdlDamageImmunities.BindingContext = Obj;
             }
-            if (SelectedMonster.ConditionImmunities != null)
+            if (ConditionImmunities != null)
             {
                 Obj.ConditionImmunities.Clear();
 
-                foreach (ConditionImmunity immunity in SelectedMonster.ConditionImmunities)
+                foreach (ConditionImmunity immunity in ConditionImmunities)
                 {
                     Obj.ConditionImmunities.Add(immunity);
                 }
 
                 bdlConditionImmunities.BindingContext = Obj;
             }
-            if (SelectedMonster.SpecialAbilities != null)
+            if (Abilities != null)
             {
                 Obj.SpecialAbilities.Clear();
 
-                foreach (Action specialAbility in SelectedMonster.SpecialAbilities)
+                foreach (Action specialAbility in Abilities)
                 {
                     Obj.SpecialAbilities.Add(specialAbility);
                 }
@@ -308,6 +857,10 @@ namespace DndApp.Views
         {
             pckSize.ItemsSource = OptionsSize;
             pckAlignment.ItemsSource = OptionsAlignment;
+            pckDamageResistance.ItemsSource = OptionsDamage;
+            pckDamageVulnerability.ItemsSource = OptionsDamage;
+            pckDamageImmunity.ItemsSource = OptionsDamage;
+            pckUsage.ItemsSource = OptionsUsage;
 
             OptionsConditions = await MonsterRepository.GetConditions();
             OptionsProficiencies = await MonsterRepository.GetProficiencies();
@@ -315,6 +868,11 @@ namespace DndApp.Views
             foreach (ProficiencyAndValue.ProficiencyObject proficiency in OptionsProficiencies)
             {
                 pckProficiency.Items.Add(proficiency.Name);
+                pckExpertise.Items.Add(proficiency.Name);
+            }
+            foreach (ConditionImmunity immunity in OptionsConditions)
+            {
+                pckConditionImmunity.Items.Add(immunity.Name);
             }
         }
 
@@ -341,14 +899,6 @@ namespace DndApp.Views
                 int na = Int32.Parse(entNaturalArmor.Text);
                 double cr = Double.Parse(entChallengeRating.Text);
 
-                string id = ComposeId(name);
-                int ac = CalculateArmorClass(dex, na);
-                string hd = ComposeHitDice(Int32.Parse(entHitDice.Text), pckSize.SelectedItem.ToString());
-                int hp = CalculateHitPoints(hd, con);
-                int xp = CalculateExperiencePoints(cr);
-                int pp = CalculatePassivePerception(cr, wis);
-                // change after adding proficiencies!!!!!!! 
-
                 foreach(ProficiencyAndValue proficiency in Proficiencies)
                 {
                     if (proficiency.Value == 0)
@@ -356,6 +906,22 @@ namespace DndApp.Views
                         proficiency.Value = CalculateProficiencyValue(proficiency, new List<int>{ str, dex, con, intel, wis, cha}, CalculateProficiencyBonus(cr), false);
                     }
                 }
+
+                foreach(ProficiencyAndValue expertise in Expertises)
+                {
+                    if (expertise.Value == 0)
+                    {
+                        expertise.Value = CalculateProficiencyValue(expertise, new List<int> { str, dex, con, intel, wis, cha }, CalculateProficiencyBonus(cr), true);
+                    }
+                }
+
+                string id = ComposeId(name);
+                int ac = CalculateArmorClass(dex, na);
+                string hd = ComposeHitDice(Int32.Parse(entHitDice.Text), pckSize.SelectedItem.ToString());
+                int hp = CalculateHitPoints(hd, con);
+                int xp = CalculateExperiencePoints(cr);
+                int pp = CalculatePassivePerception(wis, Proficiencies);
+
 
                 // remaining properties
                 string size = pckSize.SelectedItem.ToString();
@@ -373,14 +939,12 @@ namespace DndApp.Views
                 string tremorsense = entTremorsense.Text;
                 string truesight = entTruesight.Text;
 
-                List<ProficiencyAndValue> proficiencies = Proficiencies;
-                List<string> damageVulnerabilities = new List<string>();
-                List<string> damageResistances = new List<string>();
-                List<string> damageImmunities = new List<string>();
-                List<ConditionImmunity> conditionImmunities = new List<ConditionImmunity>();
-                List<Action> specialAbilities = new List<Action>();
-                List<Action> actions = new List<Action>();
-                List<Action> legendaryActions = new List<Action>();
+                List<ProficiencyAndValue> proficiencies = Proficiencies.Concat(Expertises).ToList();
+                List<string> damageVulnerabilities = DamageVulnerabilities;
+                List<string> damageResistances = DamageResistances;
+                List<string> damageImmunities = DamageImmunities;
+                List<ConditionImmunity> conditionImmunities = ConditionImmunities;
+                List<Action> specialAbilities = Abilities;
 
                 if (SelectedMonster == null || OriginalMonsters.Contains(SelectedMonster))
                 {
@@ -424,6 +988,7 @@ namespace DndApp.Views
                         DamageResistances = damageResistances,
                         DamageImmunities = damageImmunities,
                         ConditionImmunities = conditionImmunities,
+                        SpecialAbilities = specialAbilities
                     };
 
                     await MonsterRepository.PostHomebrewMonsterAsync(newMonster);
@@ -476,6 +1041,7 @@ namespace DndApp.Views
                     SelectedMonster.DamageResistances = damageResistances;
                     SelectedMonster.DamageImmunities = damageImmunities;
                     SelectedMonster.ConditionImmunities = conditionImmunities;
+                    SelectedMonster.SpecialAbilities = specialAbilities;
 
                     // note: regardless of making a put request... a post will still happen in some cases: the name has been changed, the type has been changed or both!!! (the monster's id (rowkey) is a formatted version of the name, type is the partitionkey of monsters within the table storage.
                     await MonsterRepository.PutHomebrewMonsterAsync(SelectedMonster);
@@ -539,10 +1105,21 @@ namespace DndApp.Views
             return name.ToLower().Replace(" ", "-");
         }
 
-        private int CalculatePassivePerception(double cr, int wis)
+        private int CalculatePassivePerception(int wis, List<ProficiencyAndValue> proficiencies)
         {
-            // proficiency on wisdom saving throws and the perception skill also have an influence, I'll add this later.
-            return 10 + CalculateProficiencyBonus(cr) + MonsterMethods.getAbilityScoreModifier(wis);
+            int bonus = MonsterMethods.getAbilityScoreModifier(wis);
+
+            // if the creature has a proficiency or expertise on perception use that's value instead
+            foreach (ProficiencyAndValue proficiency in proficiencies)
+            {
+                if (proficiency.Proficiency.ProficiencyId == "skill-perception")
+                {
+                    bonus = proficiency.Value;
+                    break;
+                }
+            }
+
+            return 10 + bonus;
         }
 
         private int CalculateProficiencyBonus(double cr)
