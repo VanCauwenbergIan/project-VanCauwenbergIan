@@ -940,18 +940,12 @@ namespace DndApp.Views
                 // fill in the values for the added proficiences and expertises
                 foreach(ProficiencyAndValue proficiency in Proficiencies)
                 {
-                    if (proficiency.Value == 0)
-                    {
-                        proficiency.Value = CalculateProficiencyValue(proficiency, new List<int>{ str, dex, con, intel, wis, cha}, CalculateProficiencyBonus(cr), false);
-                    }
+                    proficiency.Value = CalculateProficiencyValue(proficiency, new List<int> { str, dex, con, intel, wis, cha }, CalculateProficiencyBonus(cr), false);
                 }
 
                 foreach(ProficiencyAndValue expertise in Expertises)
                 {
-                    if (expertise.Value == 0)
-                    {
-                        expertise.Value = CalculateProficiencyValue(expertise, new List<int> { str, dex, con, intel, wis, cha }, CalculateProficiencyBonus(cr), true);
-                    }
+                    expertise.Value = CalculateProficiencyValue(expertise, new List<int> { str, dex, con, intel, wis, cha }, CalculateProficiencyBonus(cr), true);
                 }
 
                 string id = ComposeId(name);
