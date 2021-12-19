@@ -20,6 +20,7 @@ namespace DndApp.Views
         Monster SelectedMonster { get; set; }
         public GraphPage(Monster monster)
         {
+            // save monster received from detail page
             SelectedMonster = monster;
             InitializeComponent();
             LoadIcons();
@@ -42,6 +43,7 @@ namespace DndApp.Views
 
         private void LoadIcons()
         {
+            // load icon for return button and asign click event to it
             btnBack.Source = ImageSource.FromResource("DndApp.Assets.buttonBack.png");
 
             TapGestureRecognizer recognizer_return = new TapGestureRecognizer();
@@ -61,21 +63,47 @@ namespace DndApp.Views
 
             Obj = new StatsViewModel();
 
-            // saving throws radar chart
+            //Ability Score Modifier radar chart
+            Obj.DataAS.Clear();
+            Obj.DataAS.Add(new StatsModel("STR", 0));
+            Obj.DataAS.Add(new StatsModel("DEX", 0));
+            Obj.DataAS.Add(new StatsModel("CON", 0));
+            Obj.DataAS.Add(new StatsModel("INT", 0));
+            Obj.DataAS.Add(new StatsModel("WIS", 0));
+            Obj.DataAS.Add(new StatsModel("CHA", 0));
+
+            List<int> abilityScoreModifiers = new List<int>();
+
+            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Strength));
+            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Dexterity));
+            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Constitution));
+            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Intelligence));
+            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Wisdom));
+            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Charisma));
+
+            for (int i = 0; i <= 5; i++)
+            {
+                int asm = abilityScoreModifiers[i];
+
+                Obj.DataAS[i].Value = asm;
+            }
+
+            // saving throws radar chart (normally it's the same as the asm, unless proficient)
             Obj.DataST.Clear();
-            Obj.DataST.Add(new StatsModel("STR", 0));
-            Obj.DataST.Add(new StatsModel("DEX", 0));
-            Obj.DataST.Add(new StatsModel("CON", 0));
-            Obj.DataST.Add(new StatsModel("INT", 0));
-            Obj.DataST.Add(new StatsModel("WIS", 0));
-            Obj.DataST.Add(new StatsModel("CHA", 0));
+            Obj.DataST.Add(new StatsModel("STR", abilityScoreModifiers[0]));
+            Obj.DataST.Add(new StatsModel("DEX", abilityScoreModifiers[1]));
+            Obj.DataST.Add(new StatsModel("CON", abilityScoreModifiers[2]));
+            Obj.DataST.Add(new StatsModel("INT", abilityScoreModifiers[3]));
+            Obj.DataST.Add(new StatsModel("WIS", abilityScoreModifiers[4]));
+            Obj.DataST.Add(new StatsModel("CHA", abilityScoreModifiers[5]));
 
             List<ProficiencyAndValue> savingThrows = MonsterMethods.getSavingThrowsRaw(SelectedMonster);
 
-            foreach(ProficiencyAndValue savingThrow in savingThrows)
+            // overwrite the saving throws that have a proficiency or expertise on them
+            foreach (ProficiencyAndValue savingThrow in savingThrows)
             {
                 int abilityIndex = -1;
-
+                // check which value / position in the savingthrow chart needs to be overwritten
                 if (savingThrow.Proficiency.ProficiencyId == "saving-throw-str")
                 {
                     abilityIndex = 0;
@@ -102,36 +130,6 @@ namespace DndApp.Views
                 }
 
                 Obj.DataST[abilityIndex].Value = savingThrow.Value;
-            }
-
-            //Ability Score Modifier radar chart
-            Obj.DataAS.Clear();
-            Obj.DataAS.Add(new StatsModel("STR", 0));
-            Obj.DataAS.Add(new StatsModel("DEX", 0));
-            Obj.DataAS.Add(new StatsModel("CON", 0));
-            Obj.DataAS.Add(new StatsModel("INT", 0));
-            Obj.DataAS.Add(new StatsModel("WIS", 0));
-            Obj.DataAS.Add(new StatsModel("CHA", 0));
-
-            List<int> abilityScoreModifiers = new List<int>();
-
-            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Strength));
-            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Dexterity));
-            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Constitution));
-            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Intelligence));
-            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Wisdom));
-            abilityScoreModifiers.Add(MonsterMethods.getAbilityScoreModifier(SelectedMonster.Charisma));
-
-            for (int i = 0; i <= 5; i++)
-            {
-                int asm = abilityScoreModifiers[i];
-
-                Obj.DataAS[i].Value = asm;
-
-                //if (asm >= 0)
-                //{
-                //    Obj.DataAS[i].Value = asm;
-                //}
             }
 
             BindingContext = Obj;

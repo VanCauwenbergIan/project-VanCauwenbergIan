@@ -11,7 +11,6 @@ C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\bin\Debug\netstandard2.0\FormsViewGroup.pdb
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\DndApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\App.xaml.g.cs
-C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\AddMonsterPage.xaml.g.cs
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\DetailPage.xaml.g.cs
 C:\Users\Ian Van Cauwenberg\Desktop\TinyProject\project-VanCauwenbergIan\DndApp\DndApp\obj\Debug\netstandard2.0\Views\GraphPage.xaml.g.cs

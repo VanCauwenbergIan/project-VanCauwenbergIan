@@ -5,6 +5,7 @@ using System.Text;
 
 namespace DndApp.Models
 {
+    // basic viewmodel for the bindable layout on the POST/PUT page
     public class AddMonsterViewModel
     {
         public ObservableCollection<ProficiencyAndValue> SingleProficiencies { get; set; }

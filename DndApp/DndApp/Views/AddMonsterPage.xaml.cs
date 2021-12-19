@@ -36,6 +36,7 @@ namespace DndApp.Views
         public List<string> DamageImmunities { get; set; }
         public List<ConditionImmunity> ConditionImmunities { get; set; }
         public List<Action> Abilities { get; set; }
+
         // constructor for put 
         public AddMonsterPage(Monster selectedMonster, List<Monster> oMonsters, List<Monster> hbMonsters)
         {
@@ -48,6 +49,9 @@ namespace DndApp.Views
             LoadPickers();
             CheckConnection();
             LoadMonsterInfo();
+
+
+            lblPageTitle.Text = "Modify Stats";
         }
 
         // constructor for post
@@ -57,6 +61,18 @@ namespace DndApp.Views
             LoadIcons();
             LoadPickers();
             CheckConnection();
+
+            OriginalMonsters = oMonsters;
+            HomebrewMonsters = hbMonsters;
+
+            lblPageTitle.Text = "Create Monster";
+            Obj = new AddMonsterViewModel();
+            Proficiencies = new List<ProficiencyAndValue>();
+            Expertises = new List<ProficiencyAndValue>();
+            DamageVulnerabilities = new List<string>();
+            DamageImmunities = new List<string>();
+            DamageResistances = new List<string>();
+            ConditionImmunities = new List<ConditionImmunity>();
         }
 
         private void CheckConnection()
@@ -74,6 +90,7 @@ namespace DndApp.Views
 
         private void LoadIcons()
         {
+            // assign the right images to the right xaml tags
             btnBack.Source = ImageSource.FromResource("DndApp.Assets.buttonBack.png");
             btnAddProf.Source = ImageSource.FromResource("DndApp.Assets.buttonAddRed.png");
             btnAddExpert.Source = ImageSource.FromResource("DndApp.Assets.buttonAddRed.png");
@@ -85,13 +102,9 @@ namespace DndApp.Views
             btnSize.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
             btnAlignment.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
             btnPckProficiency.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
-            btnPckExpertise.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
-            btnPckDamageResistance.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
-            btnPckDamageVulnerability.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
-            btnPckDamageImmunity.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
-            btnPckConditionImmunity.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
             btnPckUsage.Source = ImageSource.FromResource("DndApp.Assets.buttonDropSmall.png");
 
+            // assign click events where needed
             TapGestureRecognizer recognizer_return = new TapGestureRecognizer();
             TapGestureRecognizer recognizer_openprof = new TapGestureRecognizer();
             TapGestureRecognizer recognizer_openexp = new TapGestureRecognizer();
@@ -126,82 +139,101 @@ namespace DndApp.Views
 
         private void Recognizer_Tapped_openprof(object sender, EventArgs e)
         {
+            // display the pop up to choose a proficiency
             popSingleProficiency.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
             popSingleProficiency.IsVisible = true;
+            btnConfirmProf.ClassId = "prof";
+            lblProficiency.Text = "Add new proficiency";
+
+            pckProficiency.ItemsSource = null;
+            pckProficiency.Items.Clear();
+            foreach (ProficiencyAndValue.ProficiencyObject prof in OptionsProficiencies)
+            {
+                pckProficiency.Items.Add(prof.Name);
+            }
         }
 
         private void Recognizer_Tapped_openexp(object sender, EventArgs e)
         {
-            popDoubleProficiency.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
-            popDoubleProficiency.IsVisible = true;
+            // display the pop up to choose an expertise
+            popSingleProficiency.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popSingleProficiency.IsVisible = true;
+            btnConfirmProf.ClassId = "exp";
+            lblProficiency.Text = "Add new expertise";
+
+            pckProficiency.ItemsSource = null;
+            pckProficiency.Items.Clear();
+            foreach (ProficiencyAndValue.ProficiencyObject prof in OptionsProficiencies)
+            {
+                pckProficiency.Items.Add(prof.Name);
+            }
         }
 
         private void Recognizer_Tapped_openres(Object sender, EventArgs e)
         {
-            popDamageResistances.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
-            popDamageResistances.IsVisible = true;
+            // display the pop up to choose a resistance
+            popSingleProficiency.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popSingleProficiency.IsVisible = true;
+            pckProficiency.ItemsSource = OptionsDamage;
+            btnConfirmProf.ClassId = "res";
+            lblProficiency.Text = "Add new damage resistance";
         }
 
         private void Recognizer_Tapped_openvul(Object sender, EventArgs e)
         {
-            popDamageVulnerabilities.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
-            popDamageVulnerabilities.IsVisible = true;
+            // display the pop up to choose a vulnerability
+            popSingleProficiency.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popSingleProficiency.IsVisible = true;
+            pckProficiency.ItemsSource = OptionsDamage;
+            btnConfirmProf.ClassId = "vul";
+            lblProficiency.Text = "Add new damage vulnerability";
         }
 
         private void Recognizer_Tapped_opendamimu(Object sender, EventArgs e)
         {
-            popDamageImmunities.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
-            popDamageImmunities.IsVisible = true;
+            // display the pop up to choose a damage immunity
+            popSingleProficiency.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popSingleProficiency.IsVisible = true;
+            pckProficiency.ItemsSource = OptionsDamage;
+            btnConfirmProf.ClassId = "damimu";
+            lblProficiency.Text = "Add new damage immunity";
         }
 
         private void Recognizer_Tapped_openconimu(Object sender, EventArgs e)
         {
-            popConditionImmunity.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
-            popConditionImmunity.IsVisible = true;
+            // display the pop up to choose a condition immunity (yes they all use the same pop-up up till now, just modified to display the right information and options)
+            popSingleProficiency.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            popSingleProficiency.IsVisible = true;
+            btnConfirmProf.ClassId = "conimu";
+            lblProficiency.Text = "Add new condition immunity";
+
+            pckProficiency.ItemsSource = null;
+            pckProficiency.Items.Clear();
+            foreach (ConditionImmunity con in OptionsConditions)
+            {
+                pckProficiency.Items.Add(con.Name);
+            }
         }
 
         private void Recognizer_Tapped_openabi(Object sender, EventArgs e)
         {
+            // display the pop up to choose an ability (differnet pop up because this one requires more than a picker)
             popAbilities.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
             popAbilities.IsVisible = true;
         }
 
         private void btnOptionsCancelClicked(object sender, EventArgs e)
         {
+            // close either the abilities pop-up or the one for everything else (proficiencies, damage resistances, condition immunities, ...) and reset all the values given in by the user
             var button = (Button)sender;
             string classId = button.ClassId;
 
-            if(classId == "prof")
+            if(classId != "abi")
             {
                 popSingleProficiency.IsVisible = false;
                 pckProficiency.SelectedItem = null;
             }
-            else if (classId == "exp")
-            {
-                popDoubleProficiency.IsVisible = false;
-                pckExpertise.SelectedItem = null;
-            }
-            else if (classId == "res")
-            {
-                popDamageResistances.IsVisible = false;
-                pckDamageResistance.SelectedItem = null;
-            }
-            else if (classId == "vul")
-            {
-                popDamageVulnerabilities.IsVisible = false;
-                pckDamageVulnerability.SelectedItem = null;
-            }
-            else if (classId == "damimu")
-            {
-                popDamageImmunities.IsVisible = false;
-                pckDamageImmunity.SelectedItem = null;
-            }
-            else if (classId == "conimu")
-            {
-                popConditionImmunity.IsVisible = false;
-                pckConditionImmunity.SelectedItem = null;
-            }
-            else if (classId == "abi")
+            else
             {
                 btnDeleteAbi.IsVisible = false;
                 popAbilities.IsVisible = false;
@@ -221,6 +253,7 @@ namespace DndApp.Views
             var button = (Button)sender;
             string classId = button.ClassId;
 
+            // get the selected option from the picker and add it to the right list of the viewmodel (apart from abilities which is more complicated)
             if (classId == "prof" && pckProficiency.SelectedItem != null)
             {
                 int counter = 0;
@@ -241,7 +274,7 @@ namespace DndApp.Views
                 }
                 else
                 {
-                    selectedOption.ProficiencyId = "skill-" + selectedOption.Name.ToLower().Replace(" ", "-");
+                    selectedOption.ProficiencyId = selectedOption.Name.ToLower().Replace(" ", "-").Replace(":", "");
                 }
 
                 ProficiencyAndValue fullProficiency = new ProficiencyAndValue()
@@ -276,14 +309,14 @@ namespace DndApp.Views
 
                 popSingleProficiency.IsVisible = false;
             }
-            else if (classId == "exp" && pckExpertise.SelectedItem != null)
+            else if (classId == "exp" && pckProficiency.SelectedItem != null)
             {
                 ProficiencyAndValue.ProficiencyObject selectedOption = new ProficiencyAndValue.ProficiencyObject();
                 int counter = 0;
 
                 foreach (ProficiencyAndValue.ProficiencyObject proficiency in OptionsProficiencies)
                 {
-                    if (proficiency.Name == pckExpertise.SelectedItem.ToString())
+                    if (proficiency.Name == pckProficiency.SelectedItem.ToString())
                     {
                         selectedOption = proficiency;
                         break;
@@ -298,7 +331,7 @@ namespace DndApp.Views
                 }
                 else
                 {
-                    selectedOption.ProficiencyId = "skill-" + selectedOption.Name.ToLower().Replace(" ", "-");
+                    selectedOption.ProficiencyId = selectedOption.Name.ToLower().Replace(" ", "-").Replace(":", ""); 
                 }
 
                 ProficiencyAndValue fullProficiency = new ProficiencyAndValue()
@@ -330,11 +363,11 @@ namespace DndApp.Views
                     bdlDoubleProficiencies.BindingContext = Obj;
                 }
 
-                popDoubleProficiency.IsVisible = false;
+                popSingleProficiency.IsVisible = false;
             }
-            else if (classId == "res" && pckDamageResistance.SelectedItem != null)
+            else if (classId == "res" && pckProficiency.SelectedItem != null)
             {
-                string selectedOption = pckDamageResistance.SelectedItem.ToString();
+                string selectedOption = pckProficiency.SelectedItem.ToString();
 
                 if (DamageResistances.Contains(selectedOption) == false && DamageVulnerabilities.Contains(selectedOption) == false && DamageImmunities.Contains(selectedOption) == false)
                 {
@@ -344,11 +377,11 @@ namespace DndApp.Views
                     bdlDamageResistances.BindingContext = Obj;
                 }
 
-                popDamageResistances.IsVisible = false;
+                popSingleProficiency.IsVisible = false;
             }
-            else if (classId == "vul" && pckDamageVulnerability.SelectedItem != null)
+            else if (classId == "vul" && pckProficiency.SelectedItem != null)
             {
-                string selectedOption = pckDamageVulnerability.SelectedItem.ToString();
+                string selectedOption = pckProficiency.SelectedItem.ToString();
 
                 if (DamageResistances.Contains(selectedOption) == false && DamageVulnerabilities.Contains(selectedOption) == false && DamageImmunities.Contains(selectedOption) == false)
                 {
@@ -358,11 +391,11 @@ namespace DndApp.Views
                     bdlDamageVulnerabilities.BindingContext = Obj;
                 }
 
-                popDamageVulnerabilities.IsVisible = false;
+                popSingleProficiency.IsVisible = false;
             }
-            else if (classId == "damimu" && pckDamageImmunity.SelectedItem != null)
+            else if (classId == "damimu" && pckProficiency.SelectedItem != null)
             {
-                string selectedOption = pckDamageImmunity.SelectedItem.ToString();
+                string selectedOption = pckProficiency.SelectedItem.ToString();
 
                 if (DamageResistances.Contains(selectedOption) == false && DamageVulnerabilities.Contains(selectedOption) == false && DamageImmunities.Contains(selectedOption) == false)
                 {
@@ -372,16 +405,16 @@ namespace DndApp.Views
                     bdlDamageImmunities.BindingContext = Obj;
                 }
 
-                popDamageImmunities.IsVisible = false;
+                popSingleProficiency.IsVisible = false;
             }
-            else if (classId == "conimu" && pckConditionImmunity.SelectedItem != null)
+            else if (classId == "conimu" && pckProficiency.SelectedItem != null)
             {
                 int counter = 0;
                 ConditionImmunity conditionImmunity = new ConditionImmunity();
 
                 foreach (ConditionImmunity condition in OptionsConditions)
                 {
-                    if (condition.Name == pckConditionImmunity.SelectedItem.ToString())
+                    if (condition.Name == pckProficiency.SelectedItem.ToString())
                     {
                         conditionImmunity = condition;
                         break;
@@ -404,7 +437,7 @@ namespace DndApp.Views
                     bdlConditionImmunities.BindingContext = Obj;
                 }
 
-                popConditionImmunity.IsVisible = false;
+                popSingleProficiency.IsVisible = false;
             }
             else if (classId == "abi" && ediNameAbility.Text != null && ediDescriptionAbility.Text != null && ediNameAbility.Text != "" && ediDescriptionAbility.Text != "")
             {
@@ -418,10 +451,10 @@ namespace DndApp.Views
                     Obj.SpecialAbilities.Clear();
                     foreach (Action a in Abilities)
                     {
+                        // update the ability if it already exists (usage comes later)
                         if (a.Name == ability.Name)
                         {
                             counter++;
-                            a.Name = ability.Name;
                             a.Description = ability.Description;
                             a.Usage = null;
                         }
@@ -439,6 +472,7 @@ namespace DndApp.Views
                 ediNameAbility.Text = null;
                 ediNameAbility.IsEnabled = true;
 
+                // if the user has chosen to limit the usage of the ability they'll also need to choose some options for that
                 if (cbxToggleUsage.IsChecked == true)
                 {
                     popAbilityUsage.IsVisible = true;
@@ -449,6 +483,7 @@ namespace DndApp.Views
                     ability.Usage = null;
                 }
 
+                // if it doesn't already exist, add it to viewmodel
                 if (counter == 0)
                 {
                     Obj.SpecialAbilities.Add(ability);
@@ -464,6 +499,7 @@ namespace DndApp.Views
 
         private void pckUsageTypeSelected(object sender, EventArgs e)
         {
+            // change the options depending on which type of limited usage is selected
             if (pckUsage.SelectedItem != null)
             {
                 if (pckUsage.SelectedItem.ToString() == "recharge on roll")
@@ -482,6 +518,7 @@ namespace DndApp.Views
         private void btnUsageConfirmClicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
+            // the name of the ability being edited is bound to the confirm button
             string classId = button.ClassId;
             int i = 0;
 
@@ -489,14 +526,17 @@ namespace DndApp.Views
             {
                 if (ability.Name == classId)
                 {
+                    // so a recharge on roll has been chosen
                     if (grdUsageRoll.IsVisible == true)
                     {
                         if (entDice.Text != null && entMinRoll.Text != null && entDice.Text != "" && entMinRoll.Text != "")
                         {
+                            // check if an int has been given in as a minimum value, else do nothing
                             if (int.TryParse(entMinRoll.Text, out i) == true)
                             {
                                 string[] usageCheck = entDice.Text.Split('d');
 
+                                // now check if the dice roll has been properly formatted by the user (int d int)
                                 if (int.TryParse(usageCheck[0], out i) == true && int.TryParse(usageCheck[1], out i) == true)
                                 {
                                     ability.Usage = new UsageObject()
@@ -509,6 +549,7 @@ namespace DndApp.Views
                             }
                         }
                     }
+                    // a recharge based on  time (long rest, short rest, day) has been chosen
                     else
                     {
                         if (entTimes.Text != null && entTimes.Text != "")
@@ -527,6 +568,7 @@ namespace DndApp.Views
                 }
             }
 
+            // reset everything and close the pop-up
             grdUsageTime.IsVisible = false;
             grdUsageRoll.IsVisible = false;
             popAbilityUsage.IsVisible = false;
@@ -539,6 +581,7 @@ namespace DndApp.Views
         private void EditAbility(object sender, EventArgs e)
         {
             var button = (ImageButton)sender;
+            // each edit button has the name of the monster tied to it bound to its classid
             string classId = button.ClassId;
 
             foreach (Action ability in Abilities)
@@ -547,6 +590,7 @@ namespace DndApp.Views
                 {
                     ediNameAbility.Text = ability.Name;
                     ediNameAbility.IsEnabled = false;
+                    // can't edit the name of an ability, only delete it and make a new one
                     ediDescriptionAbility.Text = ability.Description;
 
                     if (ability.Usage != null)
@@ -580,6 +624,7 @@ namespace DndApp.Views
         private void DeleteProficiency(object sender, EventArgs e)
         {
             var button = (ImageButton)sender;
+            // this goes for all delete events, the name of the object for which the button is clicked is bound to the classid
             string classId = button.ClassId;
 
             foreach(ProficiencyAndValue proficiency in Proficiencies)
@@ -612,7 +657,7 @@ namespace DndApp.Views
                 }
             }
 
-            pckExpertise.SelectedItem = null;
+            pckProficiency.SelectedItem = null;
         }
 
         private void DeleteResistance(Object sender, EventArgs e)
@@ -631,7 +676,7 @@ namespace DndApp.Views
                 }
             }
 
-            pckDamageResistance.SelectedItem = null;
+            pckProficiency.SelectedItem = null;
         }
 
         private void DeleteVulnerability(Object sender, EventArgs e)
@@ -650,7 +695,7 @@ namespace DndApp.Views
                 }
             }
 
-            pckDamageVulnerability.SelectedItem = null;
+            pckProficiency.SelectedItem = null;
         }
 
         private void DeleteDamageImmunity(Object sender, EventArgs e)
@@ -669,7 +714,7 @@ namespace DndApp.Views
                 }
             }
 
-            pckDamageImmunity.SelectedItem = null;
+            pckProficiency.SelectedItem = null;
         }
 
         private void DeleteConditionImmunity(Object sender, EventArgs e)
@@ -688,7 +733,7 @@ namespace DndApp.Views
                 }
             }
 
-            pckConditionImmunity.SelectedItem = null;
+            pckProficiency.SelectedItem = null;
         }
 
         private void DeleteAbility(Object sender, EventArgs e)
@@ -720,13 +765,16 @@ namespace DndApp.Views
 
         private void LoadMonsterInfo()
         {
+            // create a new viewmodel
             Obj = new AddMonsterViewModel();
 
+            // if a monster is from the first API and can't be edited
             if (OriginalMonsters.Contains(SelectedMonster) == true)
             {
                 lblWarning.IsVisible = true;
             }
 
+            // filling up all entries and lists to display for the put page
             entName.Text = SelectedMonster.Name;
 
             entType.Text = SelectedMonster.Type;
@@ -855,29 +903,19 @@ namespace DndApp.Views
 
         private async void LoadPickers()
         {
+            // fill up the picker for the put/post page
             pckSize.ItemsSource = OptionsSize;
             pckAlignment.ItemsSource = OptionsAlignment;
-            pckDamageResistance.ItemsSource = OptionsDamage;
-            pckDamageVulnerability.ItemsSource = OptionsDamage;
-            pckDamageImmunity.ItemsSource = OptionsDamage;
             pckUsage.ItemsSource = OptionsUsage;
 
+            // options for adding proficiences and condition immunities 
             OptionsConditions = await MonsterRepository.GetConditions();
             OptionsProficiencies = await MonsterRepository.GetProficiencies();
-
-            foreach (ProficiencyAndValue.ProficiencyObject proficiency in OptionsProficiencies)
-            {
-                pckProficiency.Items.Add(proficiency.Name);
-                pckExpertise.Items.Add(proficiency.Name);
-            }
-            foreach (ConditionImmunity immunity in OptionsConditions)
-            {
-                pckConditionImmunity.Items.Add(immunity.Name);
-            }
         }
 
         private async void btnConfirmClicked(Object sender, EventArgs e)
         {
+            // validating user input
             List<string> warnings = CheckUserInput();
 
             if (warnings.Count() > 0)
@@ -898,7 +936,8 @@ namespace DndApp.Views
                 int cha = Int32.Parse(entCharisma.Text);
                 int na = Int32.Parse(entNaturalArmor.Text);
                 double cr = Double.Parse(entChallengeRating.Text);
-
+                
+                // fill in the values for the added proficiences and expertises
                 foreach(ProficiencyAndValue proficiency in Proficiencies)
                 {
                     if (proficiency.Value == 0)
@@ -946,6 +985,7 @@ namespace DndApp.Views
                 List<ConditionImmunity> conditionImmunities = ConditionImmunities;
                 List<Action> specialAbilities = Abilities;
 
+                // post
                 if (SelectedMonster == null || OriginalMonsters.Contains(SelectedMonster))
                 {
                     Monster newMonster = new Monster()
@@ -991,6 +1031,13 @@ namespace DndApp.Views
                         SpecialAbilities = specialAbilities
                     };
 
+                    if (SelectedMonster != null)
+                    {
+                        newMonster.Actions = SelectedMonster.Actions;
+                        newMonster.LegendaryActions = SelectedMonster.LegendaryActions;
+
+                    }
+
                     await MonsterRepository.PostHomebrewMonsterAsync(newMonster);
                     // problem: normally we would pass on data when creating a page, but then the whole overviewpage would reload for one single monster. Not exactly the best UX
                     MessagingCenter.Send<Monster>(newMonster, "refresh!");
@@ -1006,6 +1053,7 @@ namespace DndApp.Views
                         await Navigation.PopAsync();
                     }
                 }
+                // put
                 else
                 {
                     SelectedMonster.MonsterId = id;
@@ -1102,13 +1150,15 @@ namespace DndApp.Views
 
         private string ComposeId(string name)
         {
+            // making an id for a new monster
             return name.ToLower().Replace(" ", "-");
         }
-
+        
         private int CalculatePassivePerception(int wis, List<ProficiencyAndValue> proficiencies)
         {
             int bonus = MonsterMethods.getAbilityScoreModifier(wis);
 
+            // calculations are based on official dnd5e monster rules
             // if the creature has a proficiency or expertise on perception use that's value instead
             foreach (ProficiencyAndValue proficiency in proficiencies)
             {
@@ -1124,6 +1174,7 @@ namespace DndApp.Views
 
         private int CalculateProficiencyBonus(double cr)
         {
+            // values are based on official dnd5e monster rules
             if (5 <= cr && cr < 9)
             {
                 return 3;
@@ -1166,6 +1217,7 @@ namespace DndApp.Views
         private string ComposeHitDice(int amountHitdice, string size)
         {
             string typeHitDice = "";
+            // values are based on official dnd5e monster rules
 
             if (size == "Tiny")
             {
@@ -1366,6 +1418,15 @@ namespace DndApp.Views
             if (entName.Text == null || entName.Text == "")
             {
                 errors.Add("name can not be empty");
+            }
+            
+            foreach (Monster monster in OriginalMonsters)
+            {
+                if (monster.Name == entName.Text)
+                {
+                    errors.Add("name can not be the same as that of a source book monster");
+                    break;
+                }
             }
 
             if (entType.Text == null || entType.Text == "")

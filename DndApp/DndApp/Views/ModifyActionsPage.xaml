@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:DndApp.Models"
              x:Class="DndApp.Views.ModifyActionsPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#090809">
@@ -53,13 +53,13 @@
                                         <RowDefinition/>
                                         <RowDefinition Height="16"/>
                                     </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0">
+                                    <Grid Grid.Row="0" ClassId="a">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition/>
                                             <ColumnDefinition Width="28"/>
                                         </Grid.ColumnDefinitions>
                                         <Label x:Name="lblActionName" Grid.Column="0" Text="{Binding Name}" FontSize="16" TextColor="#F4F7FB" FontAttributes="Bold"/>
-                                        <ImageButton x:Name="btnEditAction" Grid.Column="1" Source="buttonEdit.png" BackgroundColor="Transparent"/>
+                                        <ImageButton x:Name="btnEditAction" ClassId="{Binding Name}" Grid.Column="1" Source="buttonEdit.png" BackgroundColor="Transparent" Clicked="EditAction"/>
                                     </Grid>
                                     <Label Grid.Row="1" Text="{Binding Description}" FontSize="14" TextColor="#E4E4E4"/>
                                 </Grid>
@@ -87,13 +87,13 @@
                                         <RowDefinition/>
                                         <RowDefinition Height="16"/>
                                     </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0">
+                                    <Grid Grid.Row="0" ClassId="la">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition/>
                                             <ColumnDefinition Width="28"/>
                                         </Grid.ColumnDefinitions>
                                         <Label x:Name="lblLegendaryActionName" Grid.Column="0" Text="{Binding Name}" FontSize="16" TextColor="#F4F7FB" FontAttributes="Bold"/>
-                                        <ImageButton x:Name="btnEditLegendaryAction" Grid.Column="1" Source="buttonEdit.png" BackgroundColor="Transparent"/>
+                                        <ImageButton x:Name="btnEditLegendaryAction" ClassId="{Binding Name}" Grid.Column="1" Source="buttonEdit.png" BackgroundColor="Transparent" Clicked="EditAction"/>
                                     </Grid>
                                     <Label Grid.Row="1" Text="{Binding Description}" FontSize="14" TextColor="#E4E4E4"/>
                                 </Grid>
@@ -102,6 +102,127 @@
                     </StackLayout>
                 </Grid>
             </ScrollView>
+            <!--ACTIONS (POP UP)-->
+            <ContentView Grid.RowSpan="2" x:Name="popActions" IsVisible="false">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
+                        <Grid RowSpacing="16"  Padding="0, 0, 0, 16" BackgroundColor="#26282A">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="8"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="200"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="16"/>
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="lblAction" Grid.Column="0" Text="Name action" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
+                                <ImageButton x:Name="btnDeleteAct" Grid.Column="1" Source="buttonDelete.png" BackgroundColor="Transparent" Clicked="DeleteAction" HorizontalOptions="End" HeightRequest="26" IsVisible="false"/>
+                            </Grid>
+                            <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
+                            <Editor x:Name="ediNameAction" Grid.Row="2" TextColor="#F4F7FB" FontSize="18" VerticalOptions="Center" Margin="16, 0" />
+                            <Label Grid.Row="3" Text="Description" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
+                            <BoxView Grid.Row="4" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
+                            <Editor x:Name="ediDescriptionAction" Grid.Row="4" TextColor="#F4F7FB" FontSize="18" VerticalOptions="FillAndExpand" Margin="16, 0"/>
+                            <Grid Grid.Row="5" HorizontalOptions="Start" Padding="0, 0, 16, 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="16"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="16"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="1" Text="Limited usage" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                                <CheckBox x:Name="cbxToggleUsage" Grid.Column="2" Color="#E40712" VerticalOptions="Center" ScaleX="1.25" ScaleY="1.25"/>
+                            </Grid>
+                            <Grid Grid.Row="6" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="btnCancelAct" ClassId="act" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnOptionsCancelClicked"/>
+                                <Button x:Name="btnConfirmAct" ClassId="act" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnOptionsConfirmClicked"/>
+                            </Grid>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+            <!--ABILITIES - USAGE (POP UP)-->
+            <ContentView Grid.RowSpan="2" x:Name="popActionUsage" IsVisible="false">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
+                        <Grid RowSpacing="16"  Padding="0, 0, 0, 16" BackgroundColor="#26282A">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="8"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="1" Text="Usage" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
+                            <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
+                            <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="24"/>
+                                    <ColumnDefinition Width="1"/>
+                                </Grid.ColumnDefinitions>
+                                <models:MyPicker x:Name="pckUsage" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent" SelectedIndexChanged="pckUsageTypeSelected"/>
+                                <Image x:Name="btnPckUsage" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </Grid>
+                            <Grid x:Name="grdUsageRoll" Grid.Row="3" HorizontalOptions="StartAndExpand" IsVisible="false">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="16"/>
+                                    <RowDefinition />
+                                    <RowDefinition Height="16"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="1" HorizontalOptions="Start">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="16"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="72"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="1" Text="Dice (for example 1d6)" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                                    <BoxView Grid.Column="2" BackgroundColor="#293742" CornerRadius="5"/>
+                                    <models:MyEntry x:Name="entDice" Grid.Column="2" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                                </Grid>
+                                <Grid Grid.Row="3" HorizontalOptions="Start">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="16"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="72"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="1" Text="Minimum roll" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                                    <BoxView Grid.Column="2" BackgroundColor="#293742" CornerRadius="5"/>
+                                    <models:MyEntry x:Name="entMinRoll" Grid.Column="2" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                                </Grid>
+                            </Grid>
+                            <Grid x:Name="grdUsageTime" Grid.Row="3" HorizontalOptions="StartAndExpand" IsVisible="false" Padding="0, 16, 0, 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="16"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="1" Text="Times" TextColor="#E4E4E4" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                                <BoxView Grid.Column="2" BackgroundColor="#293742" CornerRadius="5"/>
+                                <models:MyEntry x:Name="entTimes" Grid.Column="2" FontSize="18" TextColor="#E4E4E4" HorizontalTextAlignment="Center" BackgroundColor="Transparent" VerticalOptions="StartAndExpand"/>
+                            </Grid>
+                            <Grid Grid.Row="4" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="btnConfirmUsage" ClassId="{Binding Name}" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnUsageConfirmClicked"/>
+                            </Grid>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace DndApp.Repositories
 {
+    // making requests from the APIs happens here
     public class MonsterRepository
     {
         private const string _BASEURI = "https://www.dnd5eapi.co";
@@ -126,6 +127,8 @@ namespace DndApp.Repositories
             {
                 try
                 {
+                    // skills and other proficiencies are split into two differnt API urls, the thing is we only want the saving throw proficiencies form that second link (not stuff like armor, instruments, weapons, ... those are for like actual npcs and pcs mostly)
+
                     List<ProficiencyAndValue.ProficiencyObject> skills = new List<ProficiencyAndValue.ProficiencyObject>();
                     List<ProficiencyAndValue.ProficiencyObject> allProficiencies = new List<ProficiencyAndValue.ProficiencyObject>();
                     List<ProficiencyAndValue.ProficiencyObject> usefullProficiencies = new List<ProficiencyAndValue.ProficiencyObject>();
@@ -141,7 +144,7 @@ namespace DndApp.Repositories
                         ProficiencyAndValue.ProficiencyObject skill = new ProficiencyAndValue.ProficiencyObject()
                         {
                             ProficiencyId = item.MonsterId,
-                            Name = item.Name
+                            Name = "Skill: " + item.Name
                         };
 
                         skills.Add(skill);
@@ -173,7 +176,7 @@ namespace DndApp.Repositories
             }
         }
 
-        // NOTE: the actual second API doesn't run locally (although you could for an emulated android device). I only included the second solution for easy readability
+        // NOTE: the actual second API doesn't run locally (although you could for an emulated android device). I only included the second solution for easy readability. Deleting the 'SecondAPIDnd' project wouldn't affect the app.
         public static async Task PostHomebrewMonsterAsync(Monster monster)
         {
             string url = "https://secondapidnd.azurewebsites.net/api/monsters";

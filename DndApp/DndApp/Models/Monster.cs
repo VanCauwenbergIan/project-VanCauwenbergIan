@@ -7,14 +7,15 @@ using System.Text;
 
 namespace DndApp.Models
 {
+    // main class for all monsters in the listview
     public class Monster
     {
         // ** PROPERTIES **
         // DESCRIPTIVE PROPERTIES
         [JsonProperty(PropertyName = "index")]
         public string MonsterId { get; set; }
-        public string Name { get; set; }
         // MonsterId is a lowercase no space version of the name used in the url for a specific monster
+        public string Name { get; set; }
         public string Size { get; set; }
         public string Type { get; set; }
         public string Alignment { get; set; }
@@ -76,6 +77,7 @@ namespace DndApp.Models
                 return ToFraction(ChallengeRating);
             }
         }
+        // converts doubles into a fraction to display in the listview
 
         private static string ToFraction(double number)
         {
@@ -85,6 +87,7 @@ namespace DndApp.Models
 
             string returnValue = $"{w}";
 
+            // handling a double that's larger or equal to 1 
             if (w > 0)
             {
                 if (n > 0)
@@ -104,7 +107,7 @@ namespace DndApp.Models
 
         static void RoundToFraction(double number, out int whole, out int numerator, out int denominator)
         {
-            //smallest fraction is 1/8
+            //smallest fraction we want to show is 1/8 => accuracy of 8
             int accuracy = 8; 
             double dblAccuracy = (double)accuracy;
             whole = (int)(Math.Truncate(number));
@@ -116,7 +119,8 @@ namespace DndApp.Models
                 denominator = 1;
                 return;
             }
-
+            
+            // here we want to find the smallest possible gcd (so by extension the most simplified form of our fraction), while still meeting our accuracy
             var n = Enumerable.Range(0, accuracy + 1).SkipWhile(e => (e / dblAccuracy) < fraction).First();
             var hi = n / dblAccuracy;
             var lo = (n - 1) / dblAccuracy;
@@ -150,6 +154,7 @@ namespace DndApp.Models
             }
         }
 
+        // if you wonder where this comes from, it's just following the standard dnd5e rules for monsters
         public int ProficiencyBonus
         {
             get
@@ -189,6 +194,7 @@ namespace DndApp.Models
             }
         }
 
+        // just how dice rolls are formatted, nothing special here
         public int AmountOfHPDice
         {
             get
@@ -199,6 +205,7 @@ namespace DndApp.Models
             }
         }
 
+        // actual AC - standard 5e formula to get AC, that way we know if a creature has a boosted AC (aka natural armor)
         public int NaturalArmor
         {
             get
@@ -210,13 +217,6 @@ namespace DndApp.Models
             }
         }
         // END OF CALCULATED PROPERTIES
-
-        // ** METHODS **
-        public override string ToString()
-        {
-            return $"{this.Name} - {this.Size} {this.Type}, {this.Alignment} ({this.Strength},{this.Dexterity},{this.Constitution},{this.Intelligence},{this.Wisdom},{this.Charisma}) => CR: {this.ChallengeRating}";
-        }
-        // END OF METHODS
     }
 
     public class SpeedProperties

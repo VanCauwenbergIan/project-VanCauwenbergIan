@@ -80,7 +80,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Frame Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#800047AB" CornerRadius="2" BorderColor="#0047AB" />
-                <Label Grid.Column="2" Text="Saving Throw Modifiers (proficient)" FontSize="16" FontAttributes="Bold" TextColor="#F4F7FB"/>
+                <Label Grid.Column="2" Text="Saving Throw Modifiers" FontSize="16" FontAttributes="Bold" TextColor="#F4F7FB"/>
             </Grid>
         </Grid>
     </Grid>

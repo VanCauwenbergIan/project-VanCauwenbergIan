@@ -98,6 +98,7 @@ namespace DndApp.Repositories
 
         public static List<ProficiencyAndValue> getSavingThrowsRaw(Monster m)
         {
+            // same, but without the formatting
             List<ProficiencyAndValue> savingThrows = new List<ProficiencyAndValue>();
 
             foreach (ProficiencyAndValue proficiency in m.Proficiencies)
@@ -244,6 +245,7 @@ namespace DndApp.Repositories
 
         public static List<SubOptionCheckbox> getFilterCheckboxes(List<Monster> monsters,string chosenOption)
         {
+            // this method makes a checkbox for each suboption for the specified parameter and returns them in a list
             List<string> subOptions = new List<string>();
             List<SubOptionCheckbox> checkboxes = new List<SubOptionCheckbox>();
 
@@ -282,6 +284,7 @@ namespace DndApp.Repositories
 
         public static List<SubOptionEntry> getFilterEntries()
         {
+            // used specifically for options that ask for a specified range like AC and HP
             List<string> subOptions = new List<string> {"From", "To"};
             List<SubOptionEntry> entries = new List<SubOptionEntry>();
             
@@ -302,6 +305,7 @@ namespace DndApp.Repositories
 
         public static List<Monster> getMonstersByName(string searchQuery, List<Monster> monsters)
         {
+            // checks if the name of a monster contains the string within the searchbar
             List<Monster> results = new List<Monster>();
             searchQuery = searchQuery.ToLower();
 
@@ -330,6 +334,7 @@ namespace DndApp.Repositories
 
             int asm = 0;
 
+            // each different skill or saving throw uses a different ability score modifier (see lists for which ones use which)
             foreach (ProficiencyAndValue proficiency in selectedMonster.Proficiencies)
             {
                 if (StrProficiencies.Contains(proficiency.Proficiency.ProficiencyId))
@@ -359,6 +364,7 @@ namespace DndApp.Repositories
 
                 if (doubleProficiency == false)
                 {
+                    // looks for singl proficiencies
                     if (proficiency.Value - asm - selectedMonster.ProficiencyBonus == 0)
                     {
                         filteredList.Add(proficiency);
@@ -366,6 +372,7 @@ namespace DndApp.Repositories
                 }
                 else
                 {
+                    // looks for double proficiencies
                     if (proficiency.Value - asm - (2 * selectedMonster.ProficiencyBonus) == 0)
                     {
                         filteredList.Add(proficiency);
@@ -404,10 +411,12 @@ namespace DndApp.Repositories
 
         public static List<Monster> sortListBy (List<Monster> originalMonsters, string parameter)
         {
+            // sorts the monsters by the paramter the user choose from
             parameter = parameter.ToLower();
 
             List<Monster> customSorted = new List<Monster>();
 
+            // these two are simple since one is alphabetically and the other by number
             if (parameter == "type")
             {
                 return originalMonsters.OrderBy(o => o.Type).ThenBy(o => o.Name).ToList();
@@ -418,7 +427,7 @@ namespace DndApp.Repositories
             }
             else if (parameter == "size")
             {
-                // custom sort by size
+                // custom sort by size from small to big
                 List<Monster> tiny = new List<Monster>();
                 List<Monster> small = new List<Monster>();
                 List<Monster> medium = new List<Monster>();
@@ -469,7 +478,7 @@ namespace DndApp.Repositories
             }
             else if (parameter == "alignment")
             {
-                // custom sort by alignment
+                // custom sort by alignment from chaotic evil to lawful good
                 List<Monster> chaoticEvil = new List<Monster>();
                 List<Monster> neutralEvil = new List<Monster>();
                 List<Monster> lawfulEvil = new List<Monster>();
@@ -574,7 +583,7 @@ namespace DndApp.Repositories
             }
             else if (parameter == "la")
             {
-                // custom sort by legendary acions
+                // custom sort by legendary acions from none to the monster with the highest amount
                 List<Monster> nonlegendary = new List<Monster>();
                 List<Monster> legendary = new List<Monster>();
  
@@ -603,8 +612,8 @@ namespace DndApp.Repositories
 
         public static List<Monster> filterByCheckboxes (List<Monster> monsters, List<SubOptionCheckbox> checkboxes, string stringId)
         {
+            // filters monsters based on the checked suboptions for the selected option
             List<Monster> filteredList = new List<Monster>();
-            // I only stumbled upon this one recently, probably a lot of ifs I can replace
             List<SubOptionCheckbox> options = checkboxes.Where(o => o.Status == true).ToList();
 
             if (stringId == "Type")
@@ -672,6 +681,7 @@ namespace DndApp.Repositories
 
         public static List<Monster> filterByEntries(List<Monster> monsters, List<SubOptionEntry> entries, string stringId)
         {
+            // filters monsters by the specified range for the slected option
             List<Monster> filteredList = new List<Monster>();
 
             if (stringId == "Challenge")

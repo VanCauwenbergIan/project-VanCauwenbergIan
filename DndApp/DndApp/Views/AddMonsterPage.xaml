@@ -534,7 +534,8 @@
                     </StackLayout>
                 </Grid>
             </ScrollView>
-            <!--PROFICIENCIES (POP UP)-->
+            <!--It would be better to use a single picker which you fill up dynamically but my brain is fried at this point-->
+            <!--PROFICIENCIES + DAMAGE + CONDITIONS (POP UP)-->
             <ContentView Grid.RowSpan="2" x:Name="popSingleProficiency" IsVisible="false">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
@@ -544,7 +545,7 @@
                                 <RowDefinition Height="20"/>
                                 <RowDefinition Height="40"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="1" Text="Add new proficiency" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
+                            <Label Grid.Row="1" x:Name="lblProficiency" Text="Add new proficiency" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
                             <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
                             <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
@@ -562,171 +563,6 @@
                                 </Grid.ColumnDefinitions>
                                 <Button x:Name="btnCancelProf" ClassId="prof" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnOptionsCancelClicked"/>
                                 <Button x:Name="btnConfirmProf" ClassId="prof" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnOptionsConfirmClicked"/>
-                            </Grid>
-                        </Grid>
-                    </StackLayout>
-                </StackLayout>
-            </ContentView>
-            <!--EXPERTISE (POP UP)-->
-            <ContentView Grid.RowSpan="2" x:Name="popDoubleProficiency" IsVisible="false">
-                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
-                        <Grid RowSpacing="16"  Padding="0, 0, 0, 16" BackgroundColor="#26282A">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="8"/>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="40"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="1" Text="Add new expertise" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
-                            <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
-                            <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="24"/>
-                                    <ColumnDefinition Width="1"/>
-                                </Grid.ColumnDefinitions>
-                                <models:MyPicker x:Name="pckExpertise" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
-                                <Image x:Name="btnPckExpertise" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="3" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="btnCancelExp" ClassId="exp" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnOptionsCancelClicked"/>
-                                <Button x:Name="btnConfirmExp" ClassId="exp" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnOptionsConfirmClicked"/>
-                            </Grid>
-                        </Grid>
-                    </StackLayout>
-                </StackLayout>
-            </ContentView>
-            <!--RESISTANCES (POP UP)-->
-            <ContentView Grid.RowSpan="2" x:Name="popDamageResistances" IsVisible="false">
-                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
-                        <Grid RowSpacing="16"  Padding="0, 0, 0, 16" BackgroundColor="#26282A">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="8"/>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="40"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="1" Text="Add new resistance" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
-                            <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
-                            <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="24"/>
-                                    <ColumnDefinition Width="1"/>
-                                </Grid.ColumnDefinitions>
-                                <models:MyPicker x:Name="pckDamageResistance" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
-                                <Image x:Name="btnPckDamageResistance" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="3" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="btnCancelRes" ClassId="res" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnOptionsCancelClicked"/>
-                                <Button x:Name="btnConfirmRes" ClassId="res" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnOptionsConfirmClicked"/>
-                            </Grid>
-                        </Grid>
-                    </StackLayout>
-                </StackLayout>
-            </ContentView>
-            <!--DAMAGE IMMUNITIES (POP UP)-->
-            <ContentView Grid.RowSpan="2" x:Name="popDamageImmunities" IsVisible="false">
-                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
-                        <Grid RowSpacing="16"  Padding="0, 0, 0, 16" BackgroundColor="#26282A">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="8"/>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="40"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="1" Text="Add new damage immunity" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
-                            <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
-                            <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="24"/>
-                                    <ColumnDefinition Width="1"/>
-                                </Grid.ColumnDefinitions>
-                                <models:MyPicker x:Name="pckDamageImmunity" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
-                                <Image x:Name="btnPckDamageImmunity" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="3" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="btnCancelDamImu" ClassId="damimu" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnOptionsCancelClicked"/>
-                                <Button x:Name="btnConfirmDamImu" ClassId="damimu" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnOptionsConfirmClicked"/>
-                            </Grid>
-                        </Grid>
-                    </StackLayout>
-                </StackLayout>
-            </ContentView>
-            <!--VULNERABILITIES (POP UP)-->
-            <ContentView Grid.RowSpan="2" x:Name="popDamageVulnerabilities" IsVisible="false">
-                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
-                        <Grid RowSpacing="16"  Padding="0, 0, 0, 16" BackgroundColor="#26282A">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="8"/>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="40"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="1" Text="Add new vulnerability" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
-                            <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
-                            <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="24"/>
-                                    <ColumnDefinition Width="1"/>
-                                </Grid.ColumnDefinitions>
-                                <models:MyPicker x:Name="pckDamageVulnerability" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
-                                <Image x:Name="btnPckDamageVulnerability" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="3" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="btnCancelVul" ClassId="vul" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnOptionsCancelClicked"/>
-                                <Button x:Name="btnConfirmVul" ClassId="vul" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnOptionsConfirmClicked"/>
-                            </Grid>
-                        </Grid>
-                    </StackLayout>
-                </StackLayout>
-            </ContentView>
-            <!--CONDITION IMMUNITIES (POP UP)-->
-            <ContentView Grid.RowSpan="2" x:Name="popConditionImmunity" IsVisible="false">
-                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    <StackLayout Orientation="Vertical" WidthRequest="300" BackgroundColor="#26282A">
-                        <Grid RowSpacing="16"  Padding="0, 0, 0, 16" BackgroundColor="#26282A">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="8"/>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="40"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="1" Text="Add new condition immunity" TextColor="#F4F7FB" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" Margin="16, 0"/>
-                            <BoxView Grid.Row="2" BackgroundColor="#293742" CornerRadius="5" Margin="8, 0, 8, 0"/>
-                            <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="24"/>
-                                    <ColumnDefinition Width="1"/>
-                                </Grid.ColumnDefinitions>
-                                <models:MyPicker x:Name="pckConditionImmunity" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.ColumnSpan="3" FontSize="18" TextColor="#E4E4E4" BackgroundColor="Transparent"/>
-                                <Image x:Name="btnPckConditionImmunity" Grid.Column="1" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="3" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="btnCancelConImu" ClassId="conimu" Grid.Column="0" Text="Cancel" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="8, 0, 0, 0" Clicked="btnOptionsCancelClicked"/>
-                                <Button x:Name="btnConfirmConImu" ClassId="conimu" Grid.Column="1" Text="Confirm" FontSize="16" FontAttributes="Bold" TextColor="#E40712" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0, 0, 8, 0" Clicked="btnOptionsConfirmClicked"/>
                             </Grid>
                         </Grid>
                     </StackLayout>

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace DndApp.Models
 {
+    // Desrializing our initial json string into something we can at least get the name out of
     public class JsonToMonster
     {
         // counterpart to array results from JSON (the only part we're interested in)

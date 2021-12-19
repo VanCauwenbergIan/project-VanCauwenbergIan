@@ -5,6 +5,7 @@ using System.Text;
 
 namespace DndApp.Models
 {
+    // basic viewmodel for the statspage
     public class StatsModel
     {
         public string Ability { get; set; }
